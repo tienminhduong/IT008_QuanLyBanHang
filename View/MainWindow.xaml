@@ -36,7 +36,8 @@
             <Grid Grid.Row="2">
                 <StackPanel>
                     <!--Button_TongQuan-->
-                    <Button Background="Transparent"
+                    <Button x:Name="Button_TongQuan"
+                            Background="Transparent"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
@@ -45,11 +46,13 @@
                             <materialDesign:PackIcon Kind="Home" 
                                                      Width="30"
                                                      Height="30"/>
-                            <TextBlock Text="   Tổng quan"/>
+                            <TextBlock Text="Tổng quan"
+                                       Margin="20,0,0,0"/>
                         </StackPanel>
                     </Button>
                     <!--Button_DonHang-->
-                    <Button Background="Transparent"
+                    <Button x:Name="Button_DonHang"
+                            Background="Transparent"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
@@ -58,11 +61,13 @@
                             <materialDesign:PackIcon Kind="InvoiceList" 
                                                      Width="30"
                                                      Height="30"/>  
-                            <TextBlock Text="   Đơn hàng"/>
+                            <TextBlock Text="Đơn hàng"
+                                       Margin="20,0,0,0"/>
                         </StackPanel>
                     </Button>
                     <!--Button_KhoHang-->
-                    <Button Background="Transparent"
+                    <Button x:Name="Button_KhoHang"
+                            Background="Transparent"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
@@ -71,11 +76,13 @@
                             <materialDesign:PackIcon Kind="Archive" 
                                                      Width="30"
                                                      Height="30"/>  
-                            <TextBlock Text="   Kho hàng"/>
+                            <TextBlock Text="Kho hàng"
+                                       Margin="20,0,0,0"/>
                         </StackPanel>
                     </Button>
                     <!--Button_KhachHang-->
-                    <Button Background="Transparent"
+                    <Button x:Name="Button_KhachHang"
+                            Background="Transparent"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
@@ -84,11 +91,13 @@
                             <materialDesign:PackIcon Kind="Account" 
                                                      Width="30"
                                                      Height="30"/>
-                            <TextBlock Text="   Khách hàng"/>
+                            <TextBlock Text="Khách hàng"
+                                       Margin="20,0,0,0"/>
                         </StackPanel>
                     </Button>
                     <!--Button_BaoCao-->
-                    <Button Background="Transparent"
+                    <Button x:Name="Button_BaoCao"
+                            Background="Transparent"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
@@ -97,12 +106,14 @@
                             <materialDesign:PackIcon Kind="ChartBar" 
                                                      Width="30"
                                                      Height="30"/>
-                            <TextBlock Text="   Báo cáo"/>
+                            <TextBlock Text="Báo cáo"
+                                       Margin="20,0,0,0"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
                     <!--Button_ThietLap-->
-                    <Button Background="Transparent"
+                    <Button x:Name="Button_ThietLap"
+                            Background="Transparent"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
@@ -112,7 +123,8 @@
                             <materialDesign:PackIcon Kind="Cog" 
                                                      Width="30"
                                                      Height="30"/>
-                            <TextBlock Text="   Thiết lập"/>
+                            <TextBlock Text="Thiết lập"
+                                       Margin="20,0,0,0"/>
                         </StackPanel>
                     </Button>
                 
