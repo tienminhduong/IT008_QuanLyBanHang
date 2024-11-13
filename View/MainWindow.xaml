@@ -11,6 +11,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Width="1280" Height="720">
     <Grid>
+        <Grid.Resources>
+            <!--Style TextBlock-->
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="20,0,0,0"/>
+                <Setter Property="FontWeight" Value="Regular"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="4*"/>
@@ -19,7 +27,7 @@
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.15*"/>
-                <RowDefinition Height="0.01*"/>
+                <RowDefinition Height="0.005*"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Rectangle Grid.Column="0" Grid.Row="0"
@@ -30,8 +38,8 @@
                 <TextBlock Text="Tên app"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           FontSize="35"
-                           Foreground="White"/>
+                           Margin="0,0,0,0"
+                           FontSize="35"/>
             </Grid>
             <Grid Grid.Row="2">
                 <StackPanel>
@@ -46,8 +54,7 @@
                             <materialDesign:PackIcon Kind="Home" 
                                                      Width="30"
                                                      Height="30"/>
-                            <TextBlock Text="Tổng quan"
-                                       Margin="20,0,0,0"/>
+                            <TextBlock Text="Tổng quan"/>
                         </StackPanel>
                     </Button>
                     <!--Button_DonHang-->
@@ -61,8 +68,7 @@
                             <materialDesign:PackIcon Kind="InvoiceList" 
                                                      Width="30"
                                                      Height="30"/>  
-                            <TextBlock Text="Đơn hàng"
-                                       Margin="20,0,0,0"/>
+                            <TextBlock Text="Đơn hàng"/>
                         </StackPanel>
                     </Button>
                     <!--Button_KhoHang-->
@@ -76,8 +82,7 @@
                             <materialDesign:PackIcon Kind="Archive" 
                                                      Width="30"
                                                      Height="30"/>  
-                            <TextBlock Text="Kho hàng"
-                                       Margin="20,0,0,0"/>
+                            <TextBlock Text="Kho hàng"/>
                         </StackPanel>
                     </Button>
                     <!--Button_KhachHang-->
@@ -91,8 +96,7 @@
                             <materialDesign:PackIcon Kind="Account" 
                                                      Width="30"
                                                      Height="30"/>
-                            <TextBlock Text="Khách hàng"
-                                       Margin="20,0,0,0"/>
+                            <TextBlock Text="Khách hàng"/>
                         </StackPanel>
                     </Button>
                     <!--Button_BaoCao-->
@@ -106,8 +110,7 @@
                             <materialDesign:PackIcon Kind="ChartBar" 
                                                      Width="30"
                                                      Height="30"/>
-                            <TextBlock Text="Báo cáo"
-                                       Margin="20,0,0,0"/>
+                            <TextBlock Text="Báo cáo"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -123,8 +126,7 @@
                             <materialDesign:PackIcon Kind="Cog" 
                                                      Width="30"
                                                      Height="30"/>
-                            <TextBlock Text="Thiết lập"
-                                       Margin="20,0,0,0"/>
+                            <TextBlock Text="Thiết lập"/>
                         </StackPanel>
                     </Button>
                 
