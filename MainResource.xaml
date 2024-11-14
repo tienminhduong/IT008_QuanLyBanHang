@@ -38,7 +38,5 @@
     <DataTemplate DataType="{x:Type viewmodel:BaoCaoViewModel}">
         <view:BaoCaoView/>
     </DataTemplate>
-
-    <BooleanToVisibilityConverter x:Key="BoolToVis"/>
-   
+    
 </ResourceDictionary>
