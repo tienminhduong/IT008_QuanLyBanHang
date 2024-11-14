@@ -4,6 +4,7 @@ using IT008_QuanLyBanHang.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,12 +15,27 @@ namespace IT008_QuanLyBanHang.ViewModel
     {
         public MainWindowViewModel()
         {
+            viewDictionary ??= new();
+            viewDictionary.Add("Button_TongQuan", new TongQuanViewModel());
+            viewDictionary.Add("Button_DonHang", new DonHangViewModel());
+            viewDictionary.Add("Button_TaoDonHang", new TaoDonHangViewModel());
+            viewDictionary.Add("Button_KhoHang", new KhoHangViewModel());
+            viewDictionary.Add("Button_KhachHang", new KhachHangViewModel());
+            viewDictionary.Add("Button_BaoCao", new BaoCaoViewModel());
+
+
+            currentView = viewDictionary["Button_TongQuan"];
         }
 
         [RelayCommand]
-        void Hello()
+        void SwitchToView(System.Windows.Controls.Button button)
         {
-            MessageBox.Show("Hello world!");
+            CurrentView = viewDictionary[button.Name];
         }
+
+        [ObservableProperty]
+        private ObservableObject currentView;
+
+        private Dictionary<string, ObservableObject> viewDictionary;
     }
 }
