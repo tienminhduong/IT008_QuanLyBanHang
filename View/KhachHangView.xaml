@@ -4,13 +4,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
-             xmlns:meterialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              DataContext="{StaticResource KhachHangViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <meterialDesign:Card>
+    <Grid Background="#FFF1F1F1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.155*"/>
+            <RowDefinition Height="0.13*"/>
+            <RowDefinition Height="0.715*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Rectangle Fill="White"/>
+            <TextBlock Text="Đơn hàng" FontSize="35" VerticalAlignment="Center" Foreground="Black"/>
+        </Grid>
+        
+        <Grid Grid.Row="1" Margin="0 5 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.75*"/>
+                <ColumnDefinition Width="0.25*"/>
+            </Grid.ColumnDefinitions>
             
-        </meterialDesign:Card>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
+                 VerticalAlignment="Top"
+                 Padding="10"
+                 AcceptsReturn="False"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            </Grid>
+        </Grid>
+        
     </Grid>
 </UserControl>
