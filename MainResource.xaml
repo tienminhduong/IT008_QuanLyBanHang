@@ -5,6 +5,7 @@
     <viewmodel:MainWindowViewModel x:Key="MainWindowViewModel"/>
     <viewmodel:TongQuanViewModel x:Key="TongQuanViewModel"/>
     <viewmodel:DonHangViewModel x:Key="DonHangViewModel"/>
+    <viewmodel:LoginViewModel x:Key="LoginViewModel"/>
 
     <DataTemplate DataType="{x:Type viewmodel:TongQuanViewModel}">
         <view:TongQuanView/>
@@ -14,4 +15,10 @@
         <view:DonHangView/>
     </DataTemplate>
     
+    <DataTemplate DataType="{x:Type viewmodel:LoginViewModel}">
+        <view:LoginView/>
+    </DataTemplate>
+
+    <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+   
 </ResourceDictionary>

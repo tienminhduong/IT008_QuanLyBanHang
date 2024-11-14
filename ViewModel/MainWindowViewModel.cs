@@ -12,6 +12,10 @@ namespace IT008_QuanLyBanHang.ViewModel
 {
     public partial class MainWindowViewModel : ObservableObject
     {
+        public MainWindowViewModel()
+        {
+        }
+
         [RelayCommand]
         void Hello()
         {
