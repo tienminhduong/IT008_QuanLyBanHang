@@ -5,13 +5,132 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT008_QuanLyBanHang"
         xmlns:viewmodel="clr-namespace:IT008_QuanLyBanHang.ViewModel"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         DataContext="{StaticResource MainWindowViewModel}"
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="MainWindow" Width="1280" Height="720">
     <Grid>
-        <StackPanel VerticalAlignment="Center">
-            <Button Width="100" Command="{Binding HelloCommand}">Hello</Button>
-        </StackPanel>
+        <Grid.Resources>
+            <!--Style TextBlock-->
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="20,0,0,0"/>
+                <Setter Property="FontWeight" Value="Regular"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <!--Menu-->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.15*"/>
+                <RowDefinition Height="0.005*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Column="0" Grid.Row="0"
+                       Fill="#FF1E2A39"/>
+            <Rectangle Grid.Column="0" Grid.Row="2"
+                       Fill="#FF1E2A39"/>
+            <Grid Grid.Row="0">
+                <TextBlock Text="Tên app"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0,0,0,0"
+                           FontSize="35"/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel>
+                    <!--Button_TongQuan-->
+                    <Button x:Name="Button_TongQuan"
+                            Background="Transparent"
+                            BorderThickness="0" 
+                            Height="50"
+                            FontSize="25"
+                            HorizontalContentAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Home" 
+                                                     Width="30"
+                                                     Height="30"/>
+                            <TextBlock Text="Tổng quan"/>
+                        </StackPanel>
+                    </Button>
+                    <!--Button_DonHang-->
+                    <Button x:Name="Button_DonHang"
+                            Background="Transparent"
+                            BorderThickness="0" 
+                            Height="50"
+                            FontSize="25"
+                            HorizontalContentAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="InvoiceList" 
+                                                     Width="30"
+                                                     Height="30"/>  
+                            <TextBlock Text="Đơn hàng"/>
+                        </StackPanel>
+                    </Button>
+                    <!--Button_KhoHang-->
+                    <Button x:Name="Button_KhoHang"
+                            Background="Transparent"
+                            BorderThickness="0" 
+                            Height="50"
+                            FontSize="25"
+                            HorizontalContentAlignment="Left">  
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Archive" 
+                                                     Width="30"
+                                                     Height="30"/>  
+                            <TextBlock Text="Kho hàng"/>
+                        </StackPanel>
+                    </Button>
+                    <!--Button_KhachHang-->
+                    <Button x:Name="Button_KhachHang"
+                            Background="Transparent"
+                            BorderThickness="0" 
+                            Height="50"
+                            FontSize="25"
+                            HorizontalContentAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Account" 
+                                                     Width="30"
+                                                     Height="30"/>
+                            <TextBlock Text="Khách hàng"/>
+                        </StackPanel>
+                    </Button>
+                    <!--Button_BaoCao-->
+                    <Button x:Name="Button_BaoCao"
+                            Background="Transparent"
+                            BorderThickness="0" 
+                            Height="50"
+                            FontSize="25"
+                            HorizontalContentAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ChartBar" 
+                                                     Width="30"
+                                                     Height="30"/>
+                            <TextBlock Text="Báo cáo"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                    <!--Button_ThietLap-->
+                    <Button x:Name="Button_ThietLap"
+                            Background="Transparent"
+                            BorderThickness="0" 
+                            Height="50"
+                            FontSize="25"
+                            HorizontalContentAlignment="Left"
+                            VerticalAlignment="Bottom">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Cog" 
+                                                     Width="30"
+                                                     Height="30"/>
+                            <TextBlock Text="Thiết lập"/>
+                        </StackPanel>
+                    </Button>
+                
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
