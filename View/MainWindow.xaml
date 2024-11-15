@@ -149,6 +149,6 @@
             </Grid>
         </Grid>
 
-        <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
+        <ContentControl Grid.Column="1" Grid.RowSpan="2" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>
