@@ -19,16 +19,20 @@
                 <Setter Property="Foreground" Value="White"/>
             </Style>
         </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="395*"/>
+            <RowDefinition Height="309*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <!--Menu-->
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.15*"/>
                 <RowDefinition Height="0.005*"/>
-                <RowDefinition/>
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Rectangle Grid.Column="0" Grid.Row="0"
                        Fill="#FF1E2A39"/>
@@ -67,7 +71,7 @@
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="InvoiceList" 
                                                      Width="30"
-                                                     Height="30"/>  
+                                                     Height="30"/>
                             <TextBlock Text="Đơn hàng"/>
                         </StackPanel>
                     </Button>
@@ -77,11 +81,11 @@
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
-                            HorizontalContentAlignment="Left">  
+                            HorizontalContentAlignment="Left">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Archive" 
                                                      Width="30"
-                                                     Height="30"/>  
+                                                     Height="30"/>
                             <TextBlock Text="Kho hàng"/>
                         </StackPanel>
                     </Button>
@@ -114,22 +118,69 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                    <!--Button_ThietLap-->
-                    <Button x:Name="Button_ThietLap"
+                <!--Button_ThietLap-->
+                <Button x:Name="Button_ThietLap"
                             Background="Transparent"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
                             HorizontalContentAlignment="Left"
                             VerticalAlignment="Bottom">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Cog" 
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Cog" 
                                                      Width="30"
                                                      Height="30"/>
-                            <TextBlock Text="Thiết lập"/>
-                        </StackPanel>
-                    </Button>
-                
+                        <TextBlock Text="Thiết lập"/>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
+        </Grid>
+
+        <!--Don hang view-->
+        <Grid Grid.Column="1" Grid.RowSpan="2" Background="#FFEEECEC">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.132*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.74*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Rectangle Fill="White"/>
+                <TextBlock Text="Đơn hàng"
+                           Foreground="Black"
+                           HorizontalAlignment="Left"
+                           Margin="10"
+                           FontSize="45"
+                           VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel VerticalAlignment="Top"
+                            Margin="10 10 0 10">
+                    <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             VerticalAlignment="Stretch"
+                             HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                <Grid Grid.Column="1">
+                    <Button Background="#FF1E2A39"
+                            VerticalAlignment="Top"
+                            Height="50"
+                            Margin="10"
+                            Content="Tạo đơn hàng"
+                            FontSize="20"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2">
+                <materialDesign:Card Margin="7 0 7 7"
+                                     VerticalAlignment="Stretch">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        
+                    </ScrollViewer>
+                </materialDesign:Card>
             </Grid>
         </Grid>
     </Grid>
