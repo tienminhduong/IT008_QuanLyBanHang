@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:IT008_QuanLyBanHang"
         xmlns:viewmodel="clr-namespace:IT008_QuanLyBanHang.ViewModel"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        DataContext="{StaticResource MainWindowViewModel}"
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="MainWindow" Width="1280" Height="720">
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.Resources>
             <!--Style TextBlock-->
@@ -53,7 +55,9 @@
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
-                            HorizontalContentAlignment="Left">
+                            HorizontalContentAlignment="Left"
+                            Command="{Binding SwitchToViewCommand}"
+                            CommandParameter="{Binding ElementName=Button_TongQuan}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Home" 
                                                      Width="30"
@@ -67,7 +71,9 @@
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
-                            HorizontalContentAlignment="Left">
+                            HorizontalContentAlignment="Left"
+                            Command="{Binding SwitchToViewCommand}"
+                            CommandParameter="{Binding ElementName=Button_DonHang}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="InvoiceList" 
                                                      Width="30"
@@ -81,7 +87,9 @@
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
-                            HorizontalContentAlignment="Left">
+                            HorizontalContentAlignment="Left"
+                            Command="{Binding SwitchToViewCommand}"
+                            CommandParameter="{Binding ElementName=Button_KhoHang}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Archive" 
                                                      Width="30"
@@ -95,7 +103,9 @@
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
-                            HorizontalContentAlignment="Left">
+                            HorizontalContentAlignment="Left"
+                            Command="{Binding SwitchToViewCommand}"
+                            CommandParameter="{Binding ElementName=Button_KhachHang}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Account" 
                                                      Width="30"
@@ -109,7 +119,9 @@
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
-                            HorizontalContentAlignment="Left">
+                            HorizontalContentAlignment="Left"
+                            Command="{Binding SwitchToViewCommand}"
+                            CommandParameter="{Binding ElementName=Button_BaoCao}">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ChartBar" 
                                                      Width="30"
@@ -137,51 +149,6 @@
             </Grid>
         </Grid>
 
-        <!--Don hang view-->
-        <Grid Grid.Column="1" Grid.RowSpan="2" Background="#FFEEECEC">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.132*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.74*"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Rectangle Fill="White"/>
-                <TextBlock Text="Đơn hàng"
-                           Foreground="Black"
-                           HorizontalAlignment="Left"
-                           Margin="10"
-                           FontSize="45"
-                           VerticalAlignment="Center"/>
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.8*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel VerticalAlignment="Top"
-                            Margin="10 10 0 10">
-                    <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
-                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                             VerticalAlignment="Stretch"
-                             HorizontalAlignment="Stretch"/>
-                </StackPanel>
-                <Grid Grid.Column="1">
-                    <Button Background="#FF1E2A39"
-                            VerticalAlignment="Top"
-                            Height="50"
-                            Margin="10"
-                            Content="Tạo đơn hàng"
-                            FontSize="20"/>
-                </Grid>
-            </Grid>
-            <Grid Grid.Row="2">
-                <materialDesign:Card Margin="7 0 7 7"
-                                     VerticalAlignment="Stretch">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        
-                    </ScrollViewer>
-                </materialDesign:Card>
-            </Grid>
-        </Grid>
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>

@@ -3,9 +3,17 @@
                     xmlns:viewmodel="clr-namespace:IT008_QuanLyBanHang.ViewModel"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <viewmodel:MainWindowViewModel x:Key="MainWindowViewModel"/>
+    <viewmodel:LoginViewModel x:Key="LoginViewModel"/>
     <viewmodel:TongQuanViewModel x:Key="TongQuanViewModel"/>
     <viewmodel:DonHangViewModel x:Key="DonHangViewModel"/>
-    <viewmodel:LoginViewModel x:Key="LoginViewModel"/>
+    <viewmodel:TaoDonHangViewModel x:Key="TaoDonHangViewModel"/>
+    <viewmodel:KhoHangViewModel x:Key="KhoHangViewModel"/>
+    <viewmodel:KhachHangViewModel x:Key="KhachHangViewModel"/>
+    <viewmodel:BaoCaoViewModel x:Key="BaoCaoViewModel"/>
+
+    <DataTemplate DataType="{x:Type viewmodel:LoginViewModel}">
+        <view:LoginView/>
+    </DataTemplate>
 
     <DataTemplate DataType="{x:Type viewmodel:TongQuanViewModel}">
         <view:TongQuanView/>
@@ -14,11 +22,21 @@
     <DataTemplate DataType="{x:Type viewmodel:DonHangViewModel}">
         <view:DonHangView/>
     </DataTemplate>
-    
-    <DataTemplate DataType="{x:Type viewmodel:LoginViewModel}">
-        <view:LoginView/>
+
+    <DataTemplate DataType="{x:Type viewmodel:TaoDonHangViewModel}">
+        <view:TaoDonHangView/>
     </DataTemplate>
 
-    <BooleanToVisibilityConverter x:Key="BoolToVis"/>
-   
+    <DataTemplate DataType="{x:Type viewmodel:KhoHangViewModel}">
+        <view:KhoHangView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:KhachHangViewModel}">
+        <view:KhachHangView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewmodel:BaoCaoViewModel}">
+        <view:BaoCaoView/>
+    </DataTemplate>
+    
 </ResourceDictionary>
