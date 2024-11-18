@@ -6,19 +6,11 @@
              xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
              xmlns:viewmodel="clr-namespace:IT008_QuanLyBanHang.ViewModel"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:custom="clr-namespace:IT008_QuanLyBanHang.View"
              DataContext="{StaticResource TongQuanViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListBox ItemsSource="{Binding Products}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Id}" Margin="5" Foreground="Red"/>
-                        <TextBlock Text="{Binding Path=ProductName}" Margin="5" Foreground="Red"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        
     </Grid>
 </UserControl>

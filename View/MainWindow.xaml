@@ -151,6 +151,5 @@
         </Grid>
 
         <ContentControl Grid.Column="1" Grid.RowSpan="2" Content="{Binding CurrentView}"/>
-        <custom:Card_ThongTinSanPham Grid.Column="1"/>
     </Grid>
 </Window>

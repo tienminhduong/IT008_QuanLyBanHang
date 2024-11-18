@@ -34,7 +34,7 @@ namespace IT008_QuanLyBanHang.Model
         public List<Batch>? Items { get; set; }
     }
 
-    public class BatchApiResponse
+    public class BatchResponse
     {
         [JsonPropertyName("data")]
         public BatchData? Data { get; set; }

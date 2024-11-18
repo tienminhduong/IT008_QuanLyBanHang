@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IT008_QuanLyBanHang.Model
 {
-    public class Product
+    public partial class Product : ObservableObject
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -26,6 +27,9 @@ namespace IT008_QuanLyBanHang.Model
 
         [JsonPropertyName("category")]
         public Category? Category { get; set; }
+
+        [JsonPropertyName("batches")]
+        public List<Batch>? Batches { get; set; }
     }
 
     public class ProductData
