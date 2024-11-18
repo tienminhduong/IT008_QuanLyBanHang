@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT008_QuanLyBanHang"
         xmlns:viewmodel="clr-namespace:IT008_QuanLyBanHang.ViewModel"
+        xmlns:custom="clr-namespace:IT008_QuanLyBanHang.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
@@ -150,5 +151,6 @@
         </Grid>
 
         <ContentControl Grid.Column="1" Grid.RowSpan="2" Content="{Binding CurrentView}"/>
+        <custom:Card_ThongTinSanPham Grid.Column="1"/>
     </Grid>
 </Window>
