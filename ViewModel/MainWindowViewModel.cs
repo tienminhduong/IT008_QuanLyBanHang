@@ -25,6 +25,8 @@ namespace IT008_QuanLyBanHang.ViewModel
 
 
             currentView = viewDictionary["Button_TongQuan"];
+
+            LoadDataCommand.Execute(null);
         }
 
         [RelayCommand]
@@ -32,6 +34,15 @@ namespace IT008_QuanLyBanHang.ViewModel
         {
             CurrentView = viewDictionary[button.Name];
         }
+
+        [RelayCommand]
+        private async Task LoadData()
+        {
+            string temp = await REST_Service.Instance.GetAsync("products");
+            Application.Current.Dispatcher.Invoke(() => MessageBox.Show(temp));
+        }
+
+
 
         [ObservableProperty]
         private ObservableObject currentView;
