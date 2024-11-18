@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
-    public class REST_Service
+    public class RESTService
     {
         public async Task<string> GetAsync(string dataType)
         {
@@ -20,18 +20,18 @@ namespace IT008_QuanLyBanHang.ViewModel
         }
 
         #region Singleton
-        private static REST_Service? instance;
-        public static REST_Service Instance
+        private static RESTService? instance;
+        public static RESTService Instance
         {
             get
             {
-                instance ??= new REST_Service();
+                instance ??= new RESTService();
                 return instance;
             }
         }
         #endregion
 
-        private REST_Service()
+        private RESTService()
         {
             client.BaseAddress = new Uri("https://store-manager-server-8dd2e1e19873.herokuapp.com/api/v1/");
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {API.API_TOKEN}");
