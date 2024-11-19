@@ -21,11 +21,9 @@ namespace IT008_QuanLyBanHang.ViewModel
             viewDictionary ??= new();
             viewDictionary.Add("Button_TongQuan", new TongQuanViewModel());
             viewDictionary.Add("Button_DonHang", new DonHangViewModel());
-            viewDictionary.Add("Button_TaoDonHang", new TaoDonHangViewModel());
             viewDictionary.Add("Button_KhoHang", new KhoHangViewModel());
             viewDictionary.Add("Button_KhachHang", new KhachHangViewModel());
             viewDictionary.Add("Button_BaoCao", new BaoCaoViewModel());
-
 
             currentView = viewDictionary["Button_TongQuan"];
         }
@@ -39,6 +37,19 @@ namespace IT008_QuanLyBanHang.ViewModel
         [ObservableProperty]
         private ObservableObject currentView;
 
-        private Dictionary<string, ObservableObject> viewDictionary;
+        private Dictionary<string, MainWindowTabViewModel> viewDictionary;
+        public bool IsLoadedComplete
+        {
+            get
+            {
+                foreach (var view in viewDictionary.Values)
+                {
+                    if (!view.IsLoadedComplete)
+                        return false;
+                }
+                return true;
+            }
+        }
+
     }
 }

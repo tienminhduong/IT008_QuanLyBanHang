@@ -18,7 +18,7 @@
             <!--Style TextBlock-->
             <Style TargetType="TextBlock">
                 <Setter Property="Margin" Value="20,0,0,0"/>
-                <Setter Property="FontWeight" Value="Regular"/>
+                <Setter Property="FontWeight" Value="Normal"/>
                 <Setter Property="Foreground" Value="White"/>
             </Style>
         </Grid.Resources>
@@ -151,6 +151,5 @@
         </Grid>
 
         <ContentControl Grid.Column="1" Grid.RowSpan="2" Content="{Binding CurrentView}"/>
-        <custom:Card_ThongTinSanPham Grid.Column="1"/>
     </Grid>
 </Window>

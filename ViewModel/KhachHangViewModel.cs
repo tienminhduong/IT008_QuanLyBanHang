@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
-    public partial class KhachHangViewModel : ObservableObject
+    public partial class KhachHangViewModel : MainWindowTabViewModel
     {
+        public KhachHangViewModel()
+        {
+            IsLoadedComplete = true;
+        }
     }
 }
