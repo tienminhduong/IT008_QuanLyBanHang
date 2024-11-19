@@ -8,7 +8,8 @@
         DataContext="{StaticResource LoginViewModel}"
         mc:Ignorable="d"
         Title="LoginView" Height="450" Width="800"
-        Visibility="{Binding IsLogin, Converter={StaticResource BooleanToVisibilityConverter}}">
+        Visibility="{Binding IsLogin, Converter={StaticResource BooleanToVisibilityConverter}}"
+        ResizeMode="NoResize">
     <Grid Background="Gray">
         <materialDesign:Card Width="450" Height="275">
             <StackPanel Margin="20">

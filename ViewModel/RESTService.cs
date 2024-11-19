@@ -38,10 +38,13 @@ namespace IT008_QuanLyBanHang.ViewModel
             {
                 var request = new HttpRequestMessage(HttpMethod.Post, "users/sign_in");
                 request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
                 var respond = await client.SendAsync(request);
                 respond.EnsureSuccessStatusCode();
+
                 AccessToken? accessToken = await respond.Content.ReadFromJsonAsync<AccessToken>();
                 string? token = accessToken?.data.Token;
+
                 if (!hasLogin)
                 {
                     client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");

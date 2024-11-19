@@ -26,18 +26,19 @@ namespace IT008_QuanLyBanHang.ViewModel
             if (productResponse?.Data?.Items != null)
                 Products = productResponse.Data.Items;
 
-            foreach (Product p in Products)
-            {
-                if (p.Batches != null)
+            if (Products != null)
+                foreach (Product p in Products)
                 {
-                    foreach (var b in p.Batches)
+                    if (p.Batches != null)
                     {
-                        BatchProduct bp = new(p, b);
-                        BatchProducts ??= new();
-                        BatchProducts.Add(bp);
+                        foreach (var b in p.Batches)
+                        {
+                            BatchProduct bp = new(p, b);
+                            BatchProducts ??= new();
+                            BatchProducts.Add(bp);
+                        }
                     }
                 }
-            }
 
             IsLoadedComplete = true;
         }
