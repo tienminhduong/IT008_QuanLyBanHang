@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
-    public partial class TaoDonHangViewModel : ObservableObject
+    public partial class TaoDonHangViewModel : MainWindowTabViewModel
     {
+        public TaoDonHangViewModel()
+        {
+            IsLoadedComplete = true;
+        }
     }
 }

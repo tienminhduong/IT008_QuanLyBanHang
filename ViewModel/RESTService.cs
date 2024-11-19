@@ -77,6 +77,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         HttpClient client = new();
         bool hasLogin = false;
     }
+
     class AccessToken
     {
         public AccessTokenData data { get; set; } = new AccessTokenData();

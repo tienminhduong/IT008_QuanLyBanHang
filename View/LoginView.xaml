@@ -22,7 +22,7 @@
                                  materialDesign:HintAssist.Hint="Mật khẩu"
                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                                  FontSize="15" Margin="0 15 0 0"/>
-                    <TextBlock Text="Ten dang nhap xam l" Foreground="Red" FontSize="15"
+                    <TextBlock Text="Sai tên đăng nhập hoặc mật khẩu hoặc kết nối như L" Foreground="Red" FontSize="15"
                                Visibility="{Binding ShowLoginError, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
                 

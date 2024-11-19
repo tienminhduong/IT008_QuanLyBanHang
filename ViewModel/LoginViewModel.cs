@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,5 +51,7 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         [ObservableProperty]
         bool showLoginError = false;
+
     }
+
 }
