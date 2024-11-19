@@ -25,7 +25,7 @@ namespace IT008_QuanLyBanHang.ViewModel
             viewDictionary.Add("Button_KhachHang", new KhachHangViewModel());
             viewDictionary.Add("Button_BaoCao", new BaoCaoViewModel());
 
-            currentView = viewDictionary["Button_TongQuan"];
+            currentView = viewDictionary["Button_DonHang"];
         }
 
         [RelayCommand]
