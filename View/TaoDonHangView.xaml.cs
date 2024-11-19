@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace IT008_QuanLyBanHang.View
@@ -18,7 +17,7 @@ namespace IT008_QuanLyBanHang.View
     /// <summary>
     /// Interaction logic for TaoDonHangView.xaml
     /// </summary>
-    public partial class TaoDonHangView : UserControl
+    public partial class TaoDonHangView : Window
     {
         public TaoDonHangView()
         {

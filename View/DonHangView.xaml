@@ -43,7 +43,8 @@
                         Height="45"
                         Margin="10"
                         Content="Tạo đơn hàng"
-                        FontSize="20"/>
+                        FontSize="20"
+                        Command="{Binding TaoDonHangCommand}"/>
                 </Grid>
             </Grid>
 

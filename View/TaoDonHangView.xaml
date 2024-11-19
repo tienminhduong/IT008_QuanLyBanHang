@@ -1,13 +1,12 @@
-﻿<UserControl x:Class="IT008_QuanLyBanHang.View.TaoDonHangView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             DataContext="{StaticResource TaoDonHangViewModel}"
-             mc:Ignorable="d" 
-             d:DesignHeight="750" d:DesignWidth="950">
+﻿<Window x:Class="IT008_QuanLyBanHang.View.TaoDonHangView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="TaoDonHangView" Height="720" Width="1280" ResizeMode="NoResize">
     <Grid>
         <!--Bắt đầu từ đây-->
         <Grid.RowDefinitions>
@@ -15,13 +14,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" 
-              Background="White">
+      Background="White">
             <TextBlock Text="TẠO ĐƠN HÀNG"
-                       FontSize="35"
-                       Foreground="Black"
-                       VerticalAlignment="Center"
-                       FontWeight="Medium"
-                       Margin="20"/>
+               FontSize="35"
+               Foreground="Black"
+               VerticalAlignment="Center"
+               FontWeight="Medium"
+               Margin="20"/>
         </Grid>
         <Grid Grid.Row="1" Background="#FFEDECEC">
 
@@ -31,10 +30,10 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Background="Transparent">
                 <TextBox materialDesign:HintAssist.Hint="Tìm kiếm" FontSize="18" Padding="10"
-                             Margin="10" x:Name="TextBox_SearchBar"
-                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                             VerticalAlignment="Top"
-                             HorizontalAlignment="Stretch"/>
+                     Margin="10" x:Name="TextBox_SearchBar"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Stretch"/>
             </Grid>
             <Grid Grid.Column="1" Margin="10" Background="White">
                 <Grid.RowDefinitions>
@@ -43,20 +42,20 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0">
                     <TextBlock Text="Hóa đơn"
-                                   Foreground="Black"
-                                   FontSize="35"
-                                   Margin="10"/>
+                           Foreground="Black"
+                           FontSize="35"
+                           Margin="10"/>
                     <!--<ListView FontSize="13">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Ảnh"/>
-                                    <GridViewColumn Header="Tên"/>
-                                    <GridViewColumn Header="SL"/>
-                                    <GridViewColumn Header="ĐVT"/>
-                                    <GridViewColumn Header="Giá"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>-->
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Ảnh"/>
+                            <GridViewColumn Header="Tên"/>
+                            <GridViewColumn Header="SL"/>
+                            <GridViewColumn Header="ĐVT"/>
+                            <GridViewColumn Header="Giá"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>-->
                     <DataGrid>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Ảnh"/>
@@ -69,15 +68,15 @@
                 </StackPanel>
                 <DockPanel Grid.Row="1">
                     <DockPanel Background="LightGray"
-                                   DockPanel.Dock="Top">
+                           DockPanel.Dock="Top">
                         <materialDesign:PackIcon Kind="Phone"
-                                                     Height="25"
-                                                     Width="25"
-                                                     Margin="5"
-                                                     VerticalAlignment="Center"/>
+                                             Height="25"
+                                             Width="25"
+                                             Margin="5"
+                                             VerticalAlignment="Center"/>
                         <TextBox materialDesign:TransitionAssist.DisableTransitions="True"
-                                     FontSize="25"
-                                     materialDesign:HintAssist.Hint="Nhập số điện thoại"/>
+                             FontSize="25"
+                             materialDesign:HintAssist.Hint="Nhập số điện thoại"/>
                     </DockPanel>
                     <Grid DockPanel.Dock="Top">
                         <Grid.ColumnDefinitions>
@@ -85,28 +84,28 @@
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0"
-                                  Margin="0 10 0 0">
+                          Margin="0 10 0 0">
                             <TextBlock Text="Tổng giá"
-                                           Foreground="Black"
-                                           Margin="0"
-                                           FontSize="25"/>
+                                   Foreground="Black"
+                                   Margin="0"
+                                   FontSize="25"/>
                         </Grid>
                         <Grid Grid.Column="1">
                             <TextBox Name="TextBlockTongTien"
-                                         FlowDirection="RightToLeft"
-                                         Text="8.000.000.000đ"
-                                         FontSize="25"
-                                         IsReadOnly="True"/>
+                                 FlowDirection="RightToLeft"
+                                 Text="8.000.000.000đ"
+                                 FontSize="25"
+                                 IsReadOnly="True"/>
 
                         </Grid>
                     </Grid>
                     <Grid Margin="20 0 20 0">
                         <Button Background="#016486"
-                                    Content="Thanh toán"
-                                    BorderThickness="0"/>
+                            Content="Thanh toán"
+                            BorderThickness="0"/>
                     </Grid>
                 </DockPanel>
             </Grid>
         </Grid>
     </Grid>
-</UserControl>
+</Window>
