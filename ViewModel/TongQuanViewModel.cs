@@ -12,8 +12,12 @@ using System.Windows;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
-    public partial class TongQuanViewModel : ObservableObject
+    public partial class TongQuanViewModel : MainWindowTabViewModel
     {
-        
+        public TongQuanViewModel()
+        {
+            IsLoadedComplete = true;
+        }
+
     }
 }

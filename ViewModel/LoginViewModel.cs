@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,10 @@ namespace IT008_QuanLyBanHang.ViewModel
         void Login()
         {
             MainWindow mainWindow = new();
+            while (!((MainWindowViewModel)mainWindow.DataContext).IsLoadedComplete)
+            {
+                Trace.WriteLine("Loading");
+            }
             IsLogin = false;
             mainWindow.ShowDialog();
             IsLogin = true;

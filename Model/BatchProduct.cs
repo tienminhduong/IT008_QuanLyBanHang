@@ -4,38 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace IT008_QuanLyBanHang.Model
 {
     public partial class BatchProduct : ObservableObject
     {
-        public BatchProduct()
-        {
-            id = 0;
-            productName = "";
-            status = 0;
-            category = new Category();
-            batch = new Batch();
-        }
-
         public BatchProduct(Product product, Batch batch)
         {
-            id = product.Id;
-            productName = product.ProductName;
-            status = product.Status;
-            category = product.Category;
+            this.product = product;
             this.batch = batch;
+            visibility = Visibility.Visible;
         }
 
         [ObservableProperty]
-        private int id;
+        private Product product;
+
         [ObservableProperty]
-        private string? productName;
+        private Batch batch;
+
         [ObservableProperty]
-        private int status;
+        private Visibility visibility;
+
         [ObservableProperty]
-        private Category? category;
-        [ObservableProperty]
-        private Batch? batch;
+        private bool isSelected;
     }
 }

@@ -42,11 +42,12 @@
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type model:BatchProduct}">
-        <view:Card_ThongTinSanPham ProductName="{Binding ProductName}"
+        <view:Card_ThongTinSanPham ProductName="{Binding Product.ProductName}"
                                    ManufactureDate="{Binding Batch.ManufactureDate}"
                                    ExpirationDate="{Binding Batch.ExpirationDate}"
                                    Price="{Binding Batch.Price}"
-                                   Quantity="{Binding Batch.Quantity}"/>
+                                   Quantity="{Binding Batch.Quantity}"
+                                   Visibility="{Binding Visibility}"/>
     </DataTemplate>
-    
+
 </ResourceDictionary>

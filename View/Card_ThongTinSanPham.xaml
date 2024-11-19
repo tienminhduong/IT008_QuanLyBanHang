@@ -25,6 +25,7 @@
                             <Setter Property="Margin" Value="10 0 0 0"/>
                         </Style>
                     </Grid.Resources>
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -37,6 +38,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên sản phẩm"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Ngày nhập hàng"/>
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Ngày hết hạn"/>
@@ -50,6 +52,7 @@
                     <TextBlock Grid.Row="3" Grid.Column="1" x:Name="TextBlock_Price"/>
                     <TextBlock Grid.Row="4" Grid.Column="1" Text="Nải"/>
                     <TextBlock Grid.Row="5" Grid.Column="1" x:Name="TextBlock_Quantity"/>
+                    
                 </Grid>
             </StackPanel>
         </Border>

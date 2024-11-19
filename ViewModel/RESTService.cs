@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
@@ -13,9 +14,18 @@ namespace IT008_QuanLyBanHang.ViewModel
     {
         public async Task<string> GetAsync(string dataType)
         {
-            HttpRequestMessage request = new(HttpMethod.Get, dataType);
-            HttpResponseMessage response = await client.SendAsync(request);
-            return await response.Content.ReadAsStringAsync();
+            try
+            {
+                HttpRequestMessage request = new(HttpMethod.Get, dataType);
+                HttpResponseMessage response = await client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return string.Empty;
             //return await client.SendAsync(request).Result.Content.ReadAsStringAsync();
         }
 
