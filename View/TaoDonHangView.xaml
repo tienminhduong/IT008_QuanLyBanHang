@@ -53,7 +53,7 @@
                     </Border>
                 </DockPanel>
                 <Grid DockPanel.Dock="Top"
-                      Margin="0 10 0 10">
+                      Margin="0 10 0 15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition Width="1*"/>
