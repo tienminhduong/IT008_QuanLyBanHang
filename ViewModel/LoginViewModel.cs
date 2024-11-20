@@ -16,10 +16,10 @@ namespace IT008_QuanLyBanHang.ViewModel
     public partial class LoginViewModel : ObservableObject
     {
         [RelayCommand]
-        async Task Login(PasswordBox passwordBox)
+        async Task Login()
         {
             Trace.WriteLine(Account);
-            if (ShowLoginError = !(await Verify(passwordBox.Password)))
+            if (ShowLoginError = !(await Verify()))
                 return;
 
             MainWindow mainWindow = new();
@@ -35,12 +35,12 @@ namespace IT008_QuanLyBanHang.ViewModel
             Application.Current.Shutdown();
         }
 
-        async Task<bool> Verify(string password)
+        async Task<bool> Verify()
         {
             if (RESTService.Instance == null)
                 return false;
 
-            return (await RESTService.Instance.TryLogin(Account, password));
+            return (await RESTService.Instance.TryLogin(Account, Password));
         }
 
         [ObservableProperty]
@@ -48,6 +48,9 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         [ObservableProperty]
         string account = "";
+
+        [ObservableProperty]
+        string password = "";
 
         [ObservableProperty]
         bool showLoginError = false;

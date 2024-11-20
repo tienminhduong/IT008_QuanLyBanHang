@@ -20,9 +20,17 @@
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              FontSize="15" Text="{Binding Account, Mode=OneWayToSource}"/>
                     <PasswordBox x:Name="FloatingPasswordBox"
+                        materialDesign:HintAssist.Hint="Mật khẩu"
+                        materialDesign:PasswordBoxAssist.Password="{Binding Password, Mode=TwoWay}"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}"
+                        FontSize="15" Margin="0 15 0 0"/>
+
+
+                    <!--<PasswordBox x:Name="FloatingPasswordBox"
                                  materialDesign:HintAssist.Hint="Mật khẩu"
                                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                                 FontSize="15" Margin="0 15 0 0"/>
+                                 FontSize="15" Margin="0 15 0 0"/>-->
                     <TextBlock Text="Sai tên đăng nhập hoặc mật khẩu hoặc kết nối như L" Foreground="Red" FontSize="15"
                                Visibility="{Binding ShowLoginError, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
