@@ -23,6 +23,7 @@ namespace IT008_QuanLyBanHang.ViewModel
                 return;
 
             MainWindow mainWindow = new();
+            Trace.WriteLine("About to loop forever");
             while (!((MainWindowViewModel)mainWindow.DataContext).IsLoadedComplete) ;
             IsLogin = false;
             mainWindow.ShowDialog();

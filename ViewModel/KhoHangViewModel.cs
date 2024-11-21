@@ -16,6 +16,9 @@ namespace IT008_QuanLyBanHang.ViewModel
     {
         public KhoHangViewModel()
         {
+            if (Application.Current.Resources["ItemList"] == null)
+                throw new Exception("ItemList not found in resources");
+            batchProducts = ((ItemList)Application.Current.Resources["ItemList"]).BatchProducts;
             Task.Run(() => LoadData());
         }
 
@@ -34,7 +37,6 @@ namespace IT008_QuanLyBanHang.ViewModel
                         foreach (var b in p.Batches)
                         {
                             BatchProduct bp = new(p, b);
-                            BatchProducts ??= new();
                             BatchProducts.Add(bp);
                         }
                     }
@@ -56,7 +58,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         List<Product>? products;
 
         [ObservableProperty]
-        List<BatchProduct>? batchProducts = null;
+        List<BatchProduct> batchProducts;
 
         [ObservableProperty]
         BatchProduct? selectedItem = null;
