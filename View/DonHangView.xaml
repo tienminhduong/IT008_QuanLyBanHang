@@ -10,7 +10,7 @@
              d:DesignHeight="720" d:DesignWidth="900">
     <Grid Background="#FFF1F1F1">
         <!--Don hang view-->
-        <Grid Grid.Column="1" Grid.RowSpan="2" Background="#FFEEECEC">
+        <Grid Grid.Column="1" Grid.RowSpan="2" Background="#FFFFFF">
             <Grid.RowDefinitions>
                 <!--<RowDefinition/>-->
                 <RowDefinition Height="9*"/>

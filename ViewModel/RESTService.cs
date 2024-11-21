@@ -59,6 +59,11 @@ namespace IT008_QuanLyBanHang.ViewModel
             }
         }
 
+        private RESTService()
+        {
+            client.BaseAddress = new Uri("https://store-manager-server-8dd2e1e19873.herokuapp.com/api/v1/");
+        }
+
         #region Singleton
         private static RESTService? instance;
         public static RESTService Instance
@@ -71,12 +76,6 @@ namespace IT008_QuanLyBanHang.ViewModel
         }
         #endregion
 
-        private RESTService()
-        {
-            client.BaseAddress = new Uri("https://store-manager-server-8dd2e1e19873.herokuapp.com/api/v1/");
-        }
-
-
         HttpClient client = new();
         bool hasLogin = false;
     }
@@ -85,6 +84,7 @@ namespace IT008_QuanLyBanHang.ViewModel
     {
         public AccessTokenData data { get; set; } = new AccessTokenData();
     }
+
     class AccessTokenData
     {
         [JsonPropertyName("access_token")]

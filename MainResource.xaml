@@ -12,6 +12,8 @@
     <viewmodel:KhachHangViewModel x:Key="KhachHangViewModel"/>
     <viewmodel:BaoCaoViewModel x:Key="BaoCaoViewModel"/>
 
+    <model:ItemList x:Key="ItemList"/>
+
 
     <DataTemplate DataType="{x:Type viewmodel:LoginViewModel}">
         <view:LoginView/>

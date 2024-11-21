@@ -23,7 +23,7 @@ namespace IT008_QuanLyBanHang.Model
         public DateTime UpdatedAt { get; set; }
 
         [JsonPropertyName("status")]
-        public int Status { get; set; }
+        public string? Status { get; set; }
 
         [JsonPropertyName("category")]
         public Category? Category { get; set; }
