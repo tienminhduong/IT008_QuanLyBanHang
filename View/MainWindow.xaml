@@ -68,7 +68,7 @@
                     </Button>
                     <!--Button_DonHang-->
                     <Button x:Name="Button_DonHang"
-                            Background="Transparent"
+                            Background="#4b5768"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"

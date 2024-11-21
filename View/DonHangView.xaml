@@ -12,11 +12,11 @@
         <!--Don hang view-->
         <Grid Grid.Column="1" Grid.RowSpan="2" Background="#FFEEECEC">
             <Grid.RowDefinitions>
-                <RowDefinition Height="67*"/>
-                <RowDefinition Height="64*"/>
-                <RowDefinition Height="589*"/>
+                <!--<RowDefinition/>-->
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="70*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
+            <!--<Grid Grid.Row="0">
                 <Rectangle Fill="White"/>
                 <TextBlock Text="Đơn hàng"
                    Foreground="Black"
@@ -24,9 +24,9 @@
                    Margin="10"
                    FontSize="30"
                    VerticalAlignment="Center"/>
-            </Grid>
+            </Grid>-->
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.8*"/>
                     <ColumnDefinition Width="0.2*"/>
@@ -48,7 +48,7 @@
                 </Grid>
             </Grid>
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="1">
                 <materialDesign:Card Margin="7 0 7 7"
                              VerticalAlignment="Stretch">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
