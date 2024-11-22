@@ -12,6 +12,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
@@ -26,32 +28,26 @@ namespace IT008_QuanLyBanHang.ViewModel
             viewDictionary.Add("Button_KhachHang", new KhachHangViewModel());
             viewDictionary.Add("Button_BaoCao", new BaoCaoViewModel());
 
-            tabCurrentColor ??= new();
-            tabCurrentColor.Add("Button_TongQuan", InactiveTabColor);
-            tabCurrentColor.Add("Button_DonHang", InactiveTabColor);
-            tabCurrentColor.Add("Button_KhoHang", InactiveTabColor);
-            tabCurrentColor.Add("Button_KhachHang", InactiveTabColor);
-            tabCurrentColor.Add("Button_BaoCao", InactiveTabColor);
-
             currentView = viewDictionary["Button_DonHang"];
-            tabCurrentColor["Button_DonHang"] = ActiveTabColor;
+            currentViewName = "Button_DonHang";
         }
 
         [RelayCommand]
         void SwitchToView(System.Windows.Controls.Button button)
         {
             CurrentView = viewDictionary[button.Name];
+            CurrentViewName = button.Name;
         }
 
         [ObservableProperty]
         private ObservableObject currentView;
-
-        private Dictionary<string, MainWindowTabViewModel> viewDictionary;
         [ObservableProperty]
-        private Dictionary<string, Color> tabCurrentColor;
+        private string currentViewName;
 
-        private Color ActiveTabColor = Color.FromArgb(75, 87, 104);
-        private Color InactiveTabColor = Color.FromArgb(30, 42, 57);
+        private readonly Dictionary<string, MainWindowTabViewModel> viewDictionary;
+
+        //private Color ActiveTabColor = Color.FromArgb(75, 87, 104);
+        //private Color InactiveTabColor = Color.FromArgb(30, 42, 57);
 
 
         public bool IsLoadedComplete
@@ -67,5 +63,31 @@ namespace IT008_QuanLyBanHang.ViewModel
             }
         }
 
+    }
+
+    // converter
+    public class IsActiveToColorConverter : System.Windows.Data.IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is string currentViewName && parameter is string tabButtonName)
+            {
+                Trace.WriteLine($"Current view name: {currentViewName}, tabButtonName: {tabButtonName}");
+                if (currentViewName == tabButtonName)
+                {
+                    Trace.WriteLine("It's f***ing correct");
+                    return new SolidColorBrush(activeColor);
+                }
+            }
+            Trace.WriteLine("It's f***ing incorrect");
+            return new SolidColorBrush(inactiveColor);
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        readonly private System.Windows.Media.Color activeColor = System.Windows.Media.Color.FromRgb(75, 87, 104);
+        readonly private System.Windows.Media.Color inactiveColor = System.Windows.Media.Color.FromArgb(0, 0, 0, 0);
     }
 }

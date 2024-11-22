@@ -13,6 +13,11 @@
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
+
+    <Window.Resources>
+        <viewmodel:IsActiveToColorConverter x:Key="IsActiveToColorConverter"/>
+    </Window.Resources>
+    
     <Grid>
         <Grid.Resources>
             <!--Style TextBlock-->
@@ -52,7 +57,9 @@
                 <StackPanel>
                     <!--Button_TongQuan-->
                     <Button x:Name="Button_TongQuan"
-                            Background="Transparent"
+                            Background="{Binding CurrentViewName,
+                                        Converter={StaticResource IsActiveToColorConverter},
+                                        ConverterParameter='Button_TongQuan'}"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
@@ -68,7 +75,9 @@
                     </Button>
                     <!--Button_DonHang-->
                     <Button x:Name="Button_DonHang"
-                            Background="#4b5768"
+                            Background="{Binding CurrentViewName,
+                                        Converter={StaticResource IsActiveToColorConverter},
+                                        ConverterParameter='Button_DonHang'}"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
@@ -84,7 +93,9 @@
                     </Button>
                     <!--Button_KhoHang-->
                     <Button x:Name="Button_KhoHang"
-                            Background="Transparent"
+                            Background="{Binding CurrentViewName,
+                                        Converter={StaticResource IsActiveToColorConverter},
+                                        ConverterParameter='Button_KhoHang'}"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
@@ -100,7 +111,9 @@
                     </Button>
                     <!--Button_KhachHang-->
                     <Button x:Name="Button_KhachHang"
-                            Background="Transparent"
+                            Background="{Binding CurrentViewName,
+                                        Converter={StaticResource IsActiveToColorConverter},
+                                        ConverterParameter='Button_KhachHang'}"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
@@ -116,7 +129,9 @@
                     </Button>
                     <!--Button_BaoCao-->
                     <Button x:Name="Button_BaoCao"
-                            Background="Transparent"
+                            Background="{Binding CurrentViewName,
+                                    Converter={StaticResource IsActiveToColorConverter},
+                                    ConverterParameter='Button_BaoCao'}"
                             BorderThickness="0" 
                             Height="50"
                             FontSize="25"
