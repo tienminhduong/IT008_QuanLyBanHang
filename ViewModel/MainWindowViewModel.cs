@@ -11,6 +11,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
@@ -25,19 +27,24 @@ namespace IT008_QuanLyBanHang.ViewModel
             viewDictionary.Add("Button_KhachHang", new KhachHangViewModel());
             viewDictionary.Add("Button_BaoCao", new BaoCaoViewModel());
 
-            currentView = viewDictionary["Button_TongQuan"];
+            currentView = viewDictionary["Button_DonHang"];
+            currentViewName = "Button_DonHang";
         }
 
         [RelayCommand]
-        void SwitchToView(System.Windows.Controls.Button button)
+        void SwitchToView(Button button)
         {
             CurrentView = viewDictionary[button.Name];
+            CurrentViewName = button.Name;
         }
 
         [ObservableProperty]
         private ObservableObject currentView;
+        [ObservableProperty]
+        private string currentViewName;
 
-        private Dictionary<string, MainWindowTabViewModel> viewDictionary;
+        private readonly Dictionary<string, MainWindowTabViewModel> viewDictionary;
+
         public bool IsLoadedComplete
         {
             get
@@ -51,5 +58,26 @@ namespace IT008_QuanLyBanHang.ViewModel
             }
         }
 
+    }
+
+    public class IsActiveToColorConverter : System.Windows.Data.IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is string currentViewName && parameter is string tabButtonName)
+            {
+                Trace.WriteLine($"Current view name: {currentViewName}, tabButtonName: {tabButtonName}");
+                if (currentViewName == tabButtonName)
+                    return new SolidColorBrush(activeColor);
+            }
+            return new SolidColorBrush(inactiveColor);
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        readonly private Color activeColor = Color.FromRgb(75, 87, 104);
+        readonly private Color inactiveColor = Color.FromArgb(0, 0, 0, 0);
     }
 }

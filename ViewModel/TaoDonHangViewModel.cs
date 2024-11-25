@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using IT008_QuanLyBanHang.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
-    public partial class TaoDonHangViewModel : MainWindowTabViewModel
+    public partial class TaoDonHangViewModel : ObservableObject
     {
         public TaoDonHangViewModel()
         {
-            IsLoadedComplete = true;
         }
     }
 }
