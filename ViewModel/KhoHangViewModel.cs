@@ -16,31 +16,12 @@ namespace IT008_QuanLyBanHang.ViewModel
     {
         public KhoHangViewModel()
         {
-            if (Application.Current.Resources["ItemList"] == null)
-                throw new Exception("ItemList not found in resources");
-            batchProducts = ((ItemList)Application.Current.Resources["ItemList"]).BatchProducts;
             Task.Run(() => LoadData());
         }
 
         async Task LoadData()
         {
-            string temp = await RESTService.Instance.GetAsync("products");
-            ProductResponse? productResponse = JsonSerializer.Deserialize<ProductResponse>(temp);
-            if (productResponse?.Data?.Items != null)
-                Products = productResponse.Data.Items;
-
-            if (Products != null)
-                foreach (Product p in Products)
-                {
-                    if (p.Batches != null)
-                    {
-                        foreach (var b in p.Batches)
-                        {
-                            BatchProduct bp = new(p, b);
-                            BatchProducts.Add(bp);
-                        }
-                    }
-                }
+            await Task.Delay(1);
 
             IsLoadedComplete = true;
         }
@@ -58,7 +39,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         List<Product>? products;
 
         [ObservableProperty]
-        List<BatchProduct> batchProducts;
+        List<BatchProduct>? batchProducts = null;
 
         [ObservableProperty]
         BatchProduct? selectedItem = null;

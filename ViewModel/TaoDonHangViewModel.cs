@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using IT008_QuanLyBanHang.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

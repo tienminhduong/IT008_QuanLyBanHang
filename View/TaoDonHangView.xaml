@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        DataContext="{StaticResource TaoDonHangViewModel}"
         mc:Ignorable="d"
         Title="Tạo đơn hàng" Height="720" Width="1280" ResizeMode="NoResize">
     <Grid>
@@ -13,12 +14,21 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Background="Transparent">
-            <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
-                     Padding="10" FontSize="14"
-                    Margin="10" x:Name="TextBox_SearchBar"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Stretch"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
+                         Padding="10" FontSize="14"
+                        Margin="10" x:Name="TextBox_SearchBar"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch"/>
+                <ListBox Grid.Row="1" HorizontalContentAlignment="Center">
+                </ListBox>
+            </Grid>
         </Grid>
         <Grid Grid.Column="1" Margin="10" Background="White">
             <Grid.RowDefinitions>

@@ -22,10 +22,9 @@ namespace IT008_QuanLyBanHang.ViewModel
             if (ShowLoginError = !(await Verify()))
                 return;
 
-            MainWindow mainWindow = new();
-            Trace.WriteLine("About to loop forever");
-            while (!((MainWindowViewModel)mainWindow.DataContext).IsLoadedComplete) ;
             IsLogin = false;
+            MainWindow mainWindow = new();
+            while (!((MainWindowViewModel)mainWindow.DataContext).IsLoadedComplete) ;
             mainWindow.ShowDialog();
             IsLogin = true;
         }
