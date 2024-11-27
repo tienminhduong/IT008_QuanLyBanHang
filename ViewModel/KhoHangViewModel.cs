@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -12,18 +14,41 @@ using System.Windows;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
-    public partial class KhoHangViewModel : MainWindowTabViewModel
+    public partial class KhoHangViewModel : ObservableObject, ITabViewModel
     {
         public KhoHangViewModel()
         {
+            LoadDataCommand = new AsyncRelayCommand(LoadData);
             Task.Run(() => LoadData());
         }
 
-        async Task LoadData()
-        {
-            await Task.Delay(1);
+        public IAsyncRelayCommand LoadDataCommand { get; }
 
-            IsLoadedComplete = true;
+        
+        public async Task LoadData()
+        {
+            string temp = await RESTService.Instance.GetAsync("products");
+            Trace.WriteLine(temp);
+            ProductResponse? productResponse = JsonSerializer.Deserialize<ProductResponse>(temp);
+            if (productResponse?.Data?.Items != null)
+                Products = productResponse.Data.Items;
+
+            if (Products != null)
+            {
+                BatchProducts = new();
+                Trace.WriteLine($"Product size: {Products.Count}");
+                foreach (Product p in Products)
+                {
+                    if (p.Batches != null)
+                    {
+                        foreach (var b in p.Batches)
+                        {
+                            BatchProduct bp = new(p, b);
+                            BatchProducts.Add(bp);
+                        }
+                    }
+                }
+            }
         }
 
         [RelayCommand]
@@ -39,7 +64,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         List<Product>? products;
 
         [ObservableProperty]
-        List<BatchProduct>? batchProducts = null;
+        ObservableCollection<BatchProduct> batchProducts = new();
 
         [ObservableProperty]
         BatchProduct? selectedItem = null;

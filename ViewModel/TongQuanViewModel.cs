@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,15 @@ using System.Windows;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
-    public partial class TongQuanViewModel : MainWindowTabViewModel
+    public partial class TongQuanViewModel : ObservableObject, ITabViewModel
     {
         public TongQuanViewModel()
         {
-            IsLoadedComplete = true;
         }
 
+        public async Task LoadData()
+        {
+            await Task.Delay(1);
+        }
     }
 }
