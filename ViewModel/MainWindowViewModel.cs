@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
 using IT008_QuanLyBanHang.View;
 using System;
@@ -26,37 +27,29 @@ namespace IT008_QuanLyBanHang.ViewModel
             viewDictionary.Add("Button_KhoHang", new KhoHangViewModel());
             viewDictionary.Add("Button_KhachHang", new KhachHangViewModel());
             viewDictionary.Add("Button_BaoCao", new BaoCaoViewModel());
-
-            currentView = viewDictionary["Button_DonHang"];
-            currentViewName = "Button_DonHang";
         }
 
         [RelayCommand]
-        void SwitchToView(Button button)
+        async Task SwitchToView(string name)
         {
-            CurrentView = viewDictionary[button.Name];
-            CurrentViewName = button.Name;
-        }
+            //if (CurrentViewName == name)
+                //return;
 
-        [ObservableProperty]
-        private ObservableObject currentView;
-        [ObservableProperty]
-        private string currentViewName;
-
-        private readonly Dictionary<string, MainWindowTabViewModel> viewDictionary;
-
-        public bool IsLoadedComplete
-        {
-            get
+            CurrentView = (ObservableObject)viewDictionary[name];
+            CurrentViewName = name;
+            await viewDictionary[name].LoadData();
+            if (name == "Button_KhoHang")
             {
-                foreach (var view in viewDictionary.Values)
-                {
-                    if (!view.IsLoadedComplete)
-                        return false;
-                }
-                return true;
+                ((KhoHangViewModel)viewDictionary[name]).LoadDataCommand.Execute(null);
             }
         }
+
+        [ObservableProperty]
+        private ObservableObject? currentView = null;
+        [ObservableProperty]
+        private string? currentViewName = null;
+
+        private readonly Dictionary<string, ITabViewModel> viewDictionary;
 
     }
 

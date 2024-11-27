@@ -14,8 +14,8 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Button Content="Click" Margin="10" Command="{Binding HideCommand}"/>
+        <Button Content="Click" Margin="10" Command="{Binding LoadDataCommand}"/>
 
-        <ListBox ItemsSource="{Binding Source={StaticResource ItemList}, Path=BatchProducts}" Grid.Column="1"/>
+        <ListBox ItemsSource="{Binding BatchProducts}" Grid.Column="1"/>
     </Grid>
 </UserControl>
