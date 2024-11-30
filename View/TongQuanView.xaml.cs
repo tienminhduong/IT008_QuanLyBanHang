@@ -23,6 +23,7 @@ namespace IT008_QuanLyBanHang.View
         public TongQuanView()
         {
             InitializeComponent();
+            DataContext = new ViewModel.TongQuanViewModel();
         }
     }
 }

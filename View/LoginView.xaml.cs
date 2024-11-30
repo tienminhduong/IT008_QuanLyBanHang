@@ -22,6 +22,7 @@ namespace IT008_QuanLyBanHang.View
         public LoginView()
         {
             InitializeComponent();
+            DataContext = new ViewModel.LoginViewModel();
         }
     }
 }
