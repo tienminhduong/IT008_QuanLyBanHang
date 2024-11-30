@@ -4,7 +4,7 @@
                     xmlns:custom="clr-namespace:IT008_QuanLyBanHang.CustomUserControl"
                     xmlns:view="clr-namespace:IT008_QuanLyBanHang.View">
 
-    <--<DataTemplate DataType="{x:Type model:BatchProduct}">
+    <!--<DataTemplate DataType="{x:Type model:BatchProduct}">
         <view:Card_ThongTinSanPham ProductName="{Binding Product.ProductName}"
                                ManufactureDate="{Binding Batch.ManufactureDate}"
                                ExpirationDate="{Binding Batch.ExpirationDate}"
