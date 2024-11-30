@@ -57,7 +57,7 @@
                                                HorizontalAlignment="Left"
                                                Margin="0 5 0 0"
                                                Grid.Column="0"/>
-                                    <TextBlock Text="HH03"
+                                    <TextBlock Name="TextBlock_ID"
                                                Grid.Column="1"
                                                Margin="0 5 0 0"
                                                HorizontalAlignment="Left"/>
@@ -76,17 +76,17 @@
                                 </Rectangle>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1.2*"/>
-                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="86*"/>
+                                        <ColumnDefinition Width="10*"/>
+                                        <ColumnDefinition Width="63*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Tên hàng hóa:"
                                                HorizontalAlignment="Left"
                                                Margin="0 5 0 0"
                                                Grid.Column="0"/>
-                                    <TextBlock Text="Chuối vàng"
-                                               Grid.Column="1"
-                                               Margin="0 5 0 0"
-                                               HorizontalAlignment="Left"/>
+                                    <TextBlock Name="TextBlock_ProductName"
+                                               Margin="86,5,0,0"
+                                               HorizontalAlignment="Left" Grid.ColumnSpan="3"/>
                                 </Grid>
 
                             </DockPanel>
@@ -109,7 +109,7 @@
                                                HorizontalAlignment="Left"
                                                Margin="0 5 0 0"
                                                Grid.Column="0"/>
-                                    <TextBlock Text="Trái cây"
+                                    <TextBlock Name="TextBlock_CategoryName"
                                                Grid.Column="1"
                                                Margin="0 5 0 0"
                                                HorizontalAlignment="Left"/>
@@ -135,7 +135,7 @@ HorizontalAlignment="Left"
                                                HorizontalAlignment="Left"
                                                Margin="0 5 0 0"
                                                Grid.Column="0"/>
-                                    <TextBlock Text="19/10/2005"
+                                    <TextBlock Name="TextBlock_ManufactureDate"
                                                Grid.Column="1"
                                                Margin="0 5 0 0"
                                                HorizontalAlignment="Left"/>
@@ -172,7 +172,7 @@ HorizontalAlignment="Left"
                                                HorizontalAlignment="Left"
                                                Margin="0 5 0 0"
                                                Grid.Column="0"/>
-                                    <TextBlock Text="50"
+                                    <TextBlock Name="TextBox_Quantity"
                                                Grid.Column="1"
                                                Margin="0 5 0 0"
                                                HorizontalAlignment="Left"/>
@@ -224,7 +224,7 @@ HorizontalAlignment="Left"
                                                HorizontalAlignment="Left"
                                                Margin="0 5 0 0"
                                                Grid.Column="0"/>
-                                    <TextBlock Text="20.000đ"
+                                    <TextBlock Name="TextBlock_Price"
                                                Grid.Column="1"
                                                Margin="0 5 0 0"
                                                HorizontalAlignment="Left"/>
@@ -251,7 +251,7 @@ HorizontalAlignment="Left"
                                                HorizontalAlignment="Left"
                                                Margin="0 5 0 0"
                                                Grid.Column="0"/>
-                                    <TextBlock Text="19/11/2005"
+                                    <TextBlock Name="TextBlock_ExpirationDate"
                                                Grid.Column="1"
                                                Margin="0 5 0 0"
                                                HorizontalAlignment="Left"/>
