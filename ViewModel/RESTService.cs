@@ -74,9 +74,11 @@ namespace IT008_QuanLyBanHang.ViewModel
                 return instance;
             }
         }
+
+        private static readonly HttpClient httpClient = new();
         #endregion
 
-        HttpClient client = new();
+        HttpClient client = httpClient;
         bool hasLogin = false;
     }
 

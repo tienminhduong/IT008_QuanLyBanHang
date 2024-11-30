@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using IT008_QuanLyBanHang.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,15 @@ using System.Threading.Tasks;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
-    public partial class DonHangViewModel : MainWindowTabViewModel
+    public partial class DonHangViewModel : ObservableObject, ITabViewModel
     {
         public DonHangViewModel()
         {
-            IsLoadedComplete = true;
+        }
+
+        public async Task LoadData()
+        {
+            await Task.Delay(1000);
         }
 
         [RelayCommand]
