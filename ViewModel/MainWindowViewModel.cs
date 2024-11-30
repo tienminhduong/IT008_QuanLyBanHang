@@ -32,16 +32,12 @@ namespace IT008_QuanLyBanHang.ViewModel
         [RelayCommand]
         async Task SwitchToView(string name)
         {
-            //if (CurrentViewName == name)
-                //return;
+            if (CurrentViewName == name)
+                return;
 
             CurrentView = (ObservableObject)viewDictionary[name];
             CurrentViewName = name;
             await viewDictionary[name].LoadData();
-            if (name == "Button_KhoHang")
-            {
-                ((KhoHangViewModel)viewDictionary[name]).LoadDataCommand.Execute(null);
-            }
         }
 
         [ObservableProperty]

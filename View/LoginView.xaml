@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        DataContext="{StaticResource LoginViewModel}"
         mc:Ignorable="d"
         Title="LoginView" Height="450" Width="800"
         Visibility="{Binding IsLogin, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -32,8 +31,6 @@
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 30 15 0">
                     <Button Width="125" Command="{Binding LoginCommand}">Đăng nhập</Button>
-                    <!--<Button Width="125" Margin="5 0 0 0" Command="{Binding ExitCommand}" BorderBrush="Red"
-                            Style="{StaticResource MaterialDesignOutlinedButton}">Thoát</Button>-->
                 </StackPanel>
             </StackPanel>
         </materialDesign:Card>

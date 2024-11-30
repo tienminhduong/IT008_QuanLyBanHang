@@ -23,6 +23,7 @@ namespace IT008_QuanLyBanHang.View
         public BaoCaoView()
         {
             InitializeComponent();
+            DataContext = new ViewModel.BaoCaoViewModel();
         }
     }
 }

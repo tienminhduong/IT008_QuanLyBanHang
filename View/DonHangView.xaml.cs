@@ -23,6 +23,7 @@ namespace IT008_QuanLyBanHang.View
         public DonHangView()
         {
             InitializeComponent();
+            DataContext = new ViewModel.DonHangViewModel();
         }
     }
 }

@@ -10,9 +10,6 @@
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="MainWindow" Width="1280" Height="720">
-    <Window.DataContext>
-        <viewmodel:MainWindowViewModel/>
-    </Window.DataContext>
 
     <Window.Resources>
         <viewmodel:IsActiveToColorConverter x:Key="IsActiveToColorConverter"/>

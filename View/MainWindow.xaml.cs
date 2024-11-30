@@ -19,6 +19,7 @@ namespace IT008_QuanLyBanHang
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModel.MainWindowViewModel();
         }
     }
 }
