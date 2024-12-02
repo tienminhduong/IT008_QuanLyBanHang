@@ -25,5 +25,10 @@ namespace IT008_QuanLyBanHang.View
             InitializeComponent();
             DataContext = new ViewModel.KhoHangViewModel();
         }
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

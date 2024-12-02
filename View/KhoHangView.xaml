@@ -3,18 +3,243 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"        
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="720" d:DesignWidth="900">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+        <!-- Title -->
+        <Grid Grid.Row="0" Background="White">
+            <TextBlock Text="Kho Hàng" FontSize="35" FontWeight="Bold" Padding="20" Foreground="#FF1E2A39"/>
+        </Grid>
 
-        <Button Content="Click" Margin="10" Command="{Binding LoadDataCommand}"/>
+        <!-- Main View -->
+        <Grid Grid.Row="1" Background="#FFF4F6F8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <ListBox ItemsSource="{Binding BatchProducts}" Grid.Column="1"/>
+            <!-- Searching and Buttons -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox    materialDesign:HintAssist.Hint="Tìm kiếm" FontSize="18" Padding="10"
+                            Margin="10 10 0 10" x:Name="TextBox_SearchBar"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Stretch"/>
+
+                <Grid Grid.Column="1">
+                    <Button Background="#FF1E2A39"
+                            VerticalAlignment="Center"
+                            Height="45"
+                            Margin="10"
+                            Content="Thêm mới"
+                            FontSize="17"
+                            Command="{Binding AddCommand}"/>
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <Button Background="#FF1E2A39"
+                            VerticalAlignment="Center"
+                            Height="45"
+                            Margin="10"
+                            Content="Import"
+                            FontSize="17"
+                            Command="{Binding ImportCommand}"/>
+                </Grid>
+
+                <Grid Grid.Column="3">
+                    <Button Background="#FF1E2A39"
+                            VerticalAlignment="Center"
+                            Height="45"
+                            Margin="10"
+                            Content="Export"
+                            FontSize="17"
+                            Command="{Binding ExportCommand}"/>
+                </Grid>
+
+            </Grid>
+
+            <!-- Header and View-->
+            <Grid Grid.Row="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Tabs và Sort -->
+                    <Grid Grid.Row="0" Margin="10" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- TabControl -->
+                        <TabControl Grid.Column="0" SelectedIndex="{Binding SelectedTabIndex}">
+                            <TabItem Header="Tất cả" Foreground="#FF1E2A39"/>
+                            <TabItem Header="Đang trưng bày" Foreground="#FF1E2A39"/>
+                        </TabControl>
+
+                        <!-- Phần Sort -->
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Text="Sắp xếp theo:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <ComboBox Width="120" HorizontalAlignment="Center" SelectedItem="{Binding SelectedSortOption}">
+                                <ComboBoxItem Content="Tên hàng hóa"/>
+                                <ComboBoxItem Content="Số lượng"/>
+                                <ComboBoxItem Content="Ngày nhập"/>
+                            </ComboBox>
+                            <Button Content="Áp dụng" Command="{Binding SortCommand}" Margin="5,0,0,0" Background="#FF1E2A39"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Datagrid chính -->
+                    <Grid Grid.Row="1" Margin="10">
+                        <DataGrid ItemsSource="{Binding BatchProducts}"
+                                  Name="dataGrid"
+                                  IsReadOnly="True"
+                                  AutoGenerateColumns="False"
+                                  SelectionUnit="FullRow" 
+                                  SelectionMode="Single" 
+                                  Background="Transparent" 
+                                  BorderBrush="Transparent" SelectionChanged="dataGrid_SelectionChanged">
+
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Foreground" Value="#FF1E2A39"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                    <Setter Property="Margin" Value="5"/>
+                                </Style>
+                            </DataGrid.CellStyle>
+
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Width="15" Height="15"
+                                                    Command="{Binding DataContext.ExpandCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Mã hàng hóa" Binding="{Binding Product.Id}" Width="2*"/>
+                                <DataGridTextColumn Header="Tên hàng hóa" Binding="{Binding Product.ProductName}" Width="4*"/>
+                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Batch.Quantity}" Width="2*"/>
+                                <DataGridTextColumn Header="Đơn vị" Binding="{Binding Batch.Unit}" Width="2*"/>
+                                <DataGridTextColumn Header="Loại hàng hóa" Binding="{Binding Product.Category.CategoryName}" Width="3*"/>
+                            </DataGrid.Columns>
+
+                            <!-- Template cho phần mở rộng -->
+                            <DataGrid.RowDetailsTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="10" Visibility="{Binding BatchProducts.IsExpand}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Tab Control cho 2 tab -->
+                                        <TabControl Grid.Column="1" HorizontalAlignment="Left">
+                                            <!-- Tab Thông tin sản phẩm -->
+                                            <TabItem Header="Thông tin sản phẩm" Width="175" HorizontalAlignment="Left">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <!-- Ảnh và thông tin -->
+                                                    <Grid Grid.Row="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <!-- Ảnh sản phẩm -->
+                                                        <Image Width="150" Height="150" 
+                                                               Margin="10"
+                                                               Source="https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bunch-of-bananas-67e91d5.jpg"/>
+
+                                                        <!-- Thông tin chi tiết -->
+                                                        <Grid Grid.Column="1" Margin="20">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto"/>
+                                                                <RowDefinition Height="Auto"/>
+                                                                <RowDefinition Height="Auto"/>
+                                                            </Grid.RowDefinitions>
+
+                                                            <TextBlock Text="Mã hàng hóa:"/>
+                                                            <TextBlock Grid.Column="1" Text="{Binding Product.Id}"/>
+                                                            <TextBlock Grid.Column="2" Text="Số lượng:"/>
+                                                            <TextBlock Grid.Column="3" Text="{Binding Batch.Quantity}"/>
+
+                                                            <TextBlock Grid.Row="1" Text="Tên hàng hóa:"/>
+                                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Product.ProductName}"/>
+                                                            <TextBlock Grid.Row="1" Grid.Column="2" Text="Đơn vị:"/>
+                                                            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Batch.Unit}"/>
+
+                                                            <TextBlock Grid.Row="2" Text="Loại hàng hóa:"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Product.Category.CategoryName}"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="2" Text="Giá bán:"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding Batch.Price}"/>
+                                                        </Grid>
+                                                    </Grid>
+                                                </Grid>
+                                            </TabItem>
+
+                                            <!-- Tab Lịch sử nhập/xuất -->
+                                            <TabItem Header="Lịch sử nhập/xuất gần nhất" Width="225" HorizontalAlignment="Left">
+                                                <DataGrid AutoGenerateColumns="False" 
+                                                            ItemsSource="{Binding Batch}">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Header="Mã lô" Binding="{Binding BatchNumber}"/>
+                                                        <DataGridTextColumn Header="SL còn lại" Binding="{Binding Quantity}"/>
+                                                        <DataGridTextColumn Header="SL nhập" Binding="{Binding InitialQuantity}"/>
+                                                        <DataGridTextColumn Header="NSX" Binding="{Binding ManufactureDate}"/>
+                                                        <DataGridTextColumn Header="Ngày hết hạn" Binding="{Binding ExpirationDate}"/>
+                                                        <DataGridTextColumn Header="Giá nhập" Binding="{Binding ImportPrice}"/>
+                                                        <DataGridTextColumn Header="Giá bán" Binding="{Binding Price}"/>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </TabItem>
+                                        </TabControl>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGrid.RowDetailsTemplate>
+
+                        </DataGrid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
