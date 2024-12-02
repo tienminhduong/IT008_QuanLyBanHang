@@ -184,33 +184,41 @@
                                                                Source="https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bunch-of-bananas-67e91d5.jpg"/>
 
                                                         <!-- Thông tin chi tiết -->
-                                                        <Grid Grid.Column="1" Margin="20">
+                                                        <Grid Grid.Column="1" Margin="10">
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="Auto"/>
                                                                 <ColumnDefinition Width="*"/>
                                                                 <ColumnDefinition Width="Auto"/>
                                                                 <ColumnDefinition Width="*"/>
                                                             </Grid.ColumnDefinitions>
+                                                            
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition Height="Auto"/>
                                                                 <RowDefinition Height="Auto"/>
                                                                 <RowDefinition Height="Auto"/>
                                                             </Grid.RowDefinitions>
 
-                                                            <TextBlock Text="Mã hàng hóa:"/>
-                                                            <TextBlock Grid.Column="1" Text="{Binding Product.Id}"/>
-                                                            <TextBlock Grid.Column="2" Text="Số lượng:"/>
-                                                            <TextBlock Grid.Column="3" Text="{Binding Batch.Quantity}"/>
+                                                            <TextBlock Text="Mã hàng hóa:" Margin="10"/>
+                                                            <TextBlock Grid.Column="1" Margin="10" Text="{Binding Product.Id}"/>
+                                                            <TextBlock Grid.Column="2" Text="Số lượng:" Margin="10"/>
+                                                            <TextBlock Grid.Column="3" Margin="10" Text="{Binding Batch.Quantity}"/>
+                                                            <Line Margin="9,0,0,0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
+                                                            <Line Margin="-5,0,0,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
+                                                            
+                                                            <TextBlock Grid.Row="1" Text="Tên hàng hóa:" Margin="10"/>
+                                                            <TextBlock Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Product.ProductName}"/>
+                                                            <TextBlock Grid.Row="1" Grid.Column="2" Text="Đơn vị:" Margin="10"/>
+                                                            <TextBlock Grid.Row="1" Grid.Column="3" Margin="10" Text="{Binding Batch.Unit}"/>
+                                                            <Line Margin="9,0,0,1" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
+                                                            <Line Margin="-5,0,0,1" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
 
-                                                            <TextBlock Grid.Row="1" Text="Tên hàng hóa:"/>
-                                                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Product.ProductName}"/>
-                                                            <TextBlock Grid.Row="1" Grid.Column="2" Text="Đơn vị:"/>
-                                                            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Batch.Unit}"/>
+                                                            <TextBlock Grid.Row="2" Text="Loại hàng hóa:" Margin="10"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="1" Margin="10" Text="{Binding Product.Category.CategoryName}"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="2" Text="Giá bán:" Margin="10"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="3" Margin="10" Text="{Binding Batch.Price}"/>
+                                                            <Line Margin="9,0,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
+                                                            <Line Margin="-5,0,0,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
 
-                                                            <TextBlock Grid.Row="2" Text="Loại hàng hóa:"/>
-                                                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Product.Category.CategoryName}"/>
-                                                            <TextBlock Grid.Row="2" Grid.Column="2" Text="Giá bán:"/>
-                                                            <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding Batch.Price}"/>
                                                         </Grid>
                                                     </Grid>
                                                 </Grid>
