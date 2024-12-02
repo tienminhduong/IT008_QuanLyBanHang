@@ -15,7 +15,13 @@ namespace IT008_QuanLyBanHang.ViewModel
 {
     public partial class LoginViewModel : ObservableObject
     {
-        [RelayCommand]
+        public LoginViewModel()
+        {
+            LoginCommand = new AsyncRelayCommand(Login);
+        }
+
+        public IAsyncRelayCommand LoginCommand { get; }
+
         async Task Login()
         {
             Trace.WriteLine(Account);

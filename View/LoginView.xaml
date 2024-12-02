@@ -7,6 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="LoginView" Height="450" Width="800"
+        DataContext="{StaticResource LoginVM}"
         Visibility="{Binding IsLogin, Converter={StaticResource BooleanToVisibilityConverter}}"
         ResizeMode="NoResize">
     <Grid Background="Gray">
@@ -30,7 +31,7 @@
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 30 15 0">
-                    <Button Width="125" Command="{Binding LoginCommand}">Đăng nhập</Button>
+                    <Button Width="125" Command="{Binding LoginCommand}" IsDefault="True">Đăng nhập</Button>
                 </StackPanel>
             </StackPanel>
         </materialDesign:Card>
