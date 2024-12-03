@@ -29,12 +29,12 @@
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.8*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.15*"/>
+                    <ColumnDefinition Width="0.15*"/>
+                    <ColumnDefinition Width="0.15*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBox    materialDesign:HintAssist.Hint="Tìm kiếm" FontSize="18" Padding="10"
+                <TextBox    materialDesign:HintAssist.Hint="Tìm kiếm" FontSize="18" Padding="5"
                             Margin="10 10 0 10" x:Name="TextBox_SearchBar"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
@@ -44,7 +44,7 @@
                 <Grid Grid.Column="1">
                     <Button Background="#FF1E2A39"
                             VerticalAlignment="Center"
-                            Height="45"
+                            Height="35"
                             Margin="10"
                             Content="Thêm mới"
                             FontSize="17"
@@ -54,7 +54,7 @@
                 <Grid Grid.Column="2">
                     <Button Background="#FF1E2A39"
                             VerticalAlignment="Center"
-                            Height="45"
+                            Height="35"
                             Margin="10"
                             Content="Import"
                             FontSize="17"
@@ -64,7 +64,7 @@
                 <Grid Grid.Column="3">
                     <Button Background="#FF1E2A39"
                             VerticalAlignment="Center"
-                            Height="45"
+                            Height="35"
                             Margin="10"
                             Content="Export"
                             FontSize="17"
@@ -95,16 +95,6 @@
                             <TabItem Header="Đang trưng bày" Foreground="#FF1E2A39"/>
                         </TabControl>
 
-                        <!-- Phần Sort -->
-                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock Text="Sắp xếp theo:" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                            <ComboBox Width="120" HorizontalAlignment="Center" SelectedItem="{Binding SelectedSortOption}">
-                                <ComboBoxItem Content="Tên hàng hóa"/>
-                                <ComboBoxItem Content="Số lượng"/>
-                                <ComboBoxItem Content="Ngày nhập"/>
-                            </ComboBox>
-                            <Button Content="Áp dụng" Command="{Binding SortCommand}" Margin="5,0,0,0" Background="#FF1E2A39"/>
-                        </StackPanel>
                     </Grid>
 
                     <!-- Datagrid chính -->
@@ -122,6 +112,7 @@
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="FontWeight" Value="Bold"/>
                                     <Setter Property="Foreground" Value="#FF1E2A39"/>
+                                    <Setter Property="FontSize" Value="15"/>
                                 </Style>
                             </DataGrid.ColumnHeaderStyle>
 
@@ -131,7 +122,8 @@
                                     <Setter Property="BorderBrush" Value="Transparent"/>
                                     <Setter Property="Foreground" Value="Black"/>
                                     <Setter Property="HorizontalAlignment" Value="Left"/>
-                                    <Setter Property="Margin" Value="5"/>
+                                    <Setter Property="Margin" Value="7"/>
+                                    <Setter Property="FontSize" Value="15"/>
                                 </Style>
                             </DataGrid.CellStyle>
 
@@ -197,6 +189,7 @@
                                                                 <RowDefinition Height="Auto"/>
                                                                 <RowDefinition Height="Auto"/>
                                                             </Grid.RowDefinitions>
+
 
                                                             <TextBlock Text="Mã hàng hóa:" Margin="10"/>
                                                             <TextBlock Grid.Column="1" Margin="10" Text="{Binding Product.Id}"/>
