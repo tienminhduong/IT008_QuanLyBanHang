@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="IT008_QuanLyBanHang.CustomUserControl.LichSuMuaHang"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IT008_QuanLyBanHang.CustomUserControl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    <Grid>
+        <Expander FlowDirection="RightToLeft" 
+                  VerticalAlignment='Top'>
+            <TabControl>
+                <TabItem Header="Lịch sử tích điểm">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="4*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock Text="Lịch sử tích điểm"
+                                       HorizontalAlignment="Right"
+                                       Margin="50 0 50 0"
+                                       FontSize="30"
+                                       VerticalAlignment="Center" 
+                                       FontWeight="Bold"
+                                       Foreground="#FF1E2A39"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <DataGrid Margin="20 20 20 0">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Điểm tích lũy"/>
+                                    <DataGridTextColumn Header="Số tiền"/>
+                                    <DataGridTextColumn Header="Thời gian"/>
+                                    <DataGridTextColumn Header="Mã tích điểm"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Lịch sử mua hàng"
+                         VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="4*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <TextBlock Text="Lịch sử mua hàng"
+                                       HorizontalAlignment="Right"
+                                       Margin="50 0 50 0"
+                                       FontSize="30"
+                                       VerticalAlignment="Center" 
+                                       FontWeight="Bold"
+                                       Foreground="#FF1E2A39"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <DataGrid Margin="20 20 20 0">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Tổng tiền"/>
+                                    <DataGridTextColumn Header="Thời gian"/>
+                                    <DataGridTextColumn Header="Mã hóa đơn"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Expander>
+        <TextBlock Text="KH03"
+                       Margin="70 5 0 0"
+                       FontSize="25"
+                       VerticalAlignment="Top"/>
+        <TextBlock Text="Nguyễn Văn A"
+                       Margin="200 5 0 0"
+                       FontSize="25"
+                       VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>
