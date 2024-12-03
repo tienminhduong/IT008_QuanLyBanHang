@@ -116,7 +116,7 @@
                                   SelectionUnit="FullRow" 
                                   SelectionMode="Single" 
                                   Background="Transparent" 
-                                  BorderBrush="Transparent" SelectionChanged="dataGrid_SelectionChanged">
+                                  BorderBrush="Transparent">
 
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
@@ -200,44 +200,117 @@
 
                                                             <TextBlock Text="Mã hàng hóa:" Margin="10"/>
                                                             <TextBlock Grid.Column="1" Margin="10" Text="{Binding Product.Id}"/>
-                                                            <TextBlock Grid.Column="2" Text="Số lượng:" Margin="10"/>
+                                                            <TextBlock Grid.Column="2" Text="Số lượng:" Margin="50,10,10,10"/>
                                                             <TextBlock Grid.Column="3" Margin="10" Text="{Binding Batch.Quantity}"/>
                                                             <Line Margin="9,0,0,0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
                                                             <Line Margin="-5,0,0,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
+                                                            <Line Margin="49,0,0,0" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
+                                                            <Line Margin="-5,0,0,0" Grid.Row="0" Grid.Column="3" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
                                                             
                                                             <TextBlock Grid.Row="1" Text="Tên hàng hóa:" Margin="10"/>
                                                             <TextBlock Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding Product.ProductName}"/>
-                                                            <TextBlock Grid.Row="1" Grid.Column="2" Text="Đơn vị:" Margin="10"/>
+                                                            <TextBlock Grid.Row="1" Grid.Column="2" Text="Đơn vị:" Margin="50,10,10,10"/>
                                                             <TextBlock Grid.Row="1" Grid.Column="3" Margin="10" Text="{Binding Batch.Unit}"/>
                                                             <Line Margin="9,0,0,1" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
                                                             <Line Margin="-5,0,0,1" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
+                                                            <Line Margin="49,0,0,1" Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
+                                                            <Line Margin="-5,0,0,1" Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
 
                                                             <TextBlock Grid.Row="2" Text="Loại hàng hóa:" Margin="10"/>
                                                             <TextBlock Grid.Row="2" Grid.Column="1" Margin="10" Text="{Binding Product.Category.CategoryName}"/>
-                                                            <TextBlock Grid.Row="2" Grid.Column="2" Text="Giá bán:" Margin="10"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="2" Text="Giá bán:" Margin="50,10,10,10"/>
                                                             <TextBlock Grid.Row="2" Grid.Column="3" Margin="10" Text="{Binding Batch.Price}"/>
                                                             <Line Margin="9,0,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
                                                             <Line Margin="-5,0,0,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
+                                                            <Line Margin="49,0,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
+                                                            <Line Margin="-5,0,0,0" Grid.Row="2" Grid.Column="3" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
 
                                                         </Grid>
+                                                    </Grid>
+
+                                                    <Grid Grid.Row="1">
+                                                        <DataGrid ItemsSource="{Binding BatchProducts}"
+                                                                  IsReadOnly="True"
+                                                                  AutoGenerateColumns="False"
+                                                                  SelectionUnit="FullRow" 
+                                                                  SelectionMode="Single" 
+                                                                  Background="Transparent" 
+                                                                  BorderBrush="Transparent"
+                                                                  Margin="10">
+                                                            <DataGrid.ColumnHeaderStyle>
+                                                                <Style TargetType="DataGridColumnHeader">
+                                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                                    <Setter Property="Foreground" Value="#FF1E2A39"/>
+                                                                </Style>
+                                                            </DataGrid.ColumnHeaderStyle>
+
+                                                            <DataGrid.CellStyle>
+                                                                <Style TargetType="DataGridCell">
+                                                                    <Setter Property="Background" Value="Transparent"/>
+                                                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                                                    <Setter Property="Foreground" Value="Black"/>
+                                                                    <Setter Property="HorizontalAlignment" Value="Left"/>
+                                                                    <Setter Property="Margin" Value="5"/>
+                                                                </Style>
+                                                            </DataGrid.CellStyle>
+
+                                                            <DataGrid.Columns>
+                                                                <DataGridTextColumn Header="Mã lô" Width="100"/>
+                                                                <DataGridTextColumn Header="SL còn lại" Width="100"/>
+                                                                <DataGridTextColumn Header="SL nhập" Width="100"/>
+                                                                <DataGridTextColumn Header="NSX" Width="150"/>
+                                                                <DataGridTextColumn Header="Ngày hết hạn" Width="150"/>
+                                                                <DataGridTextColumn Header="Giá nhập" Width="125"/>
+                                                                <DataGridTextColumn Header="Giá bán" Width="125"/>
+                                                            </DataGrid.Columns>
+                                                        </DataGrid>
                                                     </Grid>
                                                 </Grid>
                                             </TabItem>
 
                                             <!-- Tab Lịch sử nhập/xuất -->
                                             <TabItem Header="Lịch sử nhập/xuất gần nhất" Width="225" HorizontalAlignment="Left">
-                                                <DataGrid AutoGenerateColumns="False" 
-                                                            ItemsSource="{Binding Batch}">
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Mã lô" Binding="{Binding BatchNumber}"/>
-                                                        <DataGridTextColumn Header="SL còn lại" Binding="{Binding Quantity}"/>
-                                                        <DataGridTextColumn Header="SL nhập" Binding="{Binding InitialQuantity}"/>
-                                                        <DataGridTextColumn Header="NSX" Binding="{Binding ManufactureDate}"/>
-                                                        <DataGridTextColumn Header="Ngày hết hạn" Binding="{Binding ExpirationDate}"/>
-                                                        <DataGridTextColumn Header="Giá nhập" Binding="{Binding ImportPrice}"/>
-                                                        <DataGridTextColumn Header="Giá bán" Binding="{Binding Price}"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <TextBlock Grid.Row="0" Margin = "20,20,0,0" Text="Danh sách nhập gần đây" FontWeight="Bold" FontSize="20" Foreground="#455E7D"/>
+
+                                                    <DataGrid AutoGenerateColumns="False" 
+                                                              Grid.Row="1"
+                                                              Margin="10">
+                                                        <DataGrid.Columns>
+                                                            <DataGridTextColumn Header="Mã lô"/>
+                                                            <DataGridTextColumn Header="Thời gian" Width="125"/>
+                                                            <DataGridTextColumn Header="Số lượng"/>
+                                                            <DataGridTextColumn Header="NSX" Width="125"/>
+                                                            <DataGridTextColumn Header="Ngày hết hạn" Width="125"/>
+                                                            <DataGridTextColumn Header="Giá nhập"/>
+                                                            <DataGridTextColumn Header="Giá bán"/>
+                                                        </DataGrid.Columns>
+                                                    </DataGrid>
+
+                                                    <TextBlock Grid.Row="2" Margin = "20,20,0,0" Text="Danh sách xuất gần đây" FontWeight="Bold" FontSize="20" Foreground="#455E7D"/>
+
+                                                    <DataGrid AutoGenerateColumns="False" 
+                                                              Grid.Row="3"
+                                                              Margin="10">
+                                                        <DataGrid.Columns>
+                                                            <DataGridTextColumn Header="Mã lô"/>
+                                                            <DataGridTextColumn Header="Thời gian" Width="125"/>
+                                                            <DataGridTextColumn Header="Mã khách hàng"/>
+                                                            <DataGridTextColumn Header="Số lượng"/>
+                                                            <DataGridTextColumn Header="ĐVT"/>
+                                                            <DataGridTextColumn Header="Giá bán"/>
+                                                            <DataGridTextColumn Header="Giá giảm"/>
+                                                        </DataGrid.Columns>
+                                                    </DataGrid>
+
+                                                </Grid>
                                             </TabItem>
                                         </TabControl>
                                     </Grid>

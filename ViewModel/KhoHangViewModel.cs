@@ -18,7 +18,6 @@ namespace IT008_QuanLyBanHang.ViewModel
     {
         public KhoHangViewModel()
         {
-            LoadSampleData();
             LoadDataCommand = new AsyncRelayCommand(LoadData);
             Task.Run(() => LoadData());
         }
@@ -78,56 +77,6 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         [ObservableProperty]
         BatchProduct? selectedItem = null;
-
-        private void LoadSampleData()
-        {
-            // Tạo dữ liệu mẫu
-            Products = new List<Product>
-            {
-                new Product
-                {
-                    Id = 001,
-                    ProductName = "Sản phẩm 1",
-                    Category = new Category { CategoryName = "Loại 1" },
-                    Batches = new List<Batch>
-                    {
-                        new Batch
-                        {
-                            BatchNumber = "B001",
-                            Quantity = 10,
-                            Price = "10000",
-                            ManufactureDate = DateTime.Now.AddMonths(-1),
-                            ExpirationDate = DateTime.Now.AddMonths(5),
-                        }
-                    }
-                },
-                new Product
-                {
-                    Id = 002,
-                    ProductName = "Sản phẩm 2",
-                    Category = new Category { CategoryName = "Loại 2" },
-                    Batches = new List<Batch>
-                    {
-                        new Batch
-                        {
-                            BatchNumber = "B002",
-                            Quantity = 5,
-                            Price = "20000",
-                            ManufactureDate = DateTime.Now.AddMonths(-2),
-                            ExpirationDate = DateTime.Now.AddMonths(6),
-                        }
-                    }
-                }
-            };
-
-            // Chuyển Products thành BatchProducts
-            if (Products != null)
-            {
-                BatchProducts = new ObservableCollection<BatchProduct>(
-                    Products.SelectMany(p => p.Batches.Select(b => new BatchProduct(p, b)))
-                );
-            }
-        }
 
     }
 }
