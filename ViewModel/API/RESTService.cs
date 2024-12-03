@@ -11,11 +11,11 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace IT008_QuanLyBanHang.ViewModel
+namespace IT008_QuanLyBanHang.ViewModel.API
 {
     public class RESTService
     {
-        public async Task<string> GetAsync(string dataType)
+        public async Task<string> GetAsyncOfType(string dataType)
         {
             try
             {

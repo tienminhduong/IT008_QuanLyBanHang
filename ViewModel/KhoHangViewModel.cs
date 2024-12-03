@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
+using IT008_QuanLyBanHang.ViewModel.API;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,34 +19,50 @@ namespace IT008_QuanLyBanHang.ViewModel
     {
         public KhoHangViewModel()
         {
-            LoadDataCommand = new AsyncRelayCommand(LoadData);
+            //LoadDataCommand = new AsyncRelayCommand(LoadData);
             Task.Run(() => LoadData());
         }
 
-        public IAsyncRelayCommand LoadDataCommand { get; }
+        //public IAsyncRelayCommand LoadDataCommand { get; }
 
-        
+
+        //public async Task LoadData()
+        //{
+        //    //string temp = await RESTService.Instance.GetAsyncOfType("products");
+        //    //Trace.WriteLine(temp);
+        //    ProductAPI? productResponse = JsonSerializer.Deserialize<ProductAPI>(temp);
+        //    //if (productResponse?.Data?.Items != null)
+        //        //Products = productResponse.Data.Items;
+
+        //    if (Products != null)
+        //    {
+        //        BatchProducts = new();
+        //        Trace.WriteLine($"Product size: {Products.Count}");
+        //        foreach (Product p in Products)
+        //        {
+        //            if (p.Batches != null)
+        //            {
+        //                foreach (var b in p.Batches)
+        //                {
+        //                    BatchProduct bp = new(p, b);
+        //                    BatchProducts.Add(bp);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
         public async Task LoadData()
         {
-            string temp = await RESTService.Instance.GetAsync("products");
-            Trace.WriteLine(temp);
-            ProductResponse? productResponse = JsonSerializer.Deserialize<ProductResponse>(temp);
-            if (productResponse?.Data?.Items != null)
-                Products = productResponse.Data.Items;
-
-            if (Products != null)
+            await Task.Delay(1);
+            foreach (Product p in productAPI.Products)
             {
-                BatchProducts = new();
-                Trace.WriteLine($"Product size: {Products.Count}");
-                foreach (Product p in Products)
+                if (p.Batches != null)
                 {
-                    if (p.Batches != null)
+                    foreach (var b in p.Batches)
                     {
-                        foreach (var b in p.Batches)
-                        {
-                            BatchProduct bp = new(p, b);
-                            BatchProducts.Add(bp);
-                        }
+                        BatchProduct bp = new(p, b);
+                        BatchProducts.Add(bp);
                     }
                 }
             }
@@ -60,8 +77,9 @@ namespace IT008_QuanLyBanHang.ViewModel
                 SelectedItem.Visibility = Visibility.Collapsed;
         }
 
-        [ObservableProperty]
-        List<Product>? products;
+        //[ObservableProperty]
+        //List<Product>? products;
+        ProductAPI productAPI = new();
 
         [ObservableProperty]
         ObservableCollection<BatchProduct> batchProducts = new();

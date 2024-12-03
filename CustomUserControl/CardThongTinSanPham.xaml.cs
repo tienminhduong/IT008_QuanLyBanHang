@@ -36,6 +36,7 @@ namespace IT008_QuanLyBanHang.CustomUserControl
             TextBlock_Price.Text = ProductBatch.Batch.Price;
             TextBlock_ManufactureDate.Text = ProductBatch.Batch.ManufactureDate.ToString("d");
             TextBlock_ExpirationDate.Text = ProductBatch.Batch.ExpirationDate.ToString("d");
+            TextBlock_Unit.Text = ProductBatch.Product.Unit;
         }
 
         public BatchProduct ProductBatch
