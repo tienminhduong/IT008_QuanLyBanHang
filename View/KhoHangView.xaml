@@ -229,7 +229,8 @@
                                                     </Grid>
 
                                                     <Grid Grid.Row="1">
-                                                        <DataGrid ItemsSource="{Binding BatchProducts}"
+
+                                                        <DataGrid ItemsSource="{Binding SelectedItem.Batches}"
                                                                   IsReadOnly="True"
                                                                   AutoGenerateColumns="False"
                                                                   SelectionUnit="FullRow" 
@@ -255,13 +256,13 @@
                                                             </DataGrid.CellStyle>
 
                                                             <DataGrid.Columns>
-                                                                <DataGridTextColumn Header="Mã lô" Width="100"/>
-                                                                <DataGridTextColumn Header="SL còn lại" Width="100"/>
-                                                                <DataGridTextColumn Header="SL nhập" Width="100"/>
-                                                                <DataGridTextColumn Header="NSX" Width="150"/>
-                                                                <DataGridTextColumn Header="Ngày hết hạn" Width="150"/>
-                                                                <DataGridTextColumn Header="Giá nhập" Width="125"/>
-                                                                <DataGridTextColumn Header="Giá bán" Width="125"/>
+                                                                <DataGridTextColumn Header="Mã lô" Width="100" Binding="{Binding Id}"/>
+                                                                <DataGridTextColumn Header="SL còn lại" Width="100" Binding="{Binding Quantity}"/>
+                                                                <DataGridTextColumn Header="SL nhập" Width="100" Binding="{Binding QuantityImported}"/>
+                                                                <DataGridTextColumn Header="NSX" Width="150" Binding="{Binding ManufactureDate}"/>
+                                                                <DataGridTextColumn Header="Ngày hết hạn" Width="150" Binding="{Binding ExpirationDate}"/>
+                                                                <DataGridTextColumn Header="Giá nhập" Width="125" Binding="{Binding ImportPrice}"/>
+                                                                <DataGridTextColumn Header="Giá bán" Width="125" Binding="{Binding SalePrice}"/>
                                                             </DataGrid.Columns>
                                                         </DataGrid>
                                                     </Grid>

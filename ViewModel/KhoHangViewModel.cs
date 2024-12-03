@@ -16,11 +16,50 @@ namespace IT008_QuanLyBanHang.ViewModel
 {
     public partial class KhoHangViewModel : ObservableObject, ITabViewModel
     {
+        [ObservableProperty]
+        private string searchText = string.Empty;
+
+        private ObservableCollection<BatchProduct>? originalDataList;
+
         public KhoHangViewModel()
         {
             LoadDataCommand = new AsyncRelayCommand(LoadData);
             Task.Run(() => LoadData());
+
+            this.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(SearchText))
+                {
+                    FilterData();
+                }
+            };
         }
+
+        private void FilterData()
+        {
+            if (originalDataList == null)
+                return;
+
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                BatchProducts = new ObservableCollection<BatchProduct>(originalDataList);
+            }
+            else
+            {
+                // Tìm kiếm dưới dạng số nguyên nếu SearchText là số
+                bool isNumeric = int.TryParse(SearchText, out int searchNumber);
+
+                var filteredList = originalDataList.Where(item =>
+                    item.Product?.ProductName?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true ||
+                    item.Product?.Category != null && item.Product.Category.CategoryName?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true ||
+                    (isNumeric && item.Product?.Id == searchNumber) ||
+                    item.Batch.ManufactureDate.ToString("d").Contains(SearchText) ||
+                    item.Batch.ExpirationDate.ToString("d").Contains(SearchText)
+                );
+                BatchProducts = new ObservableCollection<BatchProduct>(filteredList);
+            }
+        }
+
 
         public IAsyncRelayCommand LoadDataCommand { get; }
 
@@ -58,6 +97,13 @@ namespace IT008_QuanLyBanHang.ViewModel
                     }
                 }
             }
+
+            // Order by Product ID
+            originalDataList = new ObservableCollection<BatchProduct>(
+                BatchProducts.OrderBy(bp => bp.Product?.Id)
+            );
+
+            BatchProducts = new ObservableCollection<BatchProduct>(originalDataList);
         }
 
         [RelayCommand]
