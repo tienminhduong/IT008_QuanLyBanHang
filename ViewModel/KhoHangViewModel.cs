@@ -115,6 +115,13 @@ namespace IT008_QuanLyBanHang.ViewModel
                 SelectedItem.Visibility = Visibility.Collapsed;
         }
 
+        [RelayCommand]
+        private void Add()
+        {
+            var taoHangHoaView = new IT008_QuanLyBanHang.View.TaoHangHoa();
+            taoHangHoaView.Show();
+        }
+
         [ObservableProperty]
         List<Product>? products;
 
