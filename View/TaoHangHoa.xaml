@@ -43,7 +43,11 @@
             <TextBox Grid.Row="0" Grid.Column="1" FontSize="20" Margin="10" Text="{Binding ProductName}"/>
             <TextBox Grid.Row="1" Grid.Column="1" FontSize="20" Margin="10" Text="{Binding ProductUnit}"/>
 
-            <ComboBox Grid.Row="2" Grid.Column="1" FontSize="20" Margin="10" Text="{Binding ProductCategory}" ItemsSource="{Binding CategoriesIdList}"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" FontSize="20" Margin="10"
+                      ItemsSource="{Binding CategoriesList}"
+                      DisplayMemberPath="CategoryName"
+                      SelectedValuePath="Id" 
+                      SelectedValue="{Binding ProductCategory}"/>
 
             <Grid Grid.Row="3" Grid.Column="1">
                 <Grid.ColumnDefinitions>

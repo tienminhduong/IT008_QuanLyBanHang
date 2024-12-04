@@ -23,13 +23,13 @@ namespace IT008_QuanLyBanHang.ViewModel
         private string? productUnit;
 
         [ObservableProperty]
-        private string? productCategory;
+        private int? productCategory;
 
         [ObservableProperty]
         private string? productExpiration;
 
         [ObservableProperty]
-        private ObservableCollection<int>? categoriesIdList = new ObservableCollection<int>();
+        private ObservableCollection<Category>? categoriesList = new ObservableCollection<Category>();
 
         public TaoHangHoaViewModel()
         {
@@ -61,15 +61,7 @@ namespace IT008_QuanLyBanHang.ViewModel
                     if (categoryResponse?.Data?.Items != null)
                     {
                         Trace.WriteLine("Populating CategoriesList");
-                        ObservableCollection<Category> categoriesList = new ObservableCollection<Category>(categoryResponse.Data.Items);
-
-                        foreach (var category in categoriesList)
-                        {
-                            if (category != null)
-                            {
-                                CategoriesIdList?.Add(category.Id);
-                            }    
-                        }    
+                        CategoriesList = new ObservableCollection<Category>(categoryResponse.Data.Items);
                     }
                 }
                 catch (Exception ex)
@@ -84,7 +76,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         [RelayCommand]
         private async Task AddProduct()
         {
-            if (string.IsNullOrWhiteSpace(ProductName) || string.IsNullOrWhiteSpace(ProductCategory))
+            if (string.IsNullOrWhiteSpace(ProductName) || ProductCategory == null)
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin sản phẩm!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -93,7 +85,7 @@ namespace IT008_QuanLyBanHang.ViewModel
             var productData = new Dictionary<string, string>
             {
                 { "product_name", ProductName },
-                { "category_id", ProductCategory },
+                { "category_id", ProductCategory.ToString()},
                 { "status", "active" }
             };
 
