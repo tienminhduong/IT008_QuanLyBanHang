@@ -99,10 +99,11 @@ namespace IT008_QuanLyBanHang.ViewModel
 
             try
             {
-                var response = await RESTService.Instance.PostAsync("v1/products", productData);
+                var response = await RESTService.Instance.PostAsync("products", productData);
                 if (!string.IsNullOrEmpty(response))
                 {
                     MessageBox.Show("Thêm sản phẩm thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Trace.WriteLine(response);
                 }
                 else
                 {

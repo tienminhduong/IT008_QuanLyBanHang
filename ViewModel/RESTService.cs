@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Security.Principal;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,6 +30,23 @@ namespace IT008_QuanLyBanHang.ViewModel
                 Trace.WriteLine(ex.Message);
             }
             return string.Empty;
+        }
+
+        public async Task<string> PostAsync(string endpoint, Dictionary<string, string> formData)
+        {
+            try
+            {
+                var content = new FormUrlEncodedContent(formData);
+                var response = await client.PostAsync(endpoint, content);
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine($"Error during POST to {endpoint}: {ex.Message}");
+                return string.Empty;
+            }
         }
 
         public async Task<bool> TryLogin(string account, string password)
