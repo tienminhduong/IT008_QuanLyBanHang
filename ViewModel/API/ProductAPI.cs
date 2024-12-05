@@ -10,17 +10,36 @@ using System.Threading.Tasks;
 
 namespace IT008_QuanLyBanHang.ViewModel.API
 {
-    public class ProductAPI
+    public static class ProductAPI
     {
-        public ProductAPI()
+        static public async Task<List<Product>?> GetAllProducts()
         {
-            string temp = Task.Run(() => RESTService.Instance.GetAsyncOfType("products")).Result;
-            response = JsonSerializer.Deserialize<Response>(temp);
-            Trace.WriteLine(temp);
+            string resStr = await RESTService.Instance.GetAsyncOfType("products");
+            Response? res = JsonSerializer.Deserialize<Response>(resStr);
+            if (res == null || res.Data == null)
+                return null;
+            return res.Data.Items;
         }
 
-        Response? response;
-        public List<Product>? Products => response?.Data?.Items;
+        static public async Task<List<BatchProduct>> GetAllProductsWithBatches()
+        {
+            List<Product>? products = await GetAllProducts();
+            if (products == null)
+                return new List<BatchProduct>();
+            List<BatchProduct> batchProducts = new();
+            foreach (Product p in products)
+            {
+                if (p.Batches != null)
+                {
+                    foreach (var b in p.Batches)
+                    {
+                        BatchProduct bp = new(p, b);
+                        batchProducts.Add(bp);
+                    }
+                }
+            }
+            return batchProducts;
+        }
 
         public class Response
         {

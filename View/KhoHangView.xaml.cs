@@ -23,7 +23,6 @@ namespace IT008_QuanLyBanHang.View
         public KhoHangView()
         {
             InitializeComponent();
-            DataContext = new ViewModel.KhoHangViewModel();
         }
     }
 }

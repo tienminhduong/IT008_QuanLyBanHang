@@ -25,7 +25,7 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         async Task Login()
         {
-            Trace.WriteLine(Account);
+            Trace.WriteLine($"Trying to login with account: {Account} and password: {Password}");
             if (ShowLoginError = !(await Verify()))
                 return;
 

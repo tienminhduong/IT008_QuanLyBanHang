@@ -10,10 +10,12 @@
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="MainWindow" Width="1280" Height="720">
-
     <Window.Resources>
         <viewmodel:IsActiveToColorConverter x:Key="IsActiveToColorConverter"/>
     </Window.Resources>
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel/>
+    </Window.DataContext>
     
     <Grid>
         <Grid.Resources>
@@ -162,6 +164,7 @@
             </Grid>
         </Grid>
 
-        <ContentControl Grid.Column="1" Grid.RowSpan="2" Content="{Binding CurrentView}"/>
+        <ContentControl Grid.Column="1" Grid.RowSpan="2" Content="{Binding CurrentView}">
+        </ContentControl>
     </Grid>
 </Window>

@@ -19,53 +19,12 @@ namespace IT008_QuanLyBanHang.ViewModel
     {
         public KhoHangViewModel()
         {
-            //LoadDataCommand = new AsyncRelayCommand(LoadData);
-            Task.Run(() => LoadData());
         }
 
-        //public IAsyncRelayCommand LoadDataCommand { get; }
-
-
-        //public async Task LoadData()
-        //{
-        //    //string temp = await RESTService.Instance.GetAsyncOfType("products");
-        //    //Trace.WriteLine(temp);
-        //    ProductAPI? productResponse = JsonSerializer.Deserialize<ProductAPI>(temp);
-        //    //if (productResponse?.Data?.Items != null)
-        //        //Products = productResponse.Data.Items;
-
-        //    if (Products != null)
-        //    {
-        //        BatchProducts = new();
-        //        Trace.WriteLine($"Product size: {Products.Count}");
-        //        foreach (Product p in Products)
-        //        {
-        //            if (p.Batches != null)
-        //            {
-        //                foreach (var b in p.Batches)
-        //                {
-        //                    BatchProduct bp = new(p, b);
-        //                    BatchProducts.Add(bp);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
+        [RelayCommand]
         public async Task LoadData()
         {
-            await Task.Delay(1);
-            foreach (Product p in productAPI.Products)
-            {
-                if (p.Batches != null)
-                {
-                    foreach (var b in p.Batches)
-                    {
-                        BatchProduct bp = new(p, b);
-                        BatchProducts.Add(bp);
-                    }
-                }
-            }
+            BatchProducts = await ProductAPI.GetAllProductsWithBatches();
         }
 
         [RelayCommand]
@@ -77,12 +36,15 @@ namespace IT008_QuanLyBanHang.ViewModel
                 SelectedItem.Visibility = Visibility.Collapsed;
         }
 
-        //[ObservableProperty]
-        //List<Product>? products;
-        ProductAPI productAPI = new();
+
+        [RelayCommand]
+        private void TestLoad()
+        {
+            Trace.WriteLine("TestLoad");
+        }
 
         [ObservableProperty]
-        ObservableCollection<BatchProduct> batchProducts = new();
+        List<BatchProduct> batchProducts = new();
 
         [ObservableProperty]
         BatchProduct? selectedItem = null;

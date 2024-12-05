@@ -18,10 +18,10 @@
                 <StackPanel Margin="10 20 10 0">
                     <TextBox VerticalAlignment="Center" materialDesign:HintAssist.Hint="Tên đăng nhập"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             FontSize="15" Text="{Binding Account, Mode=OneWayToSource}"/>
+                             FontSize="15" Text="{Binding Account, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <PasswordBox x:Name="FloatingPasswordBox"
                         materialDesign:HintAssist.Hint="Mật khẩu"
-                        materialDesign:PasswordBoxAssist.Password="{Binding Password, Mode=TwoWay}"
+                        materialDesign:PasswordBoxAssist.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         materialDesign:TextFieldAssist.HasClearButton="True"
                         Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}"
                         FontSize="15" Margin="0 15 0 0"/>
