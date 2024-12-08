@@ -6,6 +6,7 @@ using IT008_QuanLyBanHang.ViewModel.API;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -27,21 +28,25 @@ namespace IT008_QuanLyBanHang.ViewModel
             LoadDataCommand = new AsyncRelayCommand(LoadData);
             Task.Run(() => LoadData());
 
-            this.PropertyChanged += (s, e) =>
-            {
-                if (e.PropertyName == nameof(SearchText))
-                {
-                    FilterData();
-                }
-            };
+            this.PropertyChanged += OnViewModelPropertyChanged;
+        }
 
-            this.PropertyChanged += (s, e) =>
+        private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
             {
-                if (e.PropertyName == nameof(SelectedProduct))
-                {
+                case nameof(SearchText):
+                    FilterData();
+                    break;
+
+                case nameof(SelectedProduct):
                     SelectProduct(SelectedProduct);
-                }
-            };
+                    break;
+
+                case nameof(SelectedTabIndex):
+                    OnSelectedTabIndexChanged(SelectedTabIndex);
+                    break;
+            }
         }
 
         private void FilterData()
@@ -150,6 +155,9 @@ namespace IT008_QuanLyBanHang.ViewModel
         [ObservableProperty]
         ObservableCollection<Batch>? productBatches;
 
+        [ObservableProperty]
+        private int selectedTabIndex;
+
         [RelayCommand]
         private void SelectProduct(Product? product)
         {
@@ -157,6 +165,27 @@ namespace IT008_QuanLyBanHang.ViewModel
             ProductBatches = new ObservableCollection<Batch>(SelectedProduct?.Batches ?? new List<Batch>());
             Trace.WriteLine($"Selected Product: {SelectedProduct?.ProductName}, Batches Count: {ProductBatches?.Count}");
         }
+
+        partial void OnSelectedTabIndexChanged(int value)
+        {
+            if (originalDataList == null) return;
+
+            switch (value)
+            {
+                case 0: // "Tất cả" tab
+                    Products = new ObservableCollection<Product>(originalDataList);
+                    break;
+                case 1: // "Đang trưng bày" tab
+                    Products = new ObservableCollection<Product>(
+                        originalDataList.Where(p => p.Status == "active")
+                    );
+                    break;
+                default:
+                    Products = new ObservableCollection<Product>(originalDataList);
+                    break;
+            }
+        }
+
     }
 
 }
