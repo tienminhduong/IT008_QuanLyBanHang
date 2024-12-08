@@ -30,5 +30,10 @@ namespace IT008_QuanLyBanHang.View
         {
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

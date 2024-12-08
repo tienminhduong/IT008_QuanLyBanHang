@@ -19,7 +19,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         [ObservableProperty]
         private string searchText = string.Empty;
 
-        private ObservableCollection<BatchProduct>? originalDataList;
+        private ObservableCollection<Product>? originalDataList;
 
         public KhoHangViewModel()
         {
@@ -42,7 +42,7 @@ namespace IT008_QuanLyBanHang.ViewModel
 
             if (string.IsNullOrWhiteSpace(SearchText))
             {
-                BatchProducts = new ObservableCollection<BatchProduct>(originalDataList);
+                Products = new ObservableCollection<Product>(originalDataList);
             }
             else
             {
@@ -50,13 +50,11 @@ namespace IT008_QuanLyBanHang.ViewModel
                 bool isNumeric = int.TryParse(SearchText, out int searchNumber);
 
                 var filteredList = originalDataList.Where(item =>
-                    item.Product?.ProductName?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true ||
-                    item.Product?.Category != null && item.Product.Category.CategoryName?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true ||
-                    (isNumeric && item.Product?.Id == searchNumber) ||
-                    item.Batch.ManufactureDate.ToString("d").Contains(SearchText) ||
-                    item.Batch.ExpirationDate.ToString("d").Contains(SearchText)
+                    item.ProductName?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true ||
+                    item.Category != null && item.Category.CategoryName?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true ||
+                    (isNumeric && item.Id == searchNumber)
                 );
-                BatchProducts = new ObservableCollection<BatchProduct>(filteredList);
+                Products = new ObservableCollection<Product>(filteredList);
             }
         }
 
@@ -79,9 +77,9 @@ namespace IT008_QuanLyBanHang.ViewModel
             Trace.WriteLine(temp);
             ProductResponse? productResponse = JsonSerializer.Deserialize<ProductResponse>(temp);
             if (productResponse?.Data?.Items != null)
-                Products = productResponse.Data.Items;
+                Products =  new ObservableCollection<Product>(productResponse.Data.Items);
 
-            if (Products != null)
+            /*if (Products != null)
             {
                 BatchProducts = new();
                 Trace.WriteLine($"Product size: {Products.Count}");
@@ -96,14 +94,14 @@ namespace IT008_QuanLyBanHang.ViewModel
                         }
                     }
                 }
-            }
+            }*/
 
             // Order by Product ID
-            originalDataList = new ObservableCollection<BatchProduct>(
-                BatchProducts.OrderBy(bp => bp.Product?.Id)
+            originalDataList = new ObservableCollection<Product>(
+                Products?.OrderBy(p => p.Id)
             );
 
-            BatchProducts = new ObservableCollection<BatchProduct>(originalDataList);
+            Products = new ObservableCollection<Product>(originalDataList);
         }
 
         [RelayCommand]
@@ -116,14 +114,14 @@ namespace IT008_QuanLyBanHang.ViewModel
         }
 
         [RelayCommand]
-        private void Add()
+        private void AddProduct()
         {
             var taoHangHoaView = new IT008_QuanLyBanHang.View.TaoHangHoa();
             taoHangHoaView.Show();
         }
 
         [ObservableProperty]
-        List<Product>? products;
+        ObservableCollection<Product>? products;
 
         [ObservableProperty]
         ObservableCollection<BatchProduct> batchProducts = new();
