@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
+using IT008_QuanLyBanHang.ViewModel.API;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -124,7 +125,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         ObservableCollection<Product>? products;
 
         [ObservableProperty]
-        ObservableCollection<BatchProduct> batchProducts = new();
+        List<BatchProduct> batchProducts = new();
 
         [ObservableProperty]
         BatchProduct? selectedItem = null;
