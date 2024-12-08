@@ -103,7 +103,8 @@
                                   Background="Transparent" 
                                   BorderBrush="Transparent"
                                   VerticalAlignment="Stretch"
-                                  ScrollViewer.CanContentScroll="True">
+                                  ScrollViewer.CanContentScroll="True"
+                                  Height="560">
 
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
