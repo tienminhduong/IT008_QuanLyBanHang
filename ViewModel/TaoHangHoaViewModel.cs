@@ -11,6 +11,7 @@ using System.Windows;
 using IT008_QuanLyBanHang.Model;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using IT008_QuanLyBanHang.ViewModel.API;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {

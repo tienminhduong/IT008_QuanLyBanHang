@@ -49,6 +49,22 @@ namespace IT008_QuanLyBanHang.ViewModel.API
             }
         }
 
+        public async Task<string> GetAsync(string dataType)
+        {
+            try
+            {
+                HttpRequestMessage request = new(HttpMethod.Get, dataType);
+                HttpResponseMessage response = await client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message);
+            }
+            return string.Empty;
+        }
+
         public async Task<bool> TryLogin(string account, string password)
         {
             string jsonContent = $"{{\"account\":\"{account}\",\"password\":\"{password}\"}}";
