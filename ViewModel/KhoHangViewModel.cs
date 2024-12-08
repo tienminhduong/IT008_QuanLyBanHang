@@ -34,6 +34,14 @@ namespace IT008_QuanLyBanHang.ViewModel
                     FilterData();
                 }
             };
+
+            this.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(SelectedProduct))
+                {
+                    SelectProduct(SelectedProduct);
+                }
+            };
         }
 
         private void FilterData()
@@ -97,16 +105,18 @@ namespace IT008_QuanLyBanHang.ViewModel
             //    }
             //}*/
 
-            //// Order by Product ID
-            //originalDataList = new ObservableCollection<Product>(
-            //    Products?.OrderBy(p => p.Id)
-            //);
-
-            //Products = new ObservableCollection<Product>(originalDataList);
             BatchProducts = await ProductAPI.GetAllProductsWithBatches();
             var p = await ProductAPI.GetAllProducts();
             if (p != null)
                 Products = new ObservableCollection<Product>(p);
+
+
+            // Chỉnh thứ tự lúc đầu theo tăng dần
+            originalDataList = new ObservableCollection<Product>(
+                Products?.OrderBy(p => p.Id)
+            );
+
+            Products = new ObservableCollection<Product>(originalDataList);
         }
 
         [RelayCommand]
@@ -134,5 +144,19 @@ namespace IT008_QuanLyBanHang.ViewModel
         [ObservableProperty]
         BatchProduct? selectedItem = null;
 
+        [ObservableProperty]
+        Product? selectedProduct;
+
+        [ObservableProperty]
+        ObservableCollection<Batch>? productBatches;
+
+        [RelayCommand]
+        private void SelectProduct(Product? product)
+        {
+            SelectedProduct = product;
+            ProductBatches = new ObservableCollection<Batch>(SelectedProduct?.Batches ?? new List<Batch>());
+            Trace.WriteLine($"Selected Product: {SelectedProduct?.ProductName}, Batches Count: {ProductBatches?.Count}");
+        }
     }
+
 }
