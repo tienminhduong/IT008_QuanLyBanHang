@@ -15,6 +15,7 @@ namespace IT008_QuanLyBanHang.Model
             this.product = product;
             this.batch = batch;
             visibility = Visibility.Visible;
+            IsExpanded = false;
         }
 
         [ObservableProperty]
@@ -28,5 +29,8 @@ namespace IT008_QuanLyBanHang.Model
 
         [ObservableProperty]
         private bool isSelected;
+
+        [ObservableProperty]
+        private bool isExpanded;
     }
 }

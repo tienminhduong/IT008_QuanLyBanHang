@@ -21,4 +21,16 @@ namespace IT008_QuanLyBanHang.Model
         [JsonPropertyName("updated_at")]
         public DateTime UpdatedAt { get; set; }
     }
+
+    public class CategoryData
+    {
+        [JsonPropertyName("items")]
+        public List<Category>? Items { get; set; }
+    }
+
+    public class CategoryResponse
+    {
+        [JsonPropertyName("data")]
+        public CategoryData? Data { get; set; }
+    }
 }

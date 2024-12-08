@@ -10,29 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace IT008_QuanLyBanHang.View
 {
     /// <summary>
-    /// Interaction logic for KhoHangView.xaml
+    /// Interaction logic for TaoHangHoa.xaml
     /// </summary>
-    public partial class KhoHangView : UserControl
+    public partial class TaoHangHoa : Window
     {
-        public KhoHangView()
+        public TaoHangHoa()
         {
             InitializeComponent();
-        }
-
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
+            DataContext = new ViewModel.TaoHangHoaViewModel();
         }
     }
 }
