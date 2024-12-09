@@ -82,29 +82,6 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         public async Task LoadData()
         {
-            //string temp = await RESTService.Instance.GetAsync("products");
-            //Trace.WriteLine(temp);
-            //ProductResponse? productResponse = JsonSerializer.Deserialize<ProductResponse>(temp);
-            //if (productResponse?.Data?.Items != null)
-            //    Products =  new ObservableCollection<Product>(productResponse.Data.Items);
-
-            ///*if (Products != null)
-            //{
-            //    BatchProducts = new();
-            //    Trace.WriteLine($"Product size: {Products.Count}");
-            //    foreach (Product p in Products)
-            //    {
-            //        if (p.Batches != null)
-            //        {
-            //            foreach (var b in p.Batches)
-            //            {
-            //                BatchProduct bp = new(p, b);
-            //                BatchProducts.Add(bp);
-            //            }
-            //        }
-            //    }
-            //}*/
-
             BatchProducts = await ProductAPI.GetAllProductsWithBatches();
             var p = await ProductAPI.GetAllProducts();
             if (p != null)
