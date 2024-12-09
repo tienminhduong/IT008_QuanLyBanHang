@@ -96,7 +96,8 @@
                     <!-- Datagrid chính -->
                     <Grid Grid.Row="1" Margin="10">
                         <DataGrid ItemsSource="{Binding Products}"
-                                  SelectedItem="{Binding SelectedProduct, Mode=TwoWay}" 
+                                  SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
+                                  SelectionChanged="dataGrid_SelectionChanged"
                                   Name="dataGrid"
                                   IsReadOnly="True"
                                   AutoGenerateColumns="False"
@@ -124,7 +125,7 @@
                                 <DataGridTemplateColumn Width="Auto">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Width="15" Height="15"/>
+                                            <Path Name="ToggleIcon" Data="M0,0 L5,5 L10,0 Z" Fill="#FF1E2A39" VerticalAlignment="Center" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -265,6 +266,8 @@
                                                     </Grid.RowDefinitions>
 
                                                     <TextBlock Grid.Row="0" Margin = "20,20,0,0" Text="Danh sách nhập gần đây" FontWeight="Bold" FontSize="20" Foreground="#455E7D"/>
+
+                                                    <Button Content="+" HorizontalAlignment="Right" Margin="20,20,10,0" Background="#455E7D" Height="30" Width="40"/>
 
                                                     <DataGrid AutoGenerateColumns="False" 
                                                                Grid.Row="1"

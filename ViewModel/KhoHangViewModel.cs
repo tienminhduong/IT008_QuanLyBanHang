@@ -13,6 +13,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
@@ -185,7 +187,5 @@ namespace IT008_QuanLyBanHang.ViewModel
                     break;
             }
         }
-
     }
-
 }
