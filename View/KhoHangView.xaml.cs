@@ -27,18 +27,20 @@ namespace IT008_QuanLyBanHang.View
 
         private DataGridRow? previousExpandedRow = null;
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender is DataGrid grid && grid.SelectedItem != null)
-            {
-                var selectedRow = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
 
-                if (selectedRow != null)
+        private void ToggleIcon_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Path toggleIcon)
+            {
+                // Find the parent DataGridRow
+                var dataGridRow = FindParent<DataGridRow>(toggleIcon);
+                if (dataGridRow != null)
                 {
-                    if (previousExpandedRow != null && previousExpandedRow != selectedRow)
+                    // Collapse the previously expanded row
+                    if (previousExpandedRow != null && previousExpandedRow != dataGridRow)
                     {
                         previousExpandedRow.DetailsVisibility = Visibility.Collapsed;
-                        
+
                         var previousToggleIcon = FindVisualChild<Path>(previousExpandedRow, "ToggleIcon");
                         if (previousToggleIcon != null)
                         {
@@ -46,26 +48,22 @@ namespace IT008_QuanLyBanHang.View
                         }
                     }
 
-                    selectedRow.DetailsVisibility =
-                        selectedRow.DetailsVisibility == Visibility.Visible
+                    // Toggle visibility of the current row
+                    dataGridRow.DetailsVisibility =
+                        dataGridRow.DetailsVisibility == Visibility.Visible
                             ? Visibility.Collapsed
                             : Visibility.Visible;
 
-                    var toggleIcon = FindVisualChild<Path>(selectedRow, "ToggleIcon");
-                    if (toggleIcon != null)
-                    {
-                        toggleIcon.Data = selectedRow.DetailsVisibility == Visibility.Visible
-                            ? Geometry.Parse("M0,5 L5,0 L10,5 Z")  // Down arrow
-                            : Geometry.Parse("M0,0 L5,5 L10,0 Z"); // Up arrow
-                    }
+                    toggleIcon.Data = dataGridRow.DetailsVisibility == Visibility.Visible
+                        ? Geometry.Parse("M0,5 L5,0 L10,5 Z")  // Down arrow
+                        : Geometry.Parse("M0,0 L5,5 L10,0 Z"); // Up arrow
 
-                    previousExpandedRow = selectedRow;
+                    previousExpandedRow = dataGridRow;
                 }
 
-                grid.SelectedItem = null;
+                e.Handled = true; // Prevent further bubbling of the event
             }
         }
-
 
         private T? FindVisualChild<T>(DependencyObject parent, string name) where T : DependencyObject
         {
@@ -82,6 +80,19 @@ namespace IT008_QuanLyBanHang.View
                 {
                     return foundChild;
                 }
+            }
+            return null;
+        }
+
+        private T? FindParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            while (child != null)
+            {
+                if (child is T parent)
+                {
+                    return parent;
+                }
+                child = VisualTreeHelper.GetParent(child);
             }
             return null;
         }
