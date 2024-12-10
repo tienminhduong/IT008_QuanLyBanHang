@@ -32,18 +32,5 @@ namespace IT008_QuanLyBanHang.Model
 
         [JsonPropertyName("manufacture_date")]
         public DateTime ManufactureDate { get; set; }
-
-    }
-
-    public class BatchData
-    {
-        [JsonPropertyName("items")]
-        public List<Batch>? Items { get; set; }
-    }
-
-    public class BatchResponse
-    {
-        [JsonPropertyName("data")]
-        public BatchData? Data { get; set; }
     }
 }

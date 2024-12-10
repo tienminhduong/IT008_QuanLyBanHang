@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
 using IT008_QuanLyBanHang.View;
+using IT008_QuanLyBanHang.ViewModel.API;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,6 +40,7 @@ namespace IT008_QuanLyBanHang.ViewModel
 
             CurrentView = (ObservableObject)viewDictionary[name];
             CurrentViewName = name;
+
             //await viewDictionary[name].LoadData();
         }
 
@@ -48,7 +50,6 @@ namespace IT008_QuanLyBanHang.ViewModel
         private string? currentViewName = null;
 
         private Dictionary<string, ITabViewModel> viewDictionary;
-
     }
 
     public class IsActiveToColorConverter : System.Windows.Data.IValueConverter
