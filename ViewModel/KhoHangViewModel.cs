@@ -35,11 +35,11 @@ namespace IT008_QuanLyBanHang.ViewModel
                 }
             };
 
-            this.PropertyChanged += (s, e) =>
+            this.PropertyChanged += async (s, e) =>
             {
                 if (e.PropertyName == nameof(SelectedProduct))
                 {
-                    SelectProduct(SelectedProduct);
+                    await SelectProduct(SelectedProduct);
                 }
             };
         }
@@ -128,10 +128,12 @@ namespace IT008_QuanLyBanHang.ViewModel
         ObservableCollection<Batch>? productBatches;
 
         [RelayCommand]
-        private void SelectProduct(Product? product)
+        private async Task SelectProduct(Product? product)
         {
+            if (product == null)
+                return;
             SelectedProduct = product;
-            ProductBatches = new ObservableCollection<Batch>(SelectedProduct?.Batches ?? new List<Batch>());
+            ProductBatches = new ObservableCollection<Batch>(await ProductAPI.GetBatchesOfProduct(SelectedProduct));
             Trace.WriteLine($"Selected Product: {SelectedProduct?.ProductName}, Batches Count: {ProductBatches?.Count}");
         }
     }
