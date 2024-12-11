@@ -25,14 +25,77 @@ namespace IT008_QuanLyBanHang.View
             InitializeComponent();
         }
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        private DataGridRow? previousExpandedRow = null;
 
+
+        private void ToggleIcon_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Path toggleIcon)
+            {
+                // Find the parent DataGridRow
+                var dataGridRow = FindParent<DataGridRow>(toggleIcon);
+                if (dataGridRow != null)
+                {
+                    // Collapse the previously expanded row
+                    if (previousExpandedRow != null && previousExpandedRow != dataGridRow)
+                    {
+                        previousExpandedRow.DetailsVisibility = Visibility.Collapsed;
+
+                        var previousToggleIcon = FindVisualChild<Path>(previousExpandedRow, "ToggleIcon");
+                        if (previousToggleIcon != null)
+                        {
+                            previousToggleIcon.Data = Geometry.Parse("M0,0 L5,5 L10,0 Z"); // Up arrow
+                        }
+                    }
+
+                    // Toggle visibility of the current row
+                    dataGridRow.DetailsVisibility =
+                        dataGridRow.DetailsVisibility == Visibility.Visible
+                            ? Visibility.Collapsed
+                            : Visibility.Visible;
+
+                    toggleIcon.Data = dataGridRow.DetailsVisibility == Visibility.Visible
+                        ? Geometry.Parse("M0,5 L5,0 L10,5 Z")  // Down arrow
+                        : Geometry.Parse("M0,0 L5,5 L10,0 Z"); // Up arrow
+
+                    previousExpandedRow = dataGridRow;
+                }
+
+                e.Handled = true; // Prevent further bubbling of the event
+            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private T? FindVisualChild<T>(DependencyObject parent, string name) where T : DependencyObject
         {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T typedChild && (typedChild as FrameworkElement)?.Name == name)
+                {
+                    return typedChild;
+                }
 
+                var foundChild = FindVisualChild<T>(child, name);
+                if (foundChild != null)
+                {
+                    return foundChild;
+                }
+            }
+            return null;
         }
+
+        private T? FindParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            while (child != null)
+            {
+                if (child is T parent)
+                {
+                    return parent;
+                }
+                child = VisualTreeHelper.GetParent(child);
+            }
+            return null;
+        }
+
     }
 }
