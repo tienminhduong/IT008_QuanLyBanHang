@@ -40,9 +40,8 @@ namespace IT008_QuanLyBanHang.ViewModel
                 case nameof(SearchText):
                     FilterData();
                     break;
-
                 case nameof(SelectedProduct):
-                    SelectProduct(SelectedProduct);
+                    await SelectProduct(SelectedProduct);
                     break;
 
                 case nameof(SelectedTabIndex):
@@ -138,10 +137,12 @@ namespace IT008_QuanLyBanHang.ViewModel
         private int selectedTabIndex;
 
         [RelayCommand]
-        private void SelectProduct(Product? product)
+        private async Task SelectProduct(Product? product)
         {
+            if (product == null)
+                return;
             SelectedProduct = product;
-            ProductBatches = new ObservableCollection<Batch>(SelectedProduct?.Batches ?? new List<Batch>());
+            ProductBatches = new ObservableCollection<Batch>(await ProductAPI.GetBatchesOfProduct(SelectedProduct));
             Trace.WriteLine($"Selected Product: {SelectedProduct?.ProductName}, Batches Count: {ProductBatches?.Count}");
         }
 
