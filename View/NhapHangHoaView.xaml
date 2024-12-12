@@ -40,8 +40,8 @@
             <TextBlock Grid.Row="5" Grid.Column="0" Text="Ngày sản xuất" Margin="20" FontSize="20" VerticalAlignment="Center"/>
             <TextBlock Grid.Row="6" Grid.Column="0" Text="Hạn sử dụng" Margin="20" FontSize="20" VerticalAlignment="Center"/>
 
-            <TextBox Grid.Row="0" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding ProductId}"/>
-            <TextBox Grid.Row="1" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding BatchNumber}"/>
+            <TextBox Grid.Row="0" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding ProductId}" IsReadOnly="True"/>
+            <TextBox Grid.Row="1" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding BatchNumber}" IsReadOnly="True"/>
             <TextBox Grid.Row="2" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding Quantity}"/>
             <TextBox Grid.Row="3" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding ImportPrice}"/>
             <TextBox Grid.Row="4" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding SellPrice}"/>

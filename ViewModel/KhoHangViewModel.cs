@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using static MaterialDesignThemes.Wpf.Theme;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
@@ -126,8 +127,16 @@ namespace IT008_QuanLyBanHang.ViewModel
         [RelayCommand]
         private void AddBatch()
         {
+            if (SelectedProduct == null)
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm để nhập hàng", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             var nhapHangHoaView = new IT008_QuanLyBanHang.View.NhapHangHoaView();
             nhapHangHoaView.Show();
+
+            WeakReferenceMessenger.Default.Send(new ProductSelectedMessage(SelectedProduct));
         }
 
         [ObservableProperty]

@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Security.Principal;
 using System.Windows;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
@@ -31,6 +32,28 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         [ObservableProperty]
         private DateTime? expirationDate;
+
+        public NhapHangHoaViewModel()
+        {
+            WeakReferenceMessenger.Default.Register<ProductSelectedMessage>(this, (r, m) =>
+            {
+                ProductId = m.Product.Id;
+
+                int numberOfBatch;
+                if (m.Product.Batches == null) 
+                    numberOfBatch = 0;
+                else
+                    numberOfBatch = m.Product.Batches.Count;
+
+                BatchNumber = $"Batch_{m.Product.Id}_{numberOfBatch + 1}";
+            });
+        }
+
+        // Hủy đăng ký khi view model bị hủy
+        public void Cleanup()
+        {
+            WeakReferenceMessenger.Default.Unregister<ProductSelectedMessage>(this);
+        }
 
         [RelayCommand]
         private async Task AddBatch()
@@ -89,6 +112,17 @@ namespace IT008_QuanLyBanHang.ViewModel
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+    }
+
+    // Message class
+    public class ProductSelectedMessage
+    {
+        public Product Product { get; }
+
+        public ProductSelectedMessage(Product product)
+        {
+            Product = product;
         }
     }
 }
