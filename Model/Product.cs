@@ -34,7 +34,7 @@ namespace IT008_QuanLyBanHang.Model
         [JsonPropertyName("category")]
         public Category? Category { get; set; }
 
-        [JsonPropertyName("batches")]
+        [JsonPropertyName("batch_ids")]
         public List<int>? Batches { get; set; }
     }
 }

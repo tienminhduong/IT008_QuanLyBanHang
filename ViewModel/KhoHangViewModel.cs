@@ -31,6 +31,15 @@ namespace IT008_QuanLyBanHang.ViewModel
             Task.Run(() => LoadData());
 
             this.PropertyChanged += OnViewModelPropertyChanged;
+
+            this.PropertyChanged += async (s, e) =>
+            {
+                if (e.PropertyName == nameof(SelectedProduct))
+                {
+                    await SelectProduct(SelectedProduct);
+                } 
+                    
+            };
         }
 
         private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -40,10 +49,6 @@ namespace IT008_QuanLyBanHang.ViewModel
                 case nameof(SearchText):
                     FilterData();
                     break;
-                case nameof(SelectedProduct):
-                    await SelectProduct(SelectedProduct);
-                    break;
-
                 case nameof(SelectedTabIndex):
                     OnSelectedTabIndexChanged(SelectedTabIndex);
                     break;
