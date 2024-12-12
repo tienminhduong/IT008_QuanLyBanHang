@@ -272,10 +272,11 @@
 
                                                     <TextBlock Grid.Row="0" Margin = "20,20,0,0" Text="Danh sách nhập gần đây" FontWeight="Bold" FontSize="20" Foreground="#455E7D"/>
 
-                                                    <Button Content="+" HorizontalAlignment="Right" Margin="20,20,10,0" Background="#455E7D" Height="30" Width="40"/>
+                                                    <Button Content="+" HorizontalAlignment="Right" Margin="20,20,10,0" Background="#455E7D" Height="30" Width="40"
+                                                            Command="{Binding DataContext.AddBatchCommand, 
+                                                                                RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
-                                                    <DataGrid AutoGenerateColumns="False" 
-                                                              ItemsSource="{Binding ProductBatches}"
+                                                    <DataGrid AutoGenerateColumns="False"
                                                               Grid.Row="1"
                                                               Margin="10">
                                                         <DataGrid.Columns>

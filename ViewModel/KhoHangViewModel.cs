@@ -123,6 +123,13 @@ namespace IT008_QuanLyBanHang.ViewModel
             taoHangHoaView.Show();
         }
 
+        [RelayCommand]
+        private void AddBatch()
+        {
+            var nhapHangHoaView = new IT008_QuanLyBanHang.View.NhapHangHoaView();
+            nhapHangHoaView.Show();
+        }
+
         [ObservableProperty]
         ObservableCollection<Product>? products;
 

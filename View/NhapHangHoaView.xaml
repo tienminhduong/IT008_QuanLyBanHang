@@ -1,0 +1,65 @@
+﻿<Window x:Class="IT008_QuanLyBanHang.View.NhapHangHoaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
+        mc:Ignorable="d"
+        Title="NhapHangHoaView" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Nhập hàng hóa" Padding="10" Foreground="#FF1E2A39" FontWeight="Bold" FontSize="20"/>
+        <Line Grid.Row="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="ID sản phẩm" Margin="20" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Mã lô" Margin="20" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Số lượng" Margin="20" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Giá nhập" Margin="20" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Giá bán" Margin="20" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Ngày sản xuất" Margin="20" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Hạn sử dụng" Margin="20" FontSize="20" VerticalAlignment="Center"/>
+
+            <TextBox Grid.Row="0" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding ProductId}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding BatchNumber}"/>
+            <TextBox Grid.Row="2" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding Quantity}"/>
+            <TextBox Grid.Row="3" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding ImportPrice}"/>
+            <TextBox Grid.Row="4" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding SellPrice}"/>
+            
+            <DatePicker Grid.Row="5" Grid.Column="1" 
+                        FontSize="20" 
+                        Margin="10,10,30,10" 
+                        SelectedDate="{Binding ManufacturingDate}"/>
+            <DatePicker Grid.Row="6" Grid.Column="1" 
+                        FontSize="20" 
+                        Margin="10,10,30,10" 
+                        SelectedDate="{Binding ExpirationDate}"/>
+
+            <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="100" Margin="10" Content="Thêm" Command="{Binding AddBatchCommand}"/>
+                <Button Width="100" Margin="10" Content="Xóa" />
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>
