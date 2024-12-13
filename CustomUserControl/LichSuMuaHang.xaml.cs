@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace IT008_QuanLyBanHang.View
+namespace IT008_QuanLyBanHang.CustomUserControl
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for LichSuMuaHang.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class LichSuMuaHang : UserControl
     {
-        public LoginView()
+        public LichSuMuaHang()
         {
             InitializeComponent();
         }

@@ -12,6 +12,10 @@
                 <ResourceDictionary Source="Resources/TabViewResource.xaml"/>
                 <ResourceDictionary Source="Resources/DataTemplateResource.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

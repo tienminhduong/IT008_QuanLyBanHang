@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 namespace IT008_QuanLyBanHang.View
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for NhapHangHoaView.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class NhapHangHoaView : Window
     {
-        public LoginView()
+        public NhapHangHoaView()
         {
             InitializeComponent();
+            DataContext = new ViewModel.NhapHangHoaViewModel();
         }
     }
 }

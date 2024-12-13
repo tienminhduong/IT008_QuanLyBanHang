@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using IT008_QuanLyBanHang.ViewModel.API;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,10 +16,16 @@ namespace IT008_QuanLyBanHang.ViewModel
 {
     public partial class LoginViewModel : ObservableObject
     {
-        [RelayCommand]
+        public LoginViewModel()
+        {
+            LoginCommand = new AsyncRelayCommand(Login);
+        }
+
+        public IAsyncRelayCommand LoginCommand { get; }
+
         async Task Login()
         {
-            Trace.WriteLine(Account);
+            Trace.WriteLine($"Trying to login with account: {Account} and password: {Password}");
             if (ShowLoginError = !(await Verify()))
                 return;
 

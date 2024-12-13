@@ -7,14 +7,48 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Security.Principal;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace IT008_QuanLyBanHang.ViewModel
+namespace IT008_QuanLyBanHang.ViewModel.API
 {
     public class RESTService
     {
+        public async Task<string> GetAsyncOfType(string dataType)
+        {
+            try
+            {
+                HttpRequestMessage request = new(HttpMethod.Get, dataType);
+                HttpResponseMessage response = await client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message);
+            }
+            return string.Empty;
+        }
+
+        public async Task<string> PostAsync(string endpoint, Dictionary<string, string> formData)
+        {
+            try
+            {
+                var content = new FormUrlEncodedContent(formData);
+                var response = await client.PostAsync(endpoint, content);
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine($"Error during POST to {endpoint}: {ex.Message}");
+                return string.Empty;
+            }
+        }
+
         public async Task<string> GetAsync(string dataType)
         {
             try
@@ -43,7 +77,7 @@ namespace IT008_QuanLyBanHang.ViewModel
                 respond.EnsureSuccessStatusCode();
 
                 AccessToken? accessToken = await respond.Content.ReadFromJsonAsync<AccessToken>();
-                string? token = accessToken?.data.Token;
+                string? token = accessToken?.data.access_token;
 
                 if (!hasLogin)
                 {
@@ -89,7 +123,6 @@ namespace IT008_QuanLyBanHang.ViewModel
 
     class AccessTokenData
     {
-        [JsonPropertyName("access_token")]
-        public string Token { get; set; } = "";
+        public string access_token { get; set; } = "";
     }
 }

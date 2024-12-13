@@ -33,9 +33,10 @@ namespace IT008_QuanLyBanHang.CustomUserControl
             TextBox_Quantity.Text = ProductBatch.Batch.Quantity.ToString();
             TextBlock_ProductName.Text = ProductBatch.Product.ProductName;
             TextBlock_CategoryName.Text = ProductBatch.Product.Category?.CategoryName;
-            TextBlock_Price.Text = ProductBatch.Batch.Price;
+            TextBlock_Price.Text = ProductBatch.Batch.Price.ToString();
             TextBlock_ManufactureDate.Text = ProductBatch.Batch.ManufactureDate.ToString("d");
             TextBlock_ExpirationDate.Text = ProductBatch.Batch.ExpirationDate.ToString("d");
+            TextBlock_Unit.Text = ProductBatch.Product.Unit;
         }
 
         public BatchProduct ProductBatch

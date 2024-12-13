@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
 using IT008_QuanLyBanHang.View;
+using IT008_QuanLyBanHang.ViewModel.API;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,17 +28,20 @@ namespace IT008_QuanLyBanHang.ViewModel
             viewDictionary.Add("Button_KhoHang", new KhoHangViewModel());
             viewDictionary.Add("Button_KhachHang", new KhachHangViewModel());
             viewDictionary.Add("Button_BaoCao", new BaoCaoViewModel());
+
+            SwitchToView("Button_TongQuan");
         }
 
         [RelayCommand]
-        async Task SwitchToView(string name)
+        void SwitchToView(string name)
         {
             if (CurrentViewName == name)
                 return;
 
             CurrentView = (ObservableObject)viewDictionary[name];
             CurrentViewName = name;
-            await viewDictionary[name].LoadData();
+
+            //await viewDictionary[name].LoadData();
         }
 
         [ObservableProperty]
@@ -45,8 +49,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         [ObservableProperty]
         private string? currentViewName = null;
 
-        private readonly Dictionary<string, ITabViewModel> viewDictionary;
-
+        private Dictionary<string, ITabViewModel> viewDictionary;
     }
 
     public class IsActiveToColorConverter : System.Windows.Data.IValueConverter

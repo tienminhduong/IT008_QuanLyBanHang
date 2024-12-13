@@ -27,5 +27,9 @@
     </DataTemplate>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <viewmodel:LoginViewModel x:Key="LoginVM"/>
+    <viewmodel:KhoHangViewModel x:Key="KhoHangVM"/>
+    <viewmodel:MainWindowViewModel x:Key="MainWindowVM"/>
+    <viewmodel:KhachHangViewModel x:Key="KhachHangVM"/>
 
 </ResourceDictionary>

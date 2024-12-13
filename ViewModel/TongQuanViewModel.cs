@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
+using IT008_QuanLyBanHang.ViewModel.API;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,11 +18,12 @@ namespace IT008_QuanLyBanHang.ViewModel
     {
         public TongQuanViewModel()
         {
+            Task.Run(() => LoadData());
         }
 
         public async Task LoadData()
         {
-            await Task.Delay(1);
+            //await ProductAPI.GetAllProducts();
         }
     }
 }

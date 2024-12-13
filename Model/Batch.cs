@@ -9,29 +9,13 @@ namespace IT008_QuanLyBanHang.Model
 {
     public class Batch
     {
-        [JsonPropertyName("id")]
         public int Id { get; set; }
-        [JsonPropertyName("batch_number")]
         public string? BatchNumber { get; set; }
-        [JsonPropertyName("quantity")]
         public int Quantity { get; set; }
-        [JsonPropertyName("price")]
-        public string? Price { get; set; }
-        [JsonPropertyName("expiration_date")]
+        public int Stock { get; set; }
+        public float Price { get; set; }
+        public float ImportPrice { get; set; }
         public DateTime ExpirationDate { get; set; }
-        [JsonPropertyName("manufacture_date")]
         public DateTime ManufactureDate { get; set; }
-    }
-
-    public class BatchData
-    {
-        [JsonPropertyName("items")]
-        public List<Batch>? Items { get; set; }
-    }
-
-    public class BatchResponse
-    {
-        [JsonPropertyName("data")]
-        public BatchData? Data { get; set; }
     }
 }
