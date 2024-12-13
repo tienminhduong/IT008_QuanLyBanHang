@@ -47,29 +47,7 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         public async Task PopulateComboBox()
         {
-            //string jsonResponse = await RESTService.Instance.GetAsync("categories");
-            //Trace.WriteLine($"Raw JSON Response: {jsonResponse}");
-
-            //if (!string.IsNullOrEmpty(jsonResponse))
-            //{
-            //    try
-            //    {
-            //        // Deserialize the JSON into the wrapper class
-            //        var categoryResponse = JsonSerializer.Deserialize<CategoryResponse>(jsonResponse);
-            //        Trace.WriteLine($"Deserialized Data: {categoryResponse?.Data?.Items?.Count}");
-
-            //        // Extract the list of categories from the nested "items"
-            //        if (categoryResponse?.Data?.Items != null)
-            //        {
-            //            Trace.WriteLine("Populating CategoriesList");
-            //            CategoriesList = new ObservableCollection<Category>(categoryResponse.Data.Items);
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Trace.WriteLine($"Error deserializing categories: {ex.Message}");
-            //    }
-            //}
+            CategoriesList = new ObservableCollection<Category>(await CategoryAPI.GetAllCategories());
         }
 
 
@@ -77,7 +55,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         [RelayCommand]
         private async Task AddProduct()
         {
-            if (string.IsNullOrWhiteSpace(ProductName) || ProductCategory == null)
+            if (string.IsNullOrWhiteSpace(ProductName) || ProductCategory == null || string.IsNullOrWhiteSpace(ProductUnit))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin sản phẩm!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -87,7 +65,8 @@ namespace IT008_QuanLyBanHang.ViewModel
             {
                 { "product_name", ProductName },
                 { "category_id", ProductCategory.ToString()},
-                { "status", "active" }
+                { "status", "active" },
+                { "unit", ProductUnit }
             };
 
             try

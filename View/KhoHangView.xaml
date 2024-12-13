@@ -189,7 +189,7 @@
                                                             <TextBlock Text="Mã hàng hóa:" Margin="10"/>
                                                             <TextBlock Grid.Column="1" Margin="10" Text="{Binding Id}"/>
                                                             <TextBlock Grid.Column="2" Text="Số lượng:" Margin="50,10,10,10"/>
-                                                            <TextBlock Grid.Column="3" Margin="10" Text="{Binding Batch.Quantity}"/>
+                                                            <TextBlock Grid.Column="3" Margin="10" Text="{Binding Stock}"/>
                                                             <Line Margin="9,0,0,0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
                                                             <Line Margin="-5,0,0,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
                                                             <Line Margin="49,0,0,0" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
@@ -198,16 +198,16 @@
                                                             <TextBlock Grid.Row="1" Text="Tên hàng hóa:" Margin="10"/>
                                                             <TextBlock Grid.Row="1" Grid.Column="1" Margin="10" Text="{Binding ProductName}"/>
                                                             <TextBlock Grid.Row="1" Grid.Column="2" Text="Đơn vị:" Margin="50,10,10,10"/>
-                                                            <TextBlock Grid.Row="1" Grid.Column="3" Margin="10" Text="{Binding Batch.Unit}"/>
+                                                            <TextBlock Grid.Row="1" Grid.Column="3" Margin="10" Text="{Binding Unit}"/>
                                                             <Line Margin="9,0,0,1" Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
                                                             <Line Margin="-5,0,0,1" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
                                                             <Line Margin="49,0,0,1" Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
                                                             <Line Margin="-5,0,0,1" Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
 
                                                             <TextBlock Grid.Row="2" Text="Loại hàng hóa:" Margin="10"/>
-                                                            <TextBlock Grid.Row="2" Grid.Column="1" Margin="10"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="1" Margin="10" Text="{Binding Category.CategoryName}"/>
                                                             <TextBlock Grid.Row="2" Grid.Column="2" Text="Giá bán:" Margin="50,10,10,10"/>
-                                                            <TextBlock Grid.Row="2" Grid.Column="3" Margin="10" Text="{Binding Batch.Price}"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="3" Margin="10" Text="{Binding Price}"/>
                                                             <Line Margin="9,0,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
                                                             <Line Margin="-5,0,0,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
                                                             <Line Margin="49,0,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
