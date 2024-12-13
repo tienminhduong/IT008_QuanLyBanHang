@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using IT008_QuanLyBanHang.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,31 +11,31 @@ namespace IT008_QuanLyBanHang.Model
 {
     public partial class Product : ObservableObject
     {
-        [JsonPropertyName("id")]
         public int Id { get; set; }
-
-        [JsonPropertyName("product_name")]
         public string? ProductName { get; set; }
-
-        [JsonPropertyName("status")]
         public string? Status { get; set; }
-
-        [JsonPropertyName("image_url")]
         public string? ImageURL { get; set; }
-
-        [JsonPropertyName("unit")]
         public string? Unit { get; set; }
-
-        [JsonPropertyName("created_at")]
-        public DateTime CreatedAt { get; set; }
-
-        [JsonPropertyName("updated_at")]
-        public DateTime UpdatedAt { get; set; }
-
-        [JsonPropertyName("category")]
         public Category? Category { get; set; }
+        public List<Batch> Batches { get; set; }
+        public int Price { get; set; }
+        public int ImportPrice { get; set; }
+        public int Stock { get; set; }
+        public int Quantity { get; set; }
 
-        [JsonPropertyName("batches")]
-        public List<int>? Batches { get; set; }
+        public Product(ProductDTO dto, List<Batch> batches, List<Category> categories)
+        {
+            Id = dto.id;
+            ProductName = dto.product_name;
+            Status = dto.status;
+            ImageURL = dto.image_url;
+            Unit = dto.unit;
+            Category = categories.FirstOrDefault(c => c.Id == dto.category_id);
+            Batches = batches.Where(b => dto.batch_ids?.Contains(b.Id) == true).ToList();
+            Price = (int)Batches.Average(b => b.Price);
+            ImportPrice = (int)Batches.Average(b => b.ImportPrice);
+            Stock = Batches.Sum(b => b.Stock);
+            Quantity = Batches.Sum(b => b.Quantity);
+        }
     }
 }

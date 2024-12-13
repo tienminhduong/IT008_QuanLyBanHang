@@ -5,8 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IT008_QuanLyBanHang.CustomUserControl"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:model="clr-namespace:IT008_QuanLyBanHang.Model"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="700">
+    <UserControl.DataContext>
+        <model:Customer/>
+    </UserControl.DataContext>
     <Grid>
         <Expander FlowDirection="RightToLeft" 
                   VerticalAlignment='Top'>
@@ -67,11 +71,11 @@
                 </TabItem>
             </TabControl>
         </Expander>
-        <TextBlock Text="KH03"
+        <TextBlock Text="{Binding Id}"
                        Margin="70 5 0 0"
                        FontSize="25"
                        VerticalAlignment="Top"/>
-        <TextBlock Text="Nguyễn Văn A"
+        <TextBlock Text="{Binding FirstName}"
                        Margin="200 5 0 0"
                        FontSize="25"
                        VerticalAlignment="Top"/>

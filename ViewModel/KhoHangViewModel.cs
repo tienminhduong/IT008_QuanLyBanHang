@@ -30,10 +30,12 @@ namespace IT008_QuanLyBanHang.ViewModel
             LoadDataCommand = new AsyncRelayCommand(LoadData);
             Task.Run(() => LoadData());
 
-            this.PropertyChanged += OnViewModelPropertyChanged;
+            this.PropertyChanged += async (s, e) => {
+                await OnViewModelPropertyChanged(s, e);
+            };
         }
 
-        private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private async Task OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {

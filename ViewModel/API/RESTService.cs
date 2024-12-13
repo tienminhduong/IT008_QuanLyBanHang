@@ -77,7 +77,7 @@ namespace IT008_QuanLyBanHang.ViewModel.API
                 respond.EnsureSuccessStatusCode();
 
                 AccessToken? accessToken = await respond.Content.ReadFromJsonAsync<AccessToken>();
-                string? token = accessToken?.data.Token;
+                string? token = accessToken?.data.access_token;
 
                 if (!hasLogin)
                 {
@@ -123,7 +123,6 @@ namespace IT008_QuanLyBanHang.ViewModel.API
 
     class AccessTokenData
     {
-        [JsonPropertyName("access_token")]
-        public string Token { get; set; } = "";
+        public string access_token { get; set; } = "";
     }
 }

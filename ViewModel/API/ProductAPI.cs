@@ -1,4 +1,6 @@
-﻿using IT008_QuanLyBanHang.Model;
+﻿using IT008_QuanLyBanHang.DTOs;
+using IT008_QuanLyBanHang.Interfaces;
+using IT008_QuanLyBanHang.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,39 +12,52 @@ using System.Threading.Tasks;
 
 namespace IT008_QuanLyBanHang.ViewModel.API
 {
-    public static class ProductAPI
+    public class ProductAPI : BaseAPI<Product, ProductDTO>
     {
-        static public async Task<List<Product>?> GetAllProducts()
+        static public async Task<List<Product>> GetAllProducts()
         {
-            string resStr = await RESTService.Instance.GetAsyncOfType("products");
-            Response? res = JsonSerializer.Deserialize<Response>(resStr);
-            if (res == null || res.Data == null)
-                return null;
-            return res.Data.Items;
+            List<ProductDTO> dtos = await GetAllItemsDTO();
+            List<Batch>? batchList = await BatchAPI.GetAllBatches();
+
+            if (batchList == null)
+                return new();
+
+            List<Category>? categoriyList = new();
+            List<Product> resultList = new();
+
+            foreach (ProductDTO dto in dtos)
+            {
+                Product? product = ConvertFromDTO(dto, batchList, categoriyList) as Product;
+                if (product != null)
+                    resultList.Add(product);
+            }
+            foreach (Product product1 in resultList)
+            {
+                Trace.WriteLine($"Product: {product1.Id}, {product1.ProductName}, {product1.Price}");
+            }
+            return resultList;
         }
 
         static public async Task<List<BatchProduct>> GetAllProductsWithBatches()
         {
-            List<Product>? products = await GetAllProducts();
-            List<Batch>? batches = await BatchAPI.GetAllBatches();
-            if (products == null || batches == null)
-                return new List<BatchProduct>();
+            List<Product> products = await GetAllProducts();
+            List<Batch> batches = await BatchAPI.GetAllBatches();
+
             List<BatchProduct> batchProducts = new();
-            foreach (Product p in products)
+            foreach (Product product in products)
             {
-                if (p.Batches != null)
+                if (product.Batches != null)
                 {
-                    foreach (var b in p.Batches)
+                    foreach (Batch batch in product.Batches)
                     {
-                        Batch? batch = batches.Find(ba => ba.Id == b);
-                        BatchProduct bp;
-                        if (batch != null)
-                            bp = new(p, batch);
-                        else
-                            bp = new(p, new Batch());
-                        batchProducts.Add(bp);
+                        if (product.Batches.Contains(batch))
+                            batchProducts.Add(new(product, batch));
                     }
                 }
+            }
+            foreach (BatchProduct bp in batchProducts)
+            {
+                Trace.WriteLine($"BatchProduct: {bp.Product.ProductName}, {bp.Batch.BatchNumber}");
             }
             return batchProducts;
         }
@@ -58,7 +73,7 @@ namespace IT008_QuanLyBanHang.ViewModel.API
             {
                 foreach (var b in product.Batches)
                 {
-                    Batch? batch = batches.Find(ba => ba.Id == b);
+                    Batch? batch = batches.Find(ba => ba.Id == b.Id);
                     if (batch != null)
                         productBatches.Add(batch);
                 }
@@ -66,16 +81,10 @@ namespace IT008_QuanLyBanHang.ViewModel.API
             return productBatches;
         }
 
-        public class Response
+        public static Product? ConvertFromDTO(ProductDTO dto, List<Batch> batches, List<Category> categories)
         {
-            [JsonPropertyName("data")]
-            public Data? Data { get; set; }
-        }
-
-        public class Data
-        {
-            [JsonPropertyName("items")]
-            public List<Product>? Items { get; set; }
+            Product product = new(dto, batches, categories);
+            return product;
         }
     }
 }
