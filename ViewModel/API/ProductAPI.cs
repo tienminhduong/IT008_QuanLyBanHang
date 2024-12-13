@@ -22,7 +22,7 @@ namespace IT008_QuanLyBanHang.ViewModel.API
             if (batchList == null)
                 return new();
 
-            List<Category>? categoriyList = new();
+            List<Category>? categoriyList = await CategoryAPI.GetAllCategories();
             List<Product> resultList = new();
 
             foreach (ProductDTO dto in dtos)
@@ -32,8 +32,8 @@ namespace IT008_QuanLyBanHang.ViewModel.API
                     resultList.Add(product);
             }
             Trace.WriteLine("Product List returned by ProductAPI:");
-            foreach (Product product1 in resultList)
-                Trace.WriteLine($"Product: {product1.Id}, {product1.ProductName}, {product1.Batches.Count}");
+            foreach (Product product in resultList)
+                Trace.WriteLine($"Product: {product.Id}, {product.ProductName}, {product.Batches.Count}, {product.Category?.CategoryName}");
 
             return resultList;
         }
@@ -53,10 +53,6 @@ namespace IT008_QuanLyBanHang.ViewModel.API
                             batchProducts.Add(new(product, batch));
                     }
                 }
-            }
-            foreach (BatchProduct bp in batchProducts)
-            {
-                Trace.WriteLine($"BatchProduct: {bp.Product.ProductName}, {bp.Batch.BatchNumber}");
             }
             return batchProducts;
         }
