@@ -27,21 +27,20 @@ namespace IT008_QuanLyBanHang.ViewModel.API
 
             foreach (ProductDTO dto in dtos)
             {
-                Product? product = ConvertFromDTO(dto, batchList, categoriyList) as Product;
+                Product? product = ConvertFromDTO(dto, batchList, categoriyList);
                 if (product != null)
                     resultList.Add(product);
             }
+            Trace.WriteLine("Product List returned by ProductAPI:");
             foreach (Product product1 in resultList)
-            {
-                Trace.WriteLine($"Product: {product1.Id}, {product1.ProductName}, {product1.Price}");
-            }
+                Trace.WriteLine($"Product: {product1.Id}, {product1.ProductName}, {product1.Batches.Count}");
+
             return resultList;
         }
 
         static public async Task<List<BatchProduct>> GetAllProductsWithBatches()
         {
             List<Product> products = await GetAllProducts();
-            List<Batch> batches = await BatchAPI.GetAllBatches();
 
             List<BatchProduct> batchProducts = new();
             foreach (Product product in products)
@@ -83,8 +82,16 @@ namespace IT008_QuanLyBanHang.ViewModel.API
 
         public static Product? ConvertFromDTO(ProductDTO dto, List<Batch> batches, List<Category> categories)
         {
-            Product product = new(dto, batches, categories);
-            return product;
+            try
+            {
+                Product product = new(dto, batches, categories);
+                return product;
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine($"Error in ConvertFromDTO: {e.Message}");
+                return null;
+            }
         }
     }
 }

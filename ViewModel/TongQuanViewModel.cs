@@ -23,7 +23,7 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         public async Task LoadData()
         {
-            await ProductAPI.GetAllProducts();
+            //await ProductAPI.GetAllProducts();
         }
     }
 }

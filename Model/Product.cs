@@ -32,8 +32,8 @@ namespace IT008_QuanLyBanHang.Model
             Unit = dto.unit;
             Category = categories.FirstOrDefault(c => c.Id == dto.category_id);
             Batches = batches.Where(b => dto.batch_ids?.Contains(b.Id) == true).ToList();
-            Price = (int)Batches.Average(b => b.Price);
-            ImportPrice = (int)Batches.Average(b => b.ImportPrice);
+            Price = Batches.Count > 0 ? (int)Batches.Average(b => b.Price) : 0;
+            ImportPrice = Batches.Count > 0 ? (int)Batches.Average(b => b.ImportPrice) : 0;
             Stock = Batches.Sum(b => b.Stock);
             Quantity = Batches.Sum(b => b.Quantity);
         }
