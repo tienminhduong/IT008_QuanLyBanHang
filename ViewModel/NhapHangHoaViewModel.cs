@@ -22,10 +22,10 @@ namespace IT008_QuanLyBanHang.ViewModel
         private int quantity;
 
         [ObservableProperty]
-        private decimal importPrice;
+        private float importPrice;
 
         [ObservableProperty]
-        private decimal sellPrice;
+        private float sellPrice;
 
         [ObservableProperty]
         private DateTime? manufacturingDate;
@@ -78,8 +78,8 @@ namespace IT008_QuanLyBanHang.ViewModel
                 BatchNumber = BatchNumber,
                 Quantity = Quantity,
                 Stock = Quantity,
-                ImportPrice = ImportPrice.ToString(),
-                Price = SellPrice.ToString(),
+                ImportPrice = ImportPrice,
+                Price = SellPrice,
                 ManufactureDate = ManufacturingDate.Value,
                 ExpirationDate = ExpirationDate.Value
             };
@@ -92,8 +92,8 @@ namespace IT008_QuanLyBanHang.ViewModel
                     { "batch_number", newBatch.BatchNumber },
                     { "quantity", newBatch.Quantity.ToString() },
                     { "stock", newBatch.Stock.ToString() },
-                    { "import_price", newBatch.ImportPrice },
-                    { "price", newBatch.Price },
+                    { "import_price", newBatch.ImportPrice.ToString() },
+                    { "price", newBatch.Price.ToString() },
                     { "manufacture_date", newBatch.ManufactureDate.ToString("yyyy-MM-dd") },
                     { "expiration_date", newBatch.ExpirationDate.ToString("yyyy-MM-dd") }
                 });
