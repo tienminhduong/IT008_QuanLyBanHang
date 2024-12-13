@@ -42,7 +42,7 @@ namespace IT008_QuanLyBanHang.ViewModel
             };
         }
 
-        private async Task OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
