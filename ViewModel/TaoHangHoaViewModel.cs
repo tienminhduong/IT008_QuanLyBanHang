@@ -47,29 +47,29 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         public async Task PopulateComboBox()
         {
-            string jsonResponse = await RESTService.Instance.GetAsync("categories");
-            Trace.WriteLine($"Raw JSON Response: {jsonResponse}");
+            //string jsonResponse = await RESTService.Instance.GetAsync("categories");
+            //Trace.WriteLine($"Raw JSON Response: {jsonResponse}");
 
-            if (!string.IsNullOrEmpty(jsonResponse))
-            {
-                try
-                {
-                    // Deserialize the JSON into the wrapper class
-                    var categoryResponse = JsonSerializer.Deserialize<CategoryResponse>(jsonResponse);
-                    Trace.WriteLine($"Deserialized Data: {categoryResponse?.Data?.Items?.Count}");
+            //if (!string.IsNullOrEmpty(jsonResponse))
+            //{
+            //    try
+            //    {
+            //        // Deserialize the JSON into the wrapper class
+            //        var categoryResponse = JsonSerializer.Deserialize<CategoryResponse>(jsonResponse);
+            //        Trace.WriteLine($"Deserialized Data: {categoryResponse?.Data?.Items?.Count}");
 
-                    // Extract the list of categories from the nested "items"
-                    if (categoryResponse?.Data?.Items != null)
-                    {
-                        Trace.WriteLine("Populating CategoriesList");
-                        CategoriesList = new ObservableCollection<Category>(categoryResponse.Data.Items);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Trace.WriteLine($"Error deserializing categories: {ex.Message}");
-                }
-            }
+            //        // Extract the list of categories from the nested "items"
+            //        if (categoryResponse?.Data?.Items != null)
+            //        {
+            //            Trace.WriteLine("Populating CategoriesList");
+            //            CategoriesList = new ObservableCollection<Category>(categoryResponse.Data.Items);
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Trace.WriteLine($"Error deserializing categories: {ex.Message}");
+            //    }
+            //}
         }
 
 

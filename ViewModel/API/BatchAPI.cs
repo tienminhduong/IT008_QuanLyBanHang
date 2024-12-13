@@ -1,4 +1,6 @@
-﻿using IT008_QuanLyBanHang.Model;
+﻿using IT008_QuanLyBanHang.DTOs;
+using IT008_QuanLyBanHang.Interfaces;
+using IT008_QuanLyBanHang.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,26 +12,53 @@ using System.Threading.Tasks;
 
 namespace IT008_QuanLyBanHang.ViewModel.API
 {
-    public static class BatchAPI
+    public class BatchAPI : BaseAPI<Batch, BatchDTO>
     {
-        static public async Task<List<Batch>?> GetAllBatches()
+        public static async Task<List<Batch>> GetAllBatches()
         {
-            string resStr = await RESTService.Instance.GetAsyncOfType("batches");
-            Response? res = JsonSerializer.Deserialize<Response>(resStr);
-            if (res == null || res.Data == null)
-                return null;
-            return res.Data.Items;
+            List<BatchDTO> dtos = await GetAllItemsDTO();
+            List<Batch> resultList = new();
+
+            foreach (var dto in dtos)
+            {
+                Batch? batch = ConvertFromDTO(dto);
+                if (batch != null)
+                    resultList.Add(batch);
+            }
+            return resultList;
         }
 
-        class Data
+        public static BatchDTO? ConvertToDTO(Batch batch)
         {
-            [JsonPropertyName("items")]
-            public List<Batch>? Items { get; set; }
+            BatchDTO batchDTO = new()
+            {
+                id = batch.Id,
+                batch_number = batch.BatchNumber,
+                quantity = batch.Quantity,
+                stock = batch.Stock,
+                price = batch.Price.ToString(),
+                import_price = batch.ImportPrice.ToString(),
+                expiration_date = batch.ExpirationDate,
+                manufacture_date = batch.ManufactureDate
+            };
+
+            return batchDTO;
         }
-        class Response
+
+        public static Batch? ConvertFromDTO(BatchDTO batchDTO)
         {
-            [JsonPropertyName("data")]
-            public Data? Data { get; set; }
+            Batch batch = new()
+            {
+                Id = batchDTO.id,
+                BatchNumber = batchDTO.batch_number,
+                Quantity = batchDTO.quantity,
+                Stock = batchDTO.stock,
+                Price = float.Parse(batchDTO.price ?? "0"),
+                ImportPrice = float.Parse(batchDTO.import_price ?? "0"),
+                ExpirationDate = batchDTO.expiration_date,
+                ManufactureDate = batchDTO.manufacture_date
+            };
+            return batch;
         }
     }
 }
