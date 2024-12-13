@@ -134,7 +134,7 @@
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Header="Mã hàng hóa" Binding="{Binding Id}" Width="2*"/>
                                 <DataGridTextColumn Header="Tên hàng hóa" Binding="{Binding ProductName}" Width="4*"/>
-                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Quantity}" Width="2*"/>
+                                <DataGridTextColumn Header="Số lượng" Width="2*"/>
                                 <DataGridTextColumn Header="Đơn vị" Binding="{Binding Unit}" Width="2*"/>
                                 <DataGridTextColumn Header="Loại hàng hóa" Binding="{Binding Category.CategoryName}" Width="3*"/>
                             </DataGrid.Columns>
@@ -205,7 +205,7 @@
                                                             <Line Margin="-5,0,0,1" Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
 
                                                             <TextBlock Grid.Row="2" Text="Loại hàng hóa:" Margin="10"/>
-                                                            <TextBlock Grid.Row="2" Grid.Column="1" Margin="10" Text="{Binding Product.Category.CategoryName}"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="1" Margin="10"/>
                                                             <TextBlock Grid.Row="2" Grid.Column="2" Text="Giá bán:" Margin="50,10,10,10"/>
                                                             <TextBlock Grid.Row="2" Grid.Column="3" Margin="10" Text="{Binding Batch.Price}"/>
                                                             <Line Margin="9,0,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
@@ -218,14 +218,16 @@
 
                                                     <Grid Grid.Row="1">
 
-                                                        <DataGrid ItemsSource="{Binding ProductBatches}"
+                                                        <DataGrid ItemsSource="{Binding DataContext.ProductBatches, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                                    IsReadOnly="True"
                                                                    AutoGenerateColumns="False"
                                                                    SelectionUnit="FullRow" 
                                                                    SelectionMode="Single" 
                                                                    Background="Transparent" 
                                                                    BorderBrush="Transparent"
-                                                                   Margin="10">
+                                                                   Height="110"
+                                                                   Width="Auto"
+                                                                   Margin="10 0 10 10">
 
                                                             <DataGrid.ColumnHeaderStyle>
                                                                 <Style TargetType="DataGridColumnHeader">
@@ -245,13 +247,13 @@
                                                             </DataGrid.CellStyle>
 
                                                             <DataGrid.Columns>
-                                                                <DataGridTextColumn Header="Mã lô" Width="100" Binding="{Binding Id}"/>
-                                                                <DataGridTextColumn Header="SL còn lại" Width="100" Binding="{Binding Quantity}"/>
-                                                                <DataGridTextColumn Header="SL nhập" Width="100" Binding="{Binding QuantityImported}"/>
+                                                                <DataGridTextColumn Header="Mã lô" Width="100" Binding="{Binding BatchNumber}"/>
+                                                                <DataGridTextColumn Header="SL còn lại" Width="100" Binding="{Binding Stock}"/>
+                                                                <DataGridTextColumn Header="SL nhập" Width="100" Binding="{Binding Quantity}"/>
                                                                 <DataGridTextColumn Header="NSX" Width="150" Binding="{Binding ManufactureDate}"/>
                                                                 <DataGridTextColumn Header="Ngày hết hạn" Width="150" Binding="{Binding ExpirationDate}"/>
                                                                 <DataGridTextColumn Header="Giá nhập" Width="125" Binding="{Binding ImportPrice}"/>
-                                                                <DataGridTextColumn Header="Giá bán" Width="125" Binding="{Binding SalePrice}"/>
+                                                                <DataGridTextColumn Header="Giá bán" Width="125" Binding="{Binding Price}"/>
                                                             </DataGrid.Columns>
                                                         </DataGrid>
                                                     </Grid>
@@ -270,11 +272,13 @@
 
                                                     <TextBlock Grid.Row="0" Margin = "20,20,0,0" Text="Danh sách nhập gần đây" FontWeight="Bold" FontSize="20" Foreground="#455E7D"/>
 
-                                                    <Button Content="+" HorizontalAlignment="Right" Margin="20,20,10,0" Background="#455E7D" Height="30" Width="40"/>
+                                                    <Button Content="+" HorizontalAlignment="Right" Margin="20,20,10,0" Background="#455E7D" Height="30" Width="40"
+                                                            Command="{Binding DataContext.AddBatchCommand, 
+                                                                                RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
-                                                    <DataGrid AutoGenerateColumns="False" 
-                                                               Grid.Row="1"
-                                                               Margin="10">
+                                                    <DataGrid AutoGenerateColumns="False"
+                                                              Grid.Row="1"
+                                                              Margin="10">
                                                         <DataGrid.Columns>
                                                             <DataGridTextColumn Header="Mã lô"/>
                                                             <DataGridTextColumn Header="Thời gian" Width="125"/>

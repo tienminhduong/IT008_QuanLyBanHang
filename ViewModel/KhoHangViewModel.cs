@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using static MaterialDesignThemes.Wpf.Theme;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
@@ -30,8 +31,14 @@ namespace IT008_QuanLyBanHang.ViewModel
             LoadDataCommand = new AsyncRelayCommand(LoadData);
             Task.Run(() => LoadData());
 
-            this.PropertyChanged += async (s, e) => {
-                await OnViewModelPropertyChanged(s, e);
+            this.PropertyChanged += OnViewModelPropertyChanged;
+
+            this.PropertyChanged += async (s, e) =>
+            {
+                if (e.PropertyName == nameof(SelectedProduct))
+                {
+                    await SelectProduct(SelectedProduct);
+                } 
             };
         }
 
@@ -42,10 +49,6 @@ namespace IT008_QuanLyBanHang.ViewModel
                 case nameof(SearchText):
                     FilterData();
                     break;
-                case nameof(SelectedProduct):
-                    await SelectProduct(SelectedProduct);
-                    break;
-
                 case nameof(SelectedTabIndex):
                     OnSelectedTabIndexChanged(SelectedTabIndex);
                     break;
@@ -118,6 +121,21 @@ namespace IT008_QuanLyBanHang.ViewModel
         {
             var taoHangHoaView = new IT008_QuanLyBanHang.View.TaoHangHoa();
             taoHangHoaView.Show();
+        }
+
+        [RelayCommand]
+        private void AddBatch()
+        {
+            if (SelectedProduct == null)
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm để nhập hàng", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var nhapHangHoaView = new IT008_QuanLyBanHang.View.NhapHangHoaView();
+            nhapHangHoaView.Show();
+
+            WeakReferenceMessenger.Default.Send(new ProductSelectedMessage(SelectedProduct));
         }
 
         [ObservableProperty]
