@@ -27,7 +27,7 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         public async Task LoadData()
         {
-            customersList = await CustomerAPI.GetAllCustomer();
+            customersList = await CustomerAPI.GetAllCustomers();
             ordersList = await OrderAPI.GetAllOrders();
 
             foreach (Customer customer in customersList)
