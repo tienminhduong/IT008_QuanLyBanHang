@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using IT008_QuanLyBanHang.DTOs;
 using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
+using IT008_QuanLyBanHang.ViewModel.API;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,12 +22,18 @@ namespace IT008_QuanLyBanHang.ViewModel
         [ObservableProperty]
         ObservableCollection<Customer> customers = new();
 
+        List<Customer> customersList = new();
+        List<Order> ordersList = new();
+
         public async Task LoadData()
         {
-            List<Customer>? customerList = await API.CustomerAPI.GetAllCustomer();
-            if (customerList == null)
-                return;
-            Customers = new ObservableCollection<Customer>(customerList);
+            customersList = await CustomerAPI.GetAllCustomer();
+            ordersList = await OrderAPI.GetAllOrders();
+
+            foreach (Customer customer in customersList)
+                customer.UpdateOrderList(ordersList);
+
+            Customers = new ObservableCollection<Customer>(customersList);
         }
     }
 }

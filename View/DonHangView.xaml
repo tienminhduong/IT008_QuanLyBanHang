@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
+             DataContext="{StaticResource DonHangVM}"
              d:DesignHeight="720" d:DesignWidth="900">
     <Grid Background="#FFF1F1F1">
         <!--Don hang view-->
@@ -15,15 +16,6 @@
                 <RowDefinition Height="9*"/>
                 <RowDefinition Height="70*"/>
             </Grid.RowDefinitions>
-            <!--<Grid Grid.Row="0">
-                <Rectangle Fill="White"/>
-                <TextBlock Text="Đơn hàng"
-                   Foreground="Black"
-                   HorizontalAlignment="Left"
-                   Margin="10"
-                   FontSize="30"
-                   VerticalAlignment="Center"/>
-            </Grid>-->
 
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -51,7 +43,36 @@
                 <materialDesign:Card Margin="7 0 7 7"
                              VerticalAlignment="Stretch">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <DataGrid ItemsSource="{Binding OrderShown}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã đơn hàng" Binding="{Binding Id}"/>
+                                <DataGridTextColumn Header="Ngày mua" Binding="{Binding OrderDate}"/>
+                                <DataGridTextColumn Header="Tên khách hàng" Binding="{Binding Customer.FullName}"/>
+                                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TotalAmount}"/>
+                            </DataGrid.Columns>
 
+                            <DataGrid.RowDetailsTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Label Content="Thông tin chi tiết" FontWeight="Bold" Margin="5"/>
+                                        <DataGrid ItemsSource="{Binding OrderItems}"
+                                                  Margin="5 0 5 5"
+                                                  IsReadOnly="True"
+                                                  AutoGenerateColumns="False">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Mã hàng" Binding="{Binding Product.Id}"/>
+                                                <DataGridTextColumn Header="Tên hàng" Binding="{Binding Product.ProductName}"/>
+                                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Quantity}"/>
+                                                <DataGridTextColumn Header="Đơn vị" Binding="{Binding Product.Unit}"/>
+                                                <DataGridTextColumn Header="Giá bán" Binding="{Binding Price}"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGrid.RowDetailsTemplate>
+                        </DataGrid>
                     </ScrollViewer>
                 </materialDesign:Card>
             </Grid>
