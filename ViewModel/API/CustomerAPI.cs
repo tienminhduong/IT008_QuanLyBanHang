@@ -12,7 +12,7 @@ namespace IT008_QuanLyBanHang.ViewModel.API
 {
     public class CustomerAPI : BaseAPI<Customer, CustomerDTO>
     {
-        static public async Task<List<Customer>> GetAllCustomer()
+        static public async Task<List<Customer>> GetAllCustomers()
         {
             var dtos = await GetAllItemsDTO();
             List<Customer> customers = new();

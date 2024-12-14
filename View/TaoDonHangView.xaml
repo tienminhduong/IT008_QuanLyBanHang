@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        DataContext="{StaticResource TaoDonHangVM}"
         Title="Tạo đơn hàng" Height="720" Width="1280" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,7 +26,7 @@
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Stretch"/>
-                <ListBox Grid.Row="1" HorizontalContentAlignment="Center">
+                <ListBox Grid.Row="1" HorizontalContentAlignment="Center" ItemsSource="{Binding Products}">
                 </ListBox>
             </Grid>
         </Grid>
@@ -58,7 +59,13 @@
                     <Border CornerRadius="1000" BorderThickness="1">
                         <TextBox materialDesign:TransitionAssist.DisableTransitions="True"
                                  BorderThickness="0" Padding="10"
-                            FontSize="15" materialDesign:HintAssist.Hint="Nhập số điện thoại"/>
+                                 Text="{Binding PhoneText, UpdateSourceTrigger=PropertyChanged}"
+                                 IsReadOnly="{Binding IsSelectingCustomer}"
+                            FontSize="15" materialDesign:HintAssist.Hint="Nhập số điện thoại">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding SearchCustomerCommand}"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
                     </Border>
                 </DockPanel>
                 <Grid DockPanel.Dock="Top"
