@@ -32,7 +32,8 @@ namespace IT008_QuanLyBanHang.ViewModel
         void TaoDonHang()
         {
             var taoDonHangWindow = new IT008_QuanLyBanHang.View.TaoDonHangView();
-            taoDonHangWindow.Show();
+            taoDonHangWindow.ShowDialog();
+            Task.Run(() => LoadData());
         }
     }
 }

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
+using IT008_QuanLyBanHang.View;
 using IT008_QuanLyBanHang.ViewModel.API;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         }
 
         [RelayCommand]
-        void SearchCustomer()
+        async Task SearchCustomer()
         {
             if (PhoneText == "")
                 return;
@@ -52,8 +53,33 @@ namespace IT008_QuanLyBanHang.ViewModel
             }
             else
             {
-                MessageBox.Show(PhoneText + " không tồn tại trong hệ thống.\nBạn có muốn thêm khách hàng mới",  "Thông báo",
+                var result = MessageBox.Show(PhoneText + " không tồn tại trong hệ thống.\nBạn có muốn thêm khách hàng mới",  "Thông báo",
                     MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    //Task.Run(() => LoadData());
+                    string name = Microsoft.VisualBasic.Interaction.InputBox("Nhập họ và tên của khách hàng", "Thêm khách hàng mới");
+                    // detach name into first name and last name
+                    string[] names = name.Split(' ');
+                    if (names.Length < 2)
+                    {
+                        MessageBox.Show("Họ và tên không hợp lệ", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    KhachHangDTO newCustomer = new()
+                    {
+                        first_name = names[^1],
+                        last_name = string.Join(' ', names[..^1]),
+                        phone = PhoneText,
+                        status = 1,
+                        birth = DateTime.Now
+                    };
+                    string body = JsonSerializer.Serialize(newCustomer);
+                    //post to server
+                    string response = await RESTService.Instance.PostAsync("customers", body);
+                    customerList = await CustomerAPI.GetAllCustomers();
+                }
             }
         }
 
@@ -102,7 +128,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         }
 
         [RelayCommand]
-        async Task Check()
+        async Task Check(Window window)
         {
             if (SelectingCustomer == null)
             {
@@ -139,6 +165,7 @@ namespace IT008_QuanLyBanHang.ViewModel
 
             string response = await RESTService.Instance.PostAsync("orders", body);
             Trace.WriteLine(response);
+            window.Close();
         }
 
         List<BatchProduct> productList = new();
@@ -187,5 +214,15 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         List<BatchProduct> productList = new();
         List<Customer> customerList = new();
+    }
+
+    public class KhachHangDTO
+    {
+        public string password { get; set; } = "string";
+        public string first_name { get; set; } = "";
+        public string last_name { get; set; } = "";
+        public string phone { get; set; } = "";
+        public int status { get; set; }
+        public DateTime birth { get; set; }
     }
 }
