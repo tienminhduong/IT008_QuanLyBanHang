@@ -121,12 +121,12 @@ namespace IT008_QuanLyBanHang.ViewModel
                 customer_id = SelectingCustomer.Id,
                 status = "completed",
                 discount = 0,
-                order_items = new()
+                items = new()
             };
 
             foreach (var product in Cart)
             {
-                order.order_items.Add(new()
+                order.items.Add(new()
                 {
                     batch_id = product.Batch.Id,
                     quantity = product.SelectedQuantity
@@ -184,5 +184,8 @@ namespace IT008_QuanLyBanHang.ViewModel
             public int batch_id { get; set; }
             public int quantity { get; set; }
         }
+
+        List<BatchProduct> productList = new();
+        List<Customer> customerList = new();
     }
 }
