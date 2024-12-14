@@ -49,6 +49,22 @@ namespace IT008_QuanLyBanHang.ViewModel.API
             }
         }
 
+        public async Task<string> PostAsync(string endpoint, string body)
+        {
+            try
+            {
+                var content = new StringContent(body, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync(endpoint, content);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine($"Error during POST to {endpoint}: {ex.Message}");
+                return string.Empty;
+            }
+        }
+
         public async Task<string> GetAsync(string dataType)
         {
             try

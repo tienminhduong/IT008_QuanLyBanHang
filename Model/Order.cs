@@ -34,6 +34,10 @@ namespace IT008_QuanLyBanHang.Model
                 }
             }
         }
+        public Order()
+        {
+            
+        }
     }
     public class OrderItem
     {
@@ -54,6 +58,11 @@ namespace IT008_QuanLyBanHang.Model
                 Batch = new Batch(dto.batch);
             if (dto.product != null)
                 Product = new Product(dto.product, batches, categories);
+        }
+
+        public OrderItem()
+        {
+            
         }
     }
 }

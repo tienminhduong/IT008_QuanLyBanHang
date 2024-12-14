@@ -4,10 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
+        xmlns:viewmodel="clr-namespace:IT008_QuanLyBanHang.ViewModel"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         DataContext="{StaticResource TaoDonHangVM}"
         Title="Tạo đơn hàng" Height="720" Width="1280" ResizeMode="NoResize">
+    <!--Converter-->
+    <Window.Resources>
+        <viewmodel:PriceCalculatorConverter x:Key="PriceCalculatorConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -16,6 +21,7 @@
         <Grid Grid.Column="0" Background="Transparent">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -26,7 +32,48 @@
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Stretch"/>
-                <ListBox Grid.Row="1" HorizontalContentAlignment="Center" ItemsSource="{Binding Products}">
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 5 0">
+                    <TextBox Text="{Binding SelectedNumber}"
+                             Name="TextBox_SoLuong"
+                             materialDesign:HintAssist.Hint="Số lượng"
+                             FontSize="15"
+                             Margin="5 0 5 0"
+                             Width="100"/>
+                    <Button Margin="5 0 5 0"
+                            Background="Green"
+                            Command="{Binding AddToCartCommand}"
+                            CommandParameter="{Binding ElementName=TextBox_SoLuong, Path=Text}">
+                        <materialDesign:PackIcon Kind="Add"/>
+                    </Button>
+                </StackPanel>
+                <ListBox Grid.Row="2" HorizontalContentAlignment="Stretch"
+                         ItemsSource="{Binding Products}"
+                         SelectedItem="{Binding SelectedProduct}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding Product.ImageURL}" Height="100" Width="100" Grid.Column="0"/>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="{Binding Product.Id, StringFormat=Mã hàng: {0}}"/>
+                                    <TextBlock Text="{Binding Product.ProductName, StringFormat=Tên: {0}}"/>
+                                    <TextBlock Text="{Binding Product.Category.CategoryName, StringFormat=Loại: {0}}"/>
+                                    <TextBlock Text="{Binding Batch.ManufactureDate, StringFormat=NSX: {0:d}, ConverterCulture=fr-FR}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="{Binding Batch.Stock, StringFormat=SL: {0}}"/>
+                                    <TextBlock Text="{Binding Product.Unit, StringFormat=Đơn vị: {0}}"/>
+                                    <TextBlock Text="{Binding Batch.Price, StringFormat=Giá: {0:N0}đ}"/>
+                                    <TextBlock Text="{Binding Batch.ExpirationDate, StringFormat=HSD: {0:d}, ConverterCulture=fr-FR}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
             </Grid>
         </Grid>
@@ -36,17 +83,37 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
-                <TextBlock Text="Hóa đơn"
-                        Foreground="Black"
-                        FontSize="25"
-                        Margin="10 0 10 10"/>
-                <DataGrid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Hóa đơn"
+                            Foreground="Black"
+                            FontSize="25"
+                            Margin="10 0 10 10"
+                               Grid.Column="0"/>
+                    <Button Grid.Column="1" Background="Red"
+                            Command="{Binding RemoveFromCartCommand}">
+                        <materialDesign:PackIcon Kind="TrashCan"/>
+                    </Button>
+                </Grid>
+                <DataGrid ItemsSource="{Binding Cart}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          SelectedItem="{Binding SelectedCartProduct}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Ảnh"/>
-                        <DataGridTextColumn Header="Tên"/>
-                        <DataGridTextColumn Header="SL"/>
-                        <DataGridTextColumn Header="ĐVT"/>
-                        <DataGridTextColumn Header="Giá"/>
+                        <DataGridTextColumn Header="Tên" Binding="{Binding Product.ProductName}"/>
+                        <DataGridTextColumn Header="SL" Binding="{Binding SelectedQuantity}"/>
+                        <DataGridTextColumn Header="ĐVT" Binding="{Binding Product.Unit}"/>
+                        <DataGridTextColumn Header="Giá">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding Converter="{StaticResource PriceCalculatorConverter}">
+                                    <Binding Path="Batch.Price"/>
+                                    <Binding Path="SelectedQuantity"/>
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
@@ -84,9 +151,9 @@
                     <Grid Grid.Column="1">
                         <TextBox Name="TextBlockTongTien"
                                 FlowDirection="RightToLeft"
-                                Text="8.000.000.000đ"
                                 FontSize="20"
-                                IsReadOnly="True"/>
+                                IsReadOnly="True"
+                                Text="{Binding TotalPrice, StringFormat={}{0:N0}đ, UpdateSourceTrigger=PropertyChanged}"/>
 
                     </Grid>
                 </Grid>
@@ -94,7 +161,8 @@
                     <Button Background="#016486"
                         Content="Thanh toán"
                         BorderThickness="0"
-                        VerticalAlignment="Top"/>
+                        VerticalAlignment="Top"
+                        Command="{Binding CheckCommand}"/>
                 </Grid>
             </DockPanel>
         </Grid>
