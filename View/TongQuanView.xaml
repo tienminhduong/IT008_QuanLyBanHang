@@ -8,8 +8,149 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:custom="clr-namespace:IT008_QuanLyBanHang.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="720" d:DesignWidth="900">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <!--Chữ tổng quan-->
+        <Grid Grid.Row="0">
+            <TextBlock Text="Tổng quan"
+                       FontSize="35"/>
+            
+        </Grid>
+        <Grid Grid.Row="1"
+              Background="#FFEEEEEE">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--Kết quả bán hàng hôm nay-->
+            <Grid Grid.Row="0"
+                  Margin="20">
+                <DockPanel LastChildFill="True"
+                           Background="White">
+                    <Grid DockPanel.Dock="Top"
+                          Background="#FFC3C1C1">
+                        <TextBlock Text="KẾT QUẢ BÁN HÀNG HÔM NAY"
+                                   FontWeight="Bold"
+                                   FontSize="25"
+                                   Margin="10"/>
+                    </Grid>
+                    <Grid DockPanel.Dock="Bottom"
+                          Background="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Hóa đơn-->
+                        <Grid Grid.Column="0">
+                            <DockPanel Margin="20">
+                                <materialDesign:PackIcon Kind="InvoiceList"
+                                                         Height="60"
+                                                         Width="60"
+                                                         VerticalAlignment="Center"
+                                                         DockPanel.Dock="Left"/>
+                                <TextBlock Text="0"
+                                           FontSize="40"
+                                           Margin="20 0 0 0"
+                                           DockPanel.Dock="Top"
+                                           FontWeight="Medium"
+                                           FontFamily="Arial Black"/>
+                                <TextBlock Text="Hóa đơn"
+                                           FontSize="15"
+                                           Margin="20 0 0 0"
+                                           FontWeight="Medium"/>
+
+                            </DockPanel>
+                        </Grid>
+                        <!--Doanh thu-->
+                        <Grid Grid.Column="1">
+                            <DockPanel Margin="20">
+                                <materialDesign:PackIcon Kind="Cash"
+                                                         Height="60"
+                                                         Width="60"
+                                                         VerticalAlignment="Center"
+                                                         DockPanel.Dock="Left"/>
+                                <TextBlock Text="0"
+                                           FontSize="40"
+                                           Margin="20 0 0 0"
+                                           DockPanel.Dock="Top"
+                                           FontWeight="Medium"
+                                           FontFamily="Arial Black"/>
+                                <TextBlock Text="Doanh thu"
+                                           FontSize="15"
+                                           Margin="20 0 0 0"
+                                           FontWeight="Medium"/>
+
+                            </DockPanel>
+                        </Grid>
+                        <!--So sánh-->
+                        <Grid Grid.Column="2">
+                            <DockPanel Margin="20">
+                                <materialDesign:PackIcon Kind="ArrowUpCircle"
+                                                         Height="60"
+                                                         Width="60"
+                                                         VerticalAlignment="Center"
+                                                         DockPanel.Dock="Left"/>
+                                <TextBlock Text="99.99%"
+                                           FontSize="40"
+                                           Margin="20 0 0 0"
+                                           DockPanel.Dock="Top"
+                                           FontWeight="Medium"
+                                           FontFamily="Arial Black"/>
+                                <TextBlock Text="So với cùng kì tháng trước"
+                                           FontSize="15"
+                                           Margin="20 0 0 0"
+                                           FontWeight="Medium"/>
+                            </DockPanel>
+                        </Grid>
+                    </Grid>
+                </DockPanel>
+            </Grid>
+            <Grid Grid.Row="1"
+                  Margin="20">
+                <DockPanel>
+                    <!--Đơn hàng gần đây-->
+                    <Grid Background="#FFC3C1C1"
+                          DockPanel.Dock="Top">
+                        <TextBlock Text="Đơn hàng gần đây"
+                                   FontWeight="Bold"
+                                   FontSize="25"
+                                   Margin="10"/>
+                    </Grid>
+                    <Grid Background="White"
+                          DockPanel.Dock="Bottom">
+                        <!--Container chứa các dòng-->
+                    </Grid>
+                </DockPanel>
+            </Grid>
+            <!--Sắp hết hạn-->
+            <Grid Grid.Row="2"
+                  Margin="20">
+                <DockPanel>
+                    <!--Sắp hết hạn-->
+                    <Grid Background="#FFC3C1C1"
+                          DockPanel.Dock="Top">
+                        <TextBlock Text="Sắp hết hạn"
+                                   FontWeight="Bold"
+                                   FontSize="25"
+                                   Margin="10"/>
+                        <materialDesign:PackIcon Kind="Sort"
+                                                 HorizontalAlignment="Right"
+                                                 Height="50"
+                                                 Width="50"/>
+                    </Grid>
+                    <Grid Background="White"
+                          DockPanel.Dock="Bottom">
+                        <!--Container chứa các dòng-->
+                    </Grid>
+                </DockPanel>
+            </Grid>
+        </Grid>
         
     </Grid>
 </UserControl>
