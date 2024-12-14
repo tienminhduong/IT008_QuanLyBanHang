@@ -134,7 +134,7 @@
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Header="Mã hàng hóa" Binding="{Binding Id}" Width="2*"/>
                                 <DataGridTextColumn Header="Tên hàng hóa" Binding="{Binding ProductName}" Width="4*"/>
-                                <DataGridTextColumn Header="Số lượng" Width="2*"/>
+                                <DataGridTextColumn Header="Số lượng" Binding="{Binding Stock}" Width="2*"/>
                                 <DataGridTextColumn Header="Đơn vị" Binding="{Binding Unit}" Width="2*"/>
                                 <DataGridTextColumn Header="Loại hàng hóa" Binding="{Binding Category.CategoryName}" Width="3*"/>
                             </DataGrid.Columns>
