@@ -13,8 +13,9 @@
         <Grid Grid.Column="1" Grid.RowSpan="2" Background="#FFFFFF">
             <Grid.RowDefinitions>
                 <!--<RowDefinition/>-->
-                <RowDefinition Height="9*"/>
-                <RowDefinition Height="70*"/>
+                <RowDefinition Height="74*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="607*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -44,6 +45,26 @@
             </Grid>
 
             <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
+                <DatePicker materialDesign:HintAssist.Hint="Tìm kiếm theo ngày" FontSize="18" Margin="10 0 10 0"
+                            SelectedDate="{Binding SearchDate, UpdateSourceTrigger=PropertyChanged}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Stretch"/>
+                <Button Content="{Binding SearchButtonText}"
+                        Grid.Column="1" Margin="5 0 5 0"
+                        Command="{Binding SearchByDateCommand}"/>
+                <Button Content="Xuất hiển thị" Grid.Column="2" Margin="5 0 5 0"
+                        Command="{Binding ExportToExcelCommand}"/>
+                <Button Content="Xuất tất cả" Grid.Column="3" Margin="5 0 5 0"
+                        Command="{Binding ExportAllToExcelCommand}"/>
+            </Grid>
+            
+            <Grid Grid.Row="2">
                 <materialDesign:Card Margin="7 0 7 7"
                              VerticalAlignment="Stretch">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">

@@ -286,7 +286,6 @@
                                                               ItemsSource="{Binding DataContext.ProductBatches, RelativeSource={RelativeSource AncestorType=UserControl}}">
                                                         <DataGrid.Columns>
                                                             <DataGridTextColumn Header="Mã Lô" Binding="{Binding BatchNumber}"/>
-                                                            <DataGridTextColumn Header="Thời Gian" Width="125" Binding="{Binding CreatedAt, StringFormat={}{0:d}, ConverterCulture=fr-FR}"/>
                                                             <DataGridTextColumn Header="Số Lượng" Binding="{Binding Quantity}"/>
                                                             <DataGridTextColumn Header="Ngày Sản Xuất" Width="125" Binding="{Binding ManufactureDate, StringFormat={}{0:d}, ConverterCulture=fr-FR}"/>
                                                             <DataGridTextColumn Header="Ngày Hết Hạn" Width="125"  Binding="{Binding ExpirationDate, StringFormat={}{0:d}, ConverterCulture=fr-FR}"/>
