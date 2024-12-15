@@ -56,8 +56,8 @@
                         SelectedDate="{Binding ExpirationDate}"/>
 
             <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Width="100" Margin="10" Content="Thêm" Command="{Binding AddBatchCommand}"/>
-                <Button Width="100" Margin="10" Content="Xóa" />
+                <Button Width="100" Margin="10" Content="Thêm" Command="{Binding AddBatchCommand}" Background="#FF1E2A39"/>
+                <Button Width="100" Margin="10" Content="Xóa" Command="{Binding CancelCommand}" Background="#FF1E2A39"/>
             </StackPanel>
 
         </Grid>

@@ -49,6 +49,7 @@ namespace IT008_QuanLyBanHang.ViewModel.API
             }
         }
 
+
         public async Task<string> PostAsync(string endpoint, string body)
         {
             try
@@ -56,11 +57,22 @@ namespace IT008_QuanLyBanHang.ViewModel.API
                 var content = new StringContent(body, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync(endpoint, content);
                 response.EnsureSuccessStatusCode();
+
+        public async Task<string> PutAsync(string endpoint, Dictionary<string, string> formData)
+        {
+            try
+            {
+                var content = new FormUrlEncodedContent(formData);
+                var response = await client.PutAsync(endpoint, content);
+                response.EnsureSuccessStatusCode();
+
+
                 return await response.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
             {
-                Trace.WriteLine($"Error during POST to {endpoint}: {ex.Message}");
+
+                Trace.WriteLine($"Error during PUT to {endpoint}: {ex.Message}");
                 return string.Empty;
             }
         }
