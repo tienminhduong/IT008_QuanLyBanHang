@@ -35,6 +35,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         public async Task LoadData()
         {
             customersList = await CustomerAPI.GetAllCustomers();
+            customersList.RemoveAll(c => (c.Phone == "0" || c.Phone == ""));
             ordersList = await OrderAPI.GetAllOrders();
 
             foreach (Customer customer in customersList)
