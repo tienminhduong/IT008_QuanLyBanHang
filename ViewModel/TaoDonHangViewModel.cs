@@ -34,6 +34,16 @@ namespace IT008_QuanLyBanHang.ViewModel
             customerList = await CustomerAPI.GetAllCustomers();
         }
 
+        [ObservableProperty] string searchText = "";
+        [RelayCommand]
+        void SearchProduct()
+        {
+            if (SearchText == "")
+                Products = new(productList);
+            else
+                Products = new(productList.Where(c => FunctionTool.CheckContains(c.Product.ProductName ?? "", SearchText)));
+        }
+
         [RelayCommand]
         async Task SearchCustomer()
         {
@@ -188,7 +198,7 @@ namespace IT008_QuanLyBanHang.ViewModel
             if (values[0] is float price && values[1] is int quantity)
             {
                 Trace.WriteLine($"Price: {price}, Quantity: {quantity}");
-                return $"{(price * quantity)}đ";
+                return $"{price * quantity:N0}đ";
             }
             return 0;
         }

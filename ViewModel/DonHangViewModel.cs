@@ -31,12 +31,23 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         [ObservableProperty] DataGridRowDetailsVisibilityMode showDetails = DataGridRowDetailsVisibilityMode.Collapsed;
 
+        [ObservableProperty] string searchText = "";
+
         [RelayCommand]
         void TaoDonHang()
         {
             var taoDonHangWindow = new IT008_QuanLyBanHang.View.TaoDonHangView();
             taoDonHangWindow.ShowDialog();
             Task.Run(() => LoadData());
+        }
+
+        [RelayCommand]
+        void Search()
+        {
+            if (string.IsNullOrEmpty(SearchText))
+                OrderShown = new(orders);
+            else
+                OrderShown = new(orders.Where(o => FunctionTool.CheckContains(o.Customer?.FullName??"", SearchText)));
         }
     }
 }

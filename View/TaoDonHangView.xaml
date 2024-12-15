@@ -26,14 +26,18 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
                          Padding="10" FontSize="14"
-                        Margin="10" x:Name="TextBox_SearchBar"
+                        Margin="10" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         VerticalAlignment="Top"
-                        HorizontalAlignment="Stretch"/>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 5 0">
+                        HorizontalAlignment="Stretch">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding SearchProductCommand}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 5 0">
                     <TextBox Text="{Binding SelectedNumber}"
                              Name="TextBox_SoLuong"
                              materialDesign:HintAssist.Hint="Số lượng"
@@ -104,10 +108,10 @@
                           IsReadOnly="True"
                           SelectedItem="{Binding SelectedCartProduct}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Tên" Binding="{Binding Product.ProductName}"/>
-                        <DataGridTextColumn Header="SL" Binding="{Binding SelectedQuantity}"/>
-                        <DataGridTextColumn Header="ĐVT" Binding="{Binding Product.Unit}"/>
-                        <DataGridTextColumn Header="Giá">
+                        <DataGridTextColumn Header="Tên" Binding="{Binding Product.ProductName}" Width="3*"/>
+                        <DataGridTextColumn Header="SL" Binding="{Binding SelectedQuantity}" Width="1*"/>
+                        <DataGridTextColumn Header="ĐVT" Binding="{Binding Product.Unit}" Width="1*"/>
+                        <DataGridTextColumn Header="Giá" Width="1*">
                             <DataGridTextColumn.Binding>
                                 <MultiBinding Converter="{StaticResource PriceCalculatorConverter}">
                                     <Binding Path="Batch.Price"/>

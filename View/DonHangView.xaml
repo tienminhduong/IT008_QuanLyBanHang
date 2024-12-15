@@ -22,11 +22,15 @@
                     <ColumnDefinition Width="0.8*"/>
                     <ColumnDefinition Width="0.2*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox materialDesign:HintAssist.Hint="Tìm kiếm" FontSize="18" Padding="10"
-                         Margin="10 10 0 10" x:Name="TextBox_SearchBar"
+                <TextBox materialDesign:HintAssist.Hint="Tìm kiếm theo tên khách hàng" FontSize="18" Padding="10"
+                         Margin="10 10 0 10" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      VerticalAlignment="Center"
-                     HorizontalAlignment="Stretch"/>
+                     HorizontalAlignment="Stretch">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding SearchCommand}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
 
                 <Grid Grid.Column="1">
                     <Button Background="#FF1E2A39"
@@ -58,7 +62,7 @@
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Header="Mã đơn hàng" Binding="{Binding Id}" Width="1*"/>
-                                <DataGridTextColumn Header="Ngày mua" Binding="{Binding OrderDate}" Width="1*"/>
+                                <DataGridTextColumn Header="Ngày mua" Binding="{Binding OrderDate, StringFormat={}{0:d}, ConverterCulture=fr-FR}" Width="1*"/>
                                 <DataGridTextColumn Header="Tên khách hàng" Binding="{Binding Customer.FullName}" Width="2*"/>
                                 <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TotalAmount, StringFormat={}{0:N0}đ}" Width="1*"/>
                             </DataGrid.Columns>
