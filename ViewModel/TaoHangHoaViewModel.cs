@@ -12,6 +12,7 @@ using IT008_QuanLyBanHang.Model;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using IT008_QuanLyBanHang.ViewModel.API;
+using Microsoft.Win32;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
@@ -25,6 +26,9 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         [ObservableProperty]
         private int? productCategory;
+
+        [ObservableProperty]
+        private string imageUrl = "";
 
         [ObservableProperty]
         private ObservableCollection<Category>? categoriesList = new ObservableCollection<Category>();
@@ -41,6 +45,17 @@ namespace IT008_QuanLyBanHang.ViewModel
             }
         }
 
+        [RelayCommand]
+        void UploadImage()
+        {
+            // savefiledialog for selecting image
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ImageUrl = openFileDialog.FileName;
+            }
+        }
 
         public async Task PopulateComboBox()
         {
@@ -63,7 +78,8 @@ namespace IT008_QuanLyBanHang.ViewModel
                 { "product_name", ProductName },
                 { "category_id", ProductCategory.ToString()},
                 { "status", "active" },
-                { "unit", ProductUnit }
+                { "unit", ProductUnit },
+                { "image_url", ImageUrl }
             };
 
             try

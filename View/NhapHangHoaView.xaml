@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
         mc:Ignorable="d"
-        Title="NhapHangHoaView" Height="600" Width="800">
+        Title="NhapHangHoaView" Height="550" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -32,19 +37,19 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="ID sản phẩm" Margin="20" FontSize="20" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Mã lô" Margin="20" FontSize="20" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Số lượng" Margin="20" FontSize="20" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Giá nhập" Margin="20" FontSize="20" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="Giá bán" Margin="20" FontSize="20" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="5" Grid.Column="0" Text="Ngày sản xuất" Margin="20" FontSize="20" VerticalAlignment="Center"/>
-            <TextBlock Grid.Row="6" Grid.Column="0" Text="Hạn sử dụng" Margin="20" FontSize="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="ID sản phẩm" Margin="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Mã lô" Margin="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Số lượng" Margin="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Giá nhập" Margin="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Giá bán" Margin="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Ngày sản xuất" Margin="20" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Hạn sử dụng" Margin="20" VerticalAlignment="Center"/>
 
-            <TextBox Grid.Row="0" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding ProductId}" IsReadOnly="True"/>
-            <TextBox Grid.Row="1" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding BatchNumber}" IsReadOnly="True"/>
-            <TextBox Grid.Row="2" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding Quantity}"/>
-            <TextBox Grid.Row="3" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding ImportPrice}"/>
-            <TextBox Grid.Row="4" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding SellPrice}"/>
+            <TextBox Grid.Row="0" Grid.Column="1" FontSize="15" Margin="10,10,30,10" Text="{Binding ProductId}" IsReadOnly="True"/>
+            <TextBox Grid.Row="1" Grid.Column="1" FontSize="15" Margin="10,10,30,10" Text="{Binding BatchNumber}" IsReadOnly="True"/>
+            <TextBox Grid.Row="2" Grid.Column="1" FontSize="15" Margin="10,10,30,10" Text="{Binding Quantity}"/>
+            <TextBox Grid.Row="3" Grid.Column="1" FontSize="15" Margin="10,10,30,10" Text="{Binding ImportPrice}"/>
+            <TextBox Grid.Row="4" Grid.Column="1" FontSize="15" Margin="10,10,30,10" Text="{Binding SellPrice}"/>
             
             <DatePicker Grid.Row="5" Grid.Column="1" 
                         FontSize="20" 

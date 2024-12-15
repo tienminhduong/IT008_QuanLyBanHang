@@ -1,9 +1,11 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CloudinaryDotNet;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using IT008_QuanLyBanHang.DTOs;
 using IT008_QuanLyBanHang.Model;
 using IT008_QuanLyBanHang.ViewModel.API;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,20 +36,35 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         private ProductDTO originalProduct;
 
+        [RelayCommand]
+        void UploadImage()
+        {
+            // savefiledialog for selecting image
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // upload image to cloudinary
+                originalProduct.image_url = ImageUrl = openFileDialog.FileName;
+            }
+        }
+
+        [ObservableProperty] string imageUrl = "";
+
         public CapNhatHangHoaViewModel()
         {
             try
             {
-                PopulateComboBox();
+                Task.Run(() => PopulateComboBox());
             }
             catch (Exception ex)
             {
                 Trace.WriteLine($"Lỗi: {ex.Message}");
             }
 
-            WeakReferenceMessenger.Default.Register<ProductSelectedMessage>(this, (r, m) =>
+            WeakReferenceMessenger.Default.Register(this, (MessageHandler<object, ProductSelectedMessage>)((r, m) =>
             {
-                ProductId = m.Product.Id;
+                this.ProductId = m.Product.Id;
                 ProductName = m.Product.ProductName;
                 ProductUnit = m.Product.Unit;
                 ProductCategory = m.Product.Category.Id;
@@ -61,7 +78,7 @@ namespace IT008_QuanLyBanHang.ViewModel
                     status = m.Product.Status,
                     category_id = m.Product.Category.Id,
                 };
-            });
+            }));
         }
 
         // Hủy đăng ký khi view model bị hủy

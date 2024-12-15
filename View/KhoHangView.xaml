@@ -168,7 +168,7 @@
                                                         <!-- Ảnh sản phẩm -->
                                                         <Image Width="150" Height="150" 
                                                                 Margin="10"
-                                                                Source="https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bunch-of-bananas-67e91d5.jpg"/>
+                                                                Source="{Binding ImageURL}"/>
 
                                                         <!-- Thông tin chi tiết -->
                                                         <Grid Grid.Column="1" Margin="10">
@@ -286,7 +286,6 @@
                                                               ItemsSource="{Binding DataContext.ProductBatches, RelativeSource={RelativeSource AncestorType=UserControl}}">
                                                         <DataGrid.Columns>
                                                             <DataGridTextColumn Header="Mã Lô" Binding="{Binding BatchNumber}"/>
-                                                            <DataGridTextColumn Header="Thời Gian" Width="125" Binding="{Binding Created_at}"/>
                                                             <DataGridTextColumn Header="Số Lượng" Binding="{Binding Quantity}"/>
                                                             <DataGridTextColumn Header="Ngày Sản Xuất" Width="125" Binding="{Binding ManufactureDate, StringFormat={}{0:d}, ConverterCulture=fr-FR}"/>
                                                             <DataGridTextColumn Header="Ngày Hết Hạn" Width="125"  Binding="{Binding ExpirationDate, StringFormat={}{0:d}, ConverterCulture=fr-FR}"/>

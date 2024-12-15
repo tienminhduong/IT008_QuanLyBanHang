@@ -28,6 +28,7 @@ namespace IT008_QuanLyBanHang.ViewModel
             viewDictionary.Add("Button_KhoHang", new KhoHangViewModel());
             viewDictionary.Add("Button_KhachHang", new KhachHangViewModel());
             viewDictionary.Add("Button_BaoCao", new BaoCaoViewModel());
+            viewDictionary.Add("Button_ThietLap", new ThietLapViewModel());
 
             SwitchToView("Button_TongQuan");
         }

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using IT008_QuanLyBanHang.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Principal;
 using System.Text;
@@ -84,6 +86,21 @@ namespace IT008_QuanLyBanHang.ViewModel.API
             }
         }
 
+        public async Task<string> PutAsync(string endpoint, string body)
+        {
+            try
+            {
+                var content = new StringContent(body, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(endpoint, content);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public async Task<string> GetAsync(string dataType)
         {
             try
@@ -98,6 +115,58 @@ namespace IT008_QuanLyBanHang.ViewModel.API
                 Trace.WriteLine(ex.Message);
             }
             return string.Empty;
+        }
+
+        public async Task DeleteAsync(string endpoint)
+        {
+            try
+            {
+                var response = await client.DeleteAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<string> UploadProductImage(string filename, int id)
+        {
+            var req = new HttpRequestMessage(HttpMethod.Get, $"products/{id}/upload_image_signature");
+            var res = await client.SendAsync(req);
+            res.EnsureSuccessStatusCode();
+            CloudinaryResponseData? cloudinaryResponseData = await res.Content.ReadFromJsonAsync<CloudinaryResponseData>();
+            if (cloudinaryResponseData == null)
+                return "";
+            Trace.WriteLine(filename);
+            using (MultipartFormDataContent content = new())
+            using (HttpClient cloudinaryClient = new())
+            {
+                content.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data");
+                var fileContent = new ByteArrayContent(File.ReadAllBytes(filename));
+                fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+                content.Add(fileContent, "file");
+                content.Add(new StringContent(cloudinaryResponseData.data.api_key), "api_key");
+                content.Add(new StringContent(cloudinaryResponseData.data.public_id), "public_id");
+                content.Add(new StringContent(cloudinaryResponseData.data.timestamp.ToString()), "timestamp");
+                content.Add(new StringContent(cloudinaryResponseData.data.signature), "signature");
+
+                Trace.WriteLine("Content: " + content.ToString());
+                //print api_key, public_id, timestamp, signature
+                Trace.WriteLine(cloudinaryResponseData.data.api_key);
+                Trace.WriteLine(cloudinaryResponseData.data.public_id);
+                Trace.WriteLine(cloudinaryResponseData.data.timestamp);
+                Trace.WriteLine(cloudinaryResponseData.data.signature);
+                Trace.WriteLine($"https://api.cloudinary.com/v1_1/{cloudinaryResponseData.data.cloud_name}/image/upload");
+
+                var response = await cloudinaryClient.PostAsync($"https://api.cloudinary.com/v1_1/{cloudinaryResponseData.data.cloud_name}/image/upload", content);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Trace.WriteLine($"Response Content: {responseContent}");
+                response.EnsureSuccessStatusCode();
+
+                ImageUrlFromResponse? imageUrl = await response.Content.ReadFromJsonAsync<ImageUrlFromResponse>();
+                return imageUrl?.secure_url ?? "";
+            }
         }
 
         public async Task<bool> TryLogin(string account, string password)
@@ -159,5 +228,13 @@ namespace IT008_QuanLyBanHang.ViewModel.API
     class AccessTokenData
     {
         public string access_token { get; set; } = "";
+    }
+    class CloudinaryResponseData
+    {
+        public UploadImageResponesDTO data { get; set; }
+    }
+    class ImageUrlFromResponse
+    {
+        public string secure_url { get; set; }
     }
 }

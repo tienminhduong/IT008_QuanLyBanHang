@@ -36,7 +36,8 @@
 
             <StackPanel Grid.Row="3" Grid.Column="0">
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Hình ảnh" Margin="20" FontSize="20"/>
-                <Button Content="Chọn ảnh" Width="100" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0" Background="#FF1E2A39"/>
+                <Button Content="Chọn ảnh" Width="100" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0" Background="#FF1E2A39"
+                        Command="{Binding UploadImageCommand}"/>
             </StackPanel>
 
             <TextBox Grid.Row="0" Grid.Column="1" FontSize="20" Margin="10,10,30,10" Text="{Binding ProductName}"/>

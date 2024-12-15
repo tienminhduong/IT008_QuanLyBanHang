@@ -5,8 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
              xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:vm="clr-namespace:IT008_QuanLyBanHang.ViewModel"
+             mc:Ignorable="d"
+             DataContext="{StaticResource BaoCaoVM}"
              d:DesignHeight="720" d:DesignWidth="900">
+    <UserControl.Resources>
+        <vm:StringToChartLabelsConverter x:Key="StringToChartLabelsConverter"/>
+        <vm:ViewModelToChartSeriesCollectionConverter x:Key="ViewModelToChartSeriesCollectionConverter"/>
+    </UserControl.Resources>
     <Grid x:Name="grdKhoHang">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,39 +21,21 @@
         </Grid.RowDefinitions>
         <!--tittle-->
         <Grid Grid.Row="0" Background="White">
-            <TextBlock Text="Báo cáo" FontSize="40" Padding="20,10,0,10" Foreground="Black"/>
+            <TextBlock Text="Báo cáo" FontSize="40" Padding="20,10,0,10" Foreground="Black" FontWeight="Bold"/>
         </Grid>
-        
+
         <Grid Grid.Row="1" Background="#FFEEF0F3">
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="141*"></RowDefinition>
+                <RowDefinition Height="506*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0">
+            <StackPanel Grid.Row="0" Grid.RowSpan="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <!--tim kiem-->
-                    <TextBox Grid.Column="0" materialdesign:HintAssist.Hint="Tìm kiếm" 
-                             FontSize="18" 
-                             HorizontalAlignment="Stretch"
-                             Margin="5,10,0,10"
-                             Padding="35,5,5,5"
-                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                             Background="#FFD9D9D9">
-
-                    </TextBox>
-                    <materialdesign:PackIcon Kind="Magnify" 
-                                         Grid.Column="0"
-                                         Foreground="Gray"  
-                                         Margin="35,17,0,0">
-                        <materialdesign:PackIcon.RenderTransform>
-                            <ScaleTransform ScaleX="-1.5" ScaleY="1.5"/>
-                        </materialdesign:PackIcon.RenderTransform>
-                    </materialdesign:PackIcon>
                 </Grid>
                 <!--bao cao bang so-->
                 <Grid Margin="10,0,30,0">
@@ -64,26 +53,15 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid Grid.Column="0">
-                            <TextBlock Text="Kết quả bán hàng"
+                            <TextBlock Text="Kết quả bán hàng theo ngày"
                                        Foreground="Black"
                                        VerticalAlignment="Center"
                                        Margin="10,10,18,10" FontSize="24"/>
                         </Grid>
-                        <!--combobox1-->
-                        <Grid Grid.Column="1">
-                            <ComboBox  Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                                       SelectedIndex="0"
-                                       Background="#FFFFFFFF"
-                                       Padding="13,7,0,7"
-                                       VerticalAlignment="Center"                                   
-                                       HorizontalAlignment="Left" FontSize="20">
-                                <ComboBoxItem Content="HÔM NAY" />
-                                <ComboBoxItem Content="HÔM QUA" />
-                            </ComboBox>
-                        </Grid>
+
                     </Grid>
-                    
-                    <Grid Grid.Row="1" Height="180" Background="White">
+
+                    <Grid Grid.Row="1" Background="White">
                         <Grid.Resources>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Foreground" Value="Black"/>
@@ -92,69 +70,62 @@
                             </Style>
                         </Grid.Resources>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="227*"></ColumnDefinition>
-                            <ColumnDefinition Width="235*"></ColumnDefinition>
-                            <ColumnDefinition Width="398*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <!--doanh so-->
-                        <Grid Grid.Column="0">
-                            <DockPanel>
-                                <DockPanel.Resources>
-
-                                </DockPanel.Resources>
-                                <materialdesign:PackIcon Kind="ReceiptText" Foreground="Black" 
-                                                         VerticalAlignment="Center"
-                                                         Width="70"
-                                                         Height="40"/>
-                                <Grid>
-                                    <WrapPanel Margin="0,60,0,55">
-                                        <TextBlock Text="Binding sth idk"
-                                                   TextWrapping="Wrap"></TextBlock>
-                                        <TextBlock Text=" hóa đơn"/>
-                                    </WrapPanel>
-
-                                    <TextBlock Text="Doanh số" FontSize="16" Opacity="0.5" 
-                                               HorizontalAlignment="Left"
-                                               VerticalAlignment="Bottom"
-                                               Margin="0,0,0,50"/>
-                                </Grid>
-                            </DockPanel>
-                        </Grid>
-                        <!--tra hang-->
-                        <Grid Grid.Column="1 ">
-                            <DockPanel>
-                                <materialdesign:PackIcon Kind="RotateLeft" Foreground="Black" 
-                                                         VerticalAlignment="Center"
-                                                         Width="80"
-                                                         Height="40"/>
-                                <Grid>
-                                    <WrapPanel Margin="0,60,0,55">
-                                        <TextBlock Text="Binding sth idk"
-                                                   TextWrapping="Wrap"></TextBlock>
-                                        <TextBlock Text=" hóa đơn"/>
-                                    </WrapPanel>
-                                    <TextBlock Text="Trả hàng" FontSize="16" Opacity="0.5" 
-                                               HorizontalAlignment="Left"
-                                               VerticalAlignment="Bottom"
-                                               Margin="0,0,0,50"/>
-                                </Grid>
-                            </DockPanel>
-                        </Grid>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Horizontal">
+                            <materialdesign:PackIcon Kind="ReceiptTextOutline"
+                                                     Foreground="Black"
+                                                     Width="50"
+                                                     Height="40"
+                                                     VerticalAlignment="Center"/>
+                            <StackPanel Margin="0 10 0 10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding SoHoaDonHomNay}"/>
+                                    <TextBlock Text=" hóa đơn"/>
+                                </StackPanel>
+                                <TextBlock Text="Doanh số hôm nay"
+                                           FontSize="16"
+                                           Opacity="0.5"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal">
+                            <materialdesign:PackIcon Kind="ReceiptTextOutline"
+                             Foreground="Black"
+                             Width="50"
+                             Height="40"
+                             VerticalAlignment="Center"/>
+                            <StackPanel Margin="0 10 0 10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding SoHoaDonHomQua}"/>
+                                    <TextBlock Text=" hóa đơn"/>
+                                </StackPanel>
+                                <TextBlock Text="Doanh số hôm qua"
+                                           FontSize="16"
+                                           Opacity="0.5"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </StackPanel>
                         <!--another doanh so-->
                         <Grid Grid.Column="2">
                             <DockPanel>
-                                <materialdesign:PackIcon Kind="ArrowUpCircle" Foreground="Black" 
+                                <materialdesign:PackIcon Kind="Dollar" Foreground="Green" 
                                                          VerticalAlignment="Center"
-                                                         Width="80"
+                                                         Width="50"
                                                          Height="40"/>
-                                <StackPanel>
-                                    <WrapPanel Margin="0,60,0,0">
+                                <StackPanel VerticalAlignment="Center">
+                                    <WrapPanel>
                                         <TextBlock Text="Doanh số hôm nay: " FontSize="18"/>
-                                        <TextBlock Text='1' FontSize="18"></TextBlock>
+                                        <TextBlock Text="{Binding DoanhThuHomNay, StringFormat={}{0:N0}đ}" FontSize="18"></TextBlock>
                                     </WrapPanel>
-                                    <WrapPanel Margin="0,20,0,0">
+                                    <WrapPanel>
                                         <TextBlock Text="Doanh số hôm qua: " FontSize="18"/>
-                                        <TextBlock Text='1' FontSize="18"></TextBlock>
+                                        <TextBlock Text="{Binding DoanhThuHomQua, StringFormat={}{0:N0}đ}" FontSize="18"></TextBlock>
                                     </WrapPanel>
                                 </StackPanel>
                             </DockPanel>
@@ -165,27 +136,42 @@
             <!--bieu do-->
             <Grid Grid.Row="1" Margin="10,0,30,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="45*"></RowDefinition>
-                    <RowDefinition Height="278*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="22*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Background="#FFD9D9D9">
+                <Grid Grid.Row="0" Background="#FFD9D9D9" Margin="0,0,0,3">
                     <Grid Grid.Column="1">
-                        <ComboBox  Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                                   SelectedIndex="0" 
-                                   Background="#FFFFFFFF"
-                                   Padding="10,3,0,3"
-                                   VerticalAlignment="Center"                                   
-                                   HorizontalAlignment="Left" FontSize="20"
-                                   Margin="18,0,0,0">
+                        <ComboBox SelectedIndex="0" 
+                                  Padding="10,3,0,3"
+                                  VerticalAlignment="Center"                                   
+                                  SelectedItem="{Binding SelectChartData}"
+                                  HorizontalAlignment="Left" FontSize="20"
+                                  Margin="18,0,0,0">
                             <ComboBoxItem Content="TUẦN NÀY"/>
                             <ComboBoxItem Content="TUẦN TRƯỚC"/>
                             <ComboBoxItem Content="THÁNG NÀY"/>
                         </ComboBox>
                     </Grid>
                 </Grid>
+                <Grid Grid.Row="1" Background="White">
+                    <lvc:CartesianChart LegendLocation="None">
+                        <lvc:CartesianChart.Series>
+                            <MultiBinding Converter="{StaticResource ViewModelToChartSeriesCollectionConverter}">
+                                <Binding Path="SelectChartData"/>
+                                <Binding Path="Orders"/>
+                            </MultiBinding>
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Days" LabelFormatter="{Binding XFormatter}"
+                                      Labels="{Binding SelectChartData, Converter={StaticResource StringToChartLabelsConverter}}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Revenue" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
 </UserControl>
- 
