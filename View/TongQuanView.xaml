@@ -7,7 +7,8 @@
              xmlns:viewmodel="clr-namespace:IT008_QuanLyBanHang.ViewModel"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:custom="clr-namespace:IT008_QuanLyBanHang.View"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             DataContext="{StaticResource TongQuanVM}"
              d:DesignHeight="720" d:DesignWidth="900">
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -23,9 +24,9 @@
         <Grid Grid.Row="1"
               Background="#FFEEEEEE">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="0.85*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <!--Kết quả bán hàng hôm nay-->
             <Grid Grid.Row="0"
@@ -33,37 +34,42 @@
                 <DockPanel LastChildFill="True"
                            Background="White">
                     <Grid DockPanel.Dock="Top"
-                          Background="#FFC3C1C1">
+                          Background="#d9d9d9">
                         <TextBlock Text="KẾT QUẢ BÁN HÀNG HÔM NAY"
                                    FontWeight="Bold"
                                    FontSize="25"
+                                   Foreground="#1e2a39"
                                    Margin="10"/>
                     </Grid>
                     <Grid DockPanel.Dock="Bottom"
                           Background="White">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.65*"/>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
                         <!--Hóa đơn-->
                         <Grid Grid.Column="0">
                             <DockPanel Margin="20">
-                                <materialDesign:PackIcon Kind="InvoiceList"
+                                <materialDesign:PackIcon Kind="InvoiceListOutline"
                                                          Height="60"
                                                          Width="60"
                                                          VerticalAlignment="Center"
                                                          DockPanel.Dock="Left"/>
-                                <TextBlock Text="0"
-                                           FontSize="40"
-                                           Margin="20 0 0 0"
-                                           DockPanel.Dock="Top"
-                                           FontWeight="Medium"
-                                           FontFamily="Arial Black"/>
-                                <TextBlock Text="Hóa đơn"
-                                           FontSize="15"
-                                           Margin="20 0 0 0"
-                                           FontWeight="Medium"/>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding NumberSoldToday}"
+                                               FontSize="30"
+                                               Margin="20 0 0 0"
+                                               DockPanel.Dock="Top"
+                                               FontWeight="Medium"
+                                               Foreground="Black"
+                                               FontFamily="Arial Black"/>
+                                    <TextBlock Text="Hóa đơn"
+                                               FontSize="15"
+                                               Margin="20 0 0 0"
+                                               FontWeight="Medium"
+                                               Foreground="Black"/>
+                                </StackPanel>
 
                             </DockPanel>
                         </Grid>
@@ -73,19 +79,23 @@
                                 <materialDesign:PackIcon Kind="Cash"
                                                          Height="60"
                                                          Width="60"
+                                                         Foreground="Green"
                                                          VerticalAlignment="Center"
                                                          DockPanel.Dock="Left"/>
-                                <TextBlock Text="0"
-                                           FontSize="40"
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding DoanhThuHomNay, StringFormat={}{0:N0}đ}"
+                                           FontSize="30"
                                            Margin="20 0 0 0"
                                            DockPanel.Dock="Top"
                                            FontWeight="Medium"
-                                           FontFamily="Arial Black"/>
-                                <TextBlock Text="Doanh thu"
+                                           FontFamily="Arial Black"
+                                           Foreground="Black"/>
+                                    <TextBlock Text="Doanh thu"
                                            FontSize="15"
                                            Margin="20 0 0 0"
-                                           FontWeight="Medium"/>
-
+                                           FontWeight="Medium"
+                                           Foreground="Black"/>
+                                </StackPanel>
                             </DockPanel>
                         </Grid>
                         <!--So sánh-->
@@ -94,18 +104,23 @@
                                 <materialDesign:PackIcon Kind="ArrowUpCircle"
                                                          Height="60"
                                                          Width="60"
+                                                         Foreground="Green"
                                                          VerticalAlignment="Center"
                                                          DockPanel.Dock="Left"/>
-                                <TextBlock Text="99.99%"
-                                           FontSize="40"
-                                           Margin="20 0 0 0"
-                                           DockPanel.Dock="Top"
-                                           FontWeight="Medium"
-                                           FontFamily="Arial Black"/>
-                                <TextBlock Text="So với cùng kì tháng trước"
-                                           FontSize="15"
-                                           Margin="20 0 0 0"
-                                           FontWeight="Medium"/>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="99.99%"
+                                               FontSize="30"
+                                               Margin="20 0 0 0"
+                                               DockPanel.Dock="Top"
+                                               FontWeight="Medium"
+                                               Foreground="Black"
+                                               FontFamily="Arial Black"/>
+                                    <TextBlock Text="So với tháng trước"
+                                               FontSize="15"
+                                               Margin="20 0 0 0"
+                                               Foreground="Black"
+                                               FontWeight="Medium"/>
+                                </StackPanel>
                             </DockPanel>
                         </Grid>
                     </Grid>
@@ -115,17 +130,35 @@
                   Margin="20">
                 <DockPanel>
                     <!--Đơn hàng gần đây-->
-                    <Grid Background="#FFC3C1C1"
+                    <Grid Background="#d9d9d9"
                           DockPanel.Dock="Top">
-                        <TextBlock Text="Đơn hàng gần đây"
-                                   FontWeight="Bold"
+                        <TextBlock Text="ĐƠN HÀNG GẦN ĐÂY"
                                    FontSize="25"
+                                   Foreground="#1e2a39"
+                                   FontWeight="Bold"
                                    Margin="10"/>
                     </Grid>
-                    <Grid Background="White"
-                          DockPanel.Dock="Bottom">
-                        <!--Container chứa các dòng-->
-                    </Grid>
+                    <ListBox Foreground="Black"
+                             Background="White"
+                             ItemsSource="{Binding RecentOrders}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="Black">
+                                        <materialDesign:PackIcon Kind="CartOutline"/>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Customer.FullName}"
+                                               Foreground="#1e2a39"
+                                               FontWeight="Bold"
+                                               Margin="5 0 0 0"/>
+                                    <TextBlock Text=" vừa mua một đơn hàng với trị giá " Foreground="Black"/>
+                                    <TextBlock Text="{Binding TotalAmount, StringFormat={}{0:N0}đ}"
+                                               FontWeight="Bold"
+                                               Foreground="#1e2a39"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </DockPanel>
             </Grid>
             <!--Sắp hết hạn-->
@@ -133,21 +166,46 @@
                   Margin="20">
                 <DockPanel>
                     <!--Sắp hết hạn-->
-                    <Grid Background="#FFC3C1C1"
+                    <Grid Background="#d9d9d9"
                           DockPanel.Dock="Top">
-                        <TextBlock Text="Sắp hết hạn"
-                                   FontWeight="Bold"
+                        <TextBlock Text="SẮP HẾT HẠN"
                                    FontSize="25"
+                                   Foreground="#1e2a39"
+                                   FontWeight="Bold"
                                    Margin="10"/>
-                        <materialDesign:PackIcon Kind="Sort"
-                                                 HorizontalAlignment="Right"
-                                                 Height="50"
-                                                 Width="50"/>
                     </Grid>
-                    <Grid Background="White"
-                          DockPanel.Dock="Bottom">
-                        <!--Container chứa các dòng-->
-                    </Grid>
+                    <ListBox Background="White"
+                             DockPanel.Dock="Bottom"
+                             ItemsSource="{Binding AboutToExpire}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Foreground="Black">
+                                        <materialDesign:PackIcon Kind="AlertCircleOutline"/>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Product.ProductName}"
+                                               Foreground="#1e2a39"
+                                               FontWeight="Bold"
+                                               Margin="5 0 0 0"/>
+                                    <TextBlock Text=" có "
+                                               Foreground="Black"/>
+                                    <TextBlock Text="{Binding Batch.Stock}"
+                                               Foreground="#1e2a39"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text=" sản phẩm thuộc lô "
+                                               Foreground="Black"/>
+                                    <TextBlock Text="{Binding Batch.BatchNumber}"
+                                               Foreground="#1e2a39"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text=" sắp hết hạn vào ngày "
+                                                  Foreground="Black"/>
+                                    <TextBlock Text="{Binding Batch.ExpirationDate, StringFormat={}{0:d}, ConverterCulture=fr-FR}"
+                                               Foreground="#1e2a39"
+                                               FontWeight="Bold"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </DockPanel>
             </Grid>
         </Grid>

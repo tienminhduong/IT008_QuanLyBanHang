@@ -31,5 +31,9 @@
     <viewmodel:KhoHangViewModel x:Key="KhoHangVM"/>
     <viewmodel:MainWindowViewModel x:Key="MainWindowVM"/>
     <viewmodel:KhachHangViewModel x:Key="KhachHangVM"/>
+    <viewmodel:DonHangViewModel x:Key="DonHangVM"/>
+    <viewmodel:TaoDonHangViewModel x:Key="TaoDonHangVM"/>
+    <viewmodel:TongQuanViewModel x:Key="TongQuanVM"/>
+    <viewmodel:BaoCaoViewModel x:Key="BaoCaoVM"/>
 
 </ResourceDictionary>

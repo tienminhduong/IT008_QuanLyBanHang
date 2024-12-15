@@ -6,30 +6,33 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
+using IT008_QuanLyBanHang.DTOs;
 
 namespace IT008_QuanLyBanHang.ViewModel.API
 {
-    public static class CustomerAPI
+    public class CustomerAPI : BaseAPI<Customer, CustomerDTO>
     {
-        static public async Task<List<Customer>?> GetAllCustomer()
+        static public async Task<List<Customer>> GetAllCustomers()
         {
-            string resStr = await RESTService.Instance.GetAsyncOfType("customers");
-            Response? res = JsonSerializer.Deserialize<Response>(resStr);
-            if (res == null || res.Data == null)
-                return null;
-
-            return res.Data.Items;
+            var dtos = await GetAllItemsDTO();
+            List<Customer> customers = new();
+            foreach (var dto in dtos)
+            {
+                Customer? customer = ConvertFromDTO(dto);
+                if (customer != null)
+                    customers.Add(customer);
+            }
+            return customers;
         }
 
-        class Data
+        static public CustomerDTO? ConvertToDTO(Customer customer)
         {
-            [JsonPropertyName("items")]
-            public List<Customer>? Items { get; set; }
+            return new(customer);
         }
-        class Response
+
+        static public Customer? ConvertFromDTO(CustomerDTO dto)
         {
-            [JsonPropertyName("data")]
-            public Data? Data { get; set; }
+            return new(dto);
         }
     }
 }

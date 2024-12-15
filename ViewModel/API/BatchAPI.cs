@@ -30,34 +30,13 @@ namespace IT008_QuanLyBanHang.ViewModel.API
 
         public static BatchDTO? ConvertToDTO(Batch batch)
         {
-            BatchDTO batchDTO = new()
-            {
-                id = batch.Id,
-                batch_number = batch.BatchNumber,
-                quantity = batch.Quantity,
-                stock = batch.Stock,
-                price = batch.Price.ToString(),
-                import_price = batch.ImportPrice.ToString(),
-                expiration_date = batch.ExpirationDate,
-                manufacture_date = batch.ManufactureDate
-            };
-
+            BatchDTO batchDTO = new(batch);
             return batchDTO;
         }
 
         public static Batch? ConvertFromDTO(BatchDTO batchDTO)
         {
-            Batch batch = new()
-            {
-                Id = batchDTO.id,
-                BatchNumber = batchDTO.batch_number,
-                Quantity = batchDTO.quantity,
-                Stock = batchDTO.stock,
-                Price = float.Parse(batchDTO.price ?? "0"),
-                ImportPrice = float.Parse(batchDTO.import_price ?? "0"),
-                ExpirationDate = batchDTO.expiration_date,
-                ManufactureDate = batchDTO.manufacture_date
-            };
+            Batch batch = new(batchDTO);
             return batch;
         }
     }

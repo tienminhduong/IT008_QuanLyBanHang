@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IT008_QuanLyBanHang.DTOs;
+using IT008_QuanLyBanHang.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +11,36 @@ namespace IT008_QuanLyBanHang.Model
 {
     public class Customer
     {
-        [JsonPropertyName("id")]
         public int Id { get; set; }
-        [JsonPropertyName("first_name")]
         public string? FirstName { get; set; }
-        [JsonPropertyName("last_name")]
         public string? LastName { get; set; }
-        [JsonPropertyName("phone")]
         public string? Phone { get; set; }
-        [JsonPropertyName("point")]
         public float Point { get; set; }
-        [JsonPropertyName("created_at")]
-        public DateTime CreatedAt { get; set; }
-        [JsonPropertyName("updated_at")]
-        public DateTime UpdatedAt { get; set; }
+        public string? FullName { get; set; }
+        public List<Order>? Orders { get; set; } = null;
 
+        public Customer(CustomerDTO dto)
+        {
+            Id = dto.id;
+            FirstName = dto.first_name;
+            LastName = dto.last_name;
+            Phone = dto.phone;
+            Point = dto.point;
+            FullName = $"{LastName} {FirstName}";
+        }
+        public Customer()
+        {
+            
+        }
+
+        public void UpdateOrderList(List<Order> orders)
+        {
+            Orders = new();
+            foreach (Order order in orders)
+            {
+                if (order.Customer != null && order.Customer.Id == Id)
+                    Orders.Add(order);
+            }
+        }
     }
 }

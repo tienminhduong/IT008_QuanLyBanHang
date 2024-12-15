@@ -40,8 +40,6 @@ namespace IT008_QuanLyBanHang.ViewModel
 
             CurrentView = (ObservableObject)viewDictionary[name];
             CurrentViewName = name;
-
-            //await viewDictionary[name].LoadData();
         }
 
         [ObservableProperty]

@@ -25,5 +25,17 @@ namespace IT008_QuanLyBanHang.View
             InitializeComponent();
             DataContext = new ViewModel.DonHangViewModel();
         }
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //Hide row details when clicking on the row
+            ViewModel.DonHangViewModel viewModel = (ViewModel.DonHangViewModel)DataContext;
+            if (sender is TextBlock)
+            {
+                if (viewModel.ShowDetails == DataGridRowDetailsVisibilityMode.VisibleWhenSelected)
+                    viewModel.ShowDetails = DataGridRowDetailsVisibilityMode.Collapsed;
+                else
+                    viewModel.ShowDetails = DataGridRowDetailsVisibilityMode.VisibleWhenSelected;
+            }
+        }
     }
 }
