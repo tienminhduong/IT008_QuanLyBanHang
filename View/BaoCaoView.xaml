@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         <!--tittle-->
         <Grid Grid.Row="0" Background="White">
-            <TextBlock Text="Báo cáo" FontSize="40" Padding="20,10,0,10" Foreground="Black"/>
+            <TextBlock Text="Báo cáo" FontSize="40" Padding="20,10,0,10" Foreground="Black" FontWeight="Bold"/>
         </Grid>
 
         <Grid Grid.Row="1" Background="#FFEEF0F3">

@@ -25,6 +25,9 @@
     <DataTemplate DataType="{x:Type viewmodel:BaoCaoViewModel}">
         <view:BaoCaoView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type viewmodel:ThietLapViewModel}">
+        <view:ThietLapView/>
+    </DataTemplate>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     <viewmodel:LoginViewModel x:Key="LoginVM"/>
@@ -35,5 +38,6 @@
     <viewmodel:TaoDonHangViewModel x:Key="TaoDonHangVM"/>
     <viewmodel:TongQuanViewModel x:Key="TongQuanVM"/>
     <viewmodel:BaoCaoViewModel x:Key="BaoCaoVM"/>
+    <viewmodel:ThietLapViewModel x:Key="ThietLapVM"/>
 
 </ResourceDictionary>

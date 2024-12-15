@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="IT008_QuanLyBanHang.View.ThietLapView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
+             mc:Ignorable="d"
+             DataContext="{StaticResource ThietLapVM}"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="Gray">
+        <md:Card Width="500" Height="300">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Foreground="Black" FontSize="20" Text="Mật khẩu cũ" Grid.Column="0" VerticalAlignment="Center" Padding="5 0 0 0" Height="26"/>
+                <TextBlock Foreground="Black" FontSize="20" Text="Mật khẩu mới" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Padding="5 0 0 0" Height="26"/>
+                <TextBlock Foreground="Black" FontSize="20" Text="Xác nhận mật khẩu" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Padding="5 0 0 0" Height="26"/>
+
+                <PasswordBox
+                        md:PasswordBoxAssist.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Grid.Column="1"
+                             Grid.Row="0"
+                             VerticalAlignment="Center"
+                        FontSize="20" Margin="0 0 5 0"/>
+                <PasswordBox
+        md:PasswordBoxAssist.Password="{Binding NewPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             Grid.Column="1"
+             Grid.Row="1"
+             VerticalAlignment="Center"
+        FontSize="20" Margin="0 0 5 0"/>
+                <PasswordBox
+        md:PasswordBoxAssist.Password="{Binding ConfirmPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+             Grid.Column="1"
+             Grid.Row="2"
+             VerticalAlignment="Center"
+        FontSize="20" Margin="0 0 5 0"/>
+            <Button Content="Xác nhận" Grid.Column="1" Grid.Row="3" Margin="10" Command="{Binding ChangePasswordCommand}"/>
+            </Grid>
+        </md:Card>
+    </Grid>
+</UserControl>

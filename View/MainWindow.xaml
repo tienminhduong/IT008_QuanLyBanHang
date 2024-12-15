@@ -9,7 +9,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1280" Height="720">
+        Title="Quản lý bán hàng" Width="1280" Height="720">
     <Window.Resources>
         <viewmodel:IsActiveToColorConverter x:Key="IsActiveToColorConverter"/>
     </Window.Resources>
@@ -46,7 +46,7 @@
             <Rectangle Grid.Column="0" Grid.Row="2"
                        Fill="#FF1E2A39"/>
             <Grid Grid.Row="0">
-                <TextBlock Text="Tên app"
+                <TextBlock Text="QLBH"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Margin="0,0,0,0"
@@ -152,7 +152,9 @@
                             Height="50"
                             FontSize="25"
                             HorizontalContentAlignment="Left"
-                            VerticalAlignment="Bottom">
+                            VerticalAlignment="Bottom"
+                            Command="{Binding SwitchToViewCommand}"
+                            CommandParameter="{Binding ElementName=Button_ThietLap, Path=Name}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Cog" 
                                                      Width="30"

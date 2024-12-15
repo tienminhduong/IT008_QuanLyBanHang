@@ -18,6 +18,8 @@
         <!--Chữ tổng quan-->
         <Grid Grid.Row="0">
             <TextBlock Text="Tổng quan"
+                       Foreground="Black"
+                       FontWeight="Bold"
                        FontSize="35"/>
             
         </Grid>
