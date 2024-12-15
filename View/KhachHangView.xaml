@@ -39,12 +39,22 @@
             <DataGrid Margin="10 0 10 10"
                       ItemsSource="{Binding Customers}"
                       AutoGenerateColumns="False"
-                      IsReadOnly="True">
+                      IsReadOnly="True"
+                      RowDetailsVisibilityMode="{Binding ShowDetails}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã KH" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="Tên khách hàng" Binding="{Binding FullName}"/>
-                    <DataGridTextColumn Header="Số điện thoại" Binding="{Binding Phone}"/>
-                    <DataGridTextColumn Header="Điểm tích lũy" Binding="{Binding Point}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock MouseDown="TextBlock_MouseDown">
+                                    <materialDesign:PackIcon Kind="ArrowDropDown"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Mã KH" Binding="{Binding Id}" Width="1*"/>
+                    <DataGridTextColumn Header="Tên khách hàng" Binding="{Binding FullName}" Width="2*"/>
+                    <DataGridTextColumn Header="Số điện thoại" Binding="{Binding Phone}" Width="1*"/>
+                    <DataGridTextColumn Header="Điểm tích lũy" Binding="{Binding Point}" Width="1*"/>
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
@@ -55,7 +65,8 @@
                                       IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Mã HĐ" Binding="{Binding Id}"/>
-                                    <DataGridTextColumn Header="Ngày mua" Binding="{Binding OrderDate}"/>
+                                    <DataGridTextColumn Header="Ngày mua"
+                                                        Binding="{Binding OrderDate, StringFormat={}{0:d}, ConverterCulture=fr-FR}"/>
                                     <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TotalAmount}"/>
                                 </DataGrid.Columns>
                             </DataGrid>

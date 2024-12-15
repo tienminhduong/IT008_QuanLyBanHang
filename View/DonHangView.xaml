@@ -45,12 +45,22 @@
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <DataGrid ItemsSource="{Binding OrderShown}"
                                   AutoGenerateColumns="False"
-                                  IsReadOnly="True">
+                                  IsReadOnly="True"
+                                  RowDetailsVisibilityMode="{Binding ShowDetails}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã đơn hàng" Binding="{Binding Id}"/>
-                                <DataGridTextColumn Header="Ngày mua" Binding="{Binding OrderDate}"/>
-                                <DataGridTextColumn Header="Tên khách hàng" Binding="{Binding Customer.FullName}"/>
-                                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TotalAmount}"/>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock MouseDown="TextBlock_MouseDown">
+                                                <materialDesign:PackIcon Kind="ArrowDropDown"/>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Mã đơn hàng" Binding="{Binding Id}" Width="1*"/>
+                                <DataGridTextColumn Header="Ngày mua" Binding="{Binding OrderDate}" Width="1*"/>
+                                <DataGridTextColumn Header="Tên khách hàng" Binding="{Binding Customer.FullName}" Width="2*"/>
+                                <DataGridTextColumn Header="Tổng tiền" Binding="{Binding TotalAmount}" Width="1*"/>
                             </DataGrid.Columns>
 
                             <DataGrid.RowDetailsTemplate>

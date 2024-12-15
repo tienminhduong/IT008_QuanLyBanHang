@@ -57,7 +57,6 @@ namespace IT008_QuanLyBanHang.ViewModel
                     MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
-                    //Task.Run(() => LoadData());
                     string name = Microsoft.VisualBasic.Interaction.InputBox("Nhập họ và tên của khách hàng", "Thêm khách hàng mới");
                     // detach name into first name and last name
                     string[] names = name.Split(' ');

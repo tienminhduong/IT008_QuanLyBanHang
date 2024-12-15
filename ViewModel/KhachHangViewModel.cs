@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace IT008_QuanLyBanHang.ViewModel
 {
@@ -24,6 +25,8 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         List<Customer> customersList = new();
         List<Order> ordersList = new();
+
+        [ObservableProperty] DataGridRowDetailsVisibilityMode showDetails = DataGridRowDetailsVisibilityMode.Collapsed;
 
         public async Task LoadData()
         {
