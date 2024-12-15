@@ -32,5 +32,8 @@ namespace IT008_QuanLyBanHang.Model
 
         [ObservableProperty]
         private bool isExpanded;
+
+        [ObservableProperty]
+        private int selectedQuantity;
     }
 }

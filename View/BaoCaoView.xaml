@@ -4,11 +4,188 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IT008_QuanLyBanHang.View"
+             xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Button>
-            Bao cao button
-        </Button>
+             d:DesignHeight="720" d:DesignWidth="900">
+    <Grid x:Name="grdKhoHang">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <!--tittle-->
+        <Grid Grid.Row="0" Background="White">
+            <TextBlock Text="Báo cáo" FontSize="40" Padding="20,10,0,10" Foreground="Black"/>
+        </Grid>
+        
+        <Grid Grid.Row="1" Background="#FFEEF0F3">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!--tim kiem-->
+                    <TextBox Grid.Column="0" materialdesign:HintAssist.Hint="Tìm kiếm" 
+                             FontSize="18" 
+                             HorizontalAlignment="Stretch"
+                             Margin="5,10,0,10"
+                             Padding="35,5,5,5"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             Background="#FFD9D9D9">
+
+                    </TextBox>
+                    <materialdesign:PackIcon Kind="Magnify" 
+                                         Grid.Column="0"
+                                         Foreground="Gray"  
+                                         Margin="35,17,0,0">
+                        <materialdesign:PackIcon.RenderTransform>
+                            <ScaleTransform ScaleX="-1.5" ScaleY="1.5"/>
+                        </materialdesign:PackIcon.RenderTransform>
+                    </materialdesign:PackIcon>
+                </Grid>
+                <!--bao cao bang so-->
+                <Grid Margin="10,0,30,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                    </Grid>
+                    <Grid Background="#FFD9D9D9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <TextBlock Text="Kết quả bán hàng"
+                                       Foreground="Black"
+                                       VerticalAlignment="Center"
+                                       Margin="10,10,18,10" FontSize="24"/>
+                        </Grid>
+                        <!--combobox1-->
+                        <Grid Grid.Column="1">
+                            <ComboBox  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                       SelectedIndex="0"
+                                       Background="#FFFFFFFF"
+                                       Padding="13,7,0,7"
+                                       VerticalAlignment="Center"                                   
+                                       HorizontalAlignment="Left" FontSize="20">
+                                <ComboBoxItem Content="HÔM NAY" />
+                                <ComboBoxItem Content="HÔM QUA" />
+                            </ComboBox>
+                        </Grid>
+                    </Grid>
+                    
+                    <Grid Grid.Row="1" Height="180" Background="White">
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontSize" Value="22"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="227*"></ColumnDefinition>
+                            <ColumnDefinition Width="235*"></ColumnDefinition>
+                            <ColumnDefinition Width="398*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <!--doanh so-->
+                        <Grid Grid.Column="0">
+                            <DockPanel>
+                                <DockPanel.Resources>
+
+                                </DockPanel.Resources>
+                                <materialdesign:PackIcon Kind="ReceiptText" Foreground="Black" 
+                                                         VerticalAlignment="Center"
+                                                         Width="70"
+                                                         Height="40"/>
+                                <Grid>
+                                    <WrapPanel Margin="0,60,0,55">
+                                        <TextBlock Text="Binding sth idk"
+                                                   TextWrapping="Wrap"></TextBlock>
+                                        <TextBlock Text=" hóa đơn"/>
+                                    </WrapPanel>
+
+                                    <TextBlock Text="Doanh số" FontSize="16" Opacity="0.5" 
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Bottom"
+                                               Margin="0,0,0,50"/>
+                                </Grid>
+                            </DockPanel>
+                        </Grid>
+                        <!--tra hang-->
+                        <Grid Grid.Column="1 ">
+                            <DockPanel>
+                                <materialdesign:PackIcon Kind="RotateLeft" Foreground="Black" 
+                                                         VerticalAlignment="Center"
+                                                         Width="80"
+                                                         Height="40"/>
+                                <Grid>
+                                    <WrapPanel Margin="0,60,0,55">
+                                        <TextBlock Text="Binding sth idk"
+                                                   TextWrapping="Wrap"></TextBlock>
+                                        <TextBlock Text=" hóa đơn"/>
+                                    </WrapPanel>
+                                    <TextBlock Text="Trả hàng" FontSize="16" Opacity="0.5" 
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Bottom"
+                                               Margin="0,0,0,50"/>
+                                </Grid>
+                            </DockPanel>
+                        </Grid>
+                        <!--another doanh so-->
+                        <Grid Grid.Column="2">
+                            <DockPanel>
+                                <materialdesign:PackIcon Kind="ArrowUpCircle" Foreground="Black" 
+                                                         VerticalAlignment="Center"
+                                                         Width="80"
+                                                         Height="40"/>
+                                <StackPanel>
+                                    <WrapPanel Margin="0,60,0,0">
+                                        <TextBlock Text="Doanh số hôm nay: " FontSize="18"/>
+                                        <TextBlock Text='1' FontSize="18"></TextBlock>
+                                    </WrapPanel>
+                                    <WrapPanel Margin="0,20,0,0">
+                                        <TextBlock Text="Doanh số hôm qua: " FontSize="18"/>
+                                        <TextBlock Text='1' FontSize="18"></TextBlock>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </DockPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+            <!--bieu do-->
+            <Grid Grid.Row="1" Margin="10,0,30,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45*"></RowDefinition>
+                    <RowDefinition Height="278*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Background="#FFD9D9D9">
+                    <Grid Grid.Column="1">
+                        <ComboBox  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                   SelectedIndex="0" 
+                                   Background="#FFFFFFFF"
+                                   Padding="10,3,0,3"
+                                   VerticalAlignment="Center"                                   
+                                   HorizontalAlignment="Left" FontSize="20"
+                                   Margin="18,0,0,0">
+                            <ComboBoxItem Content="TUẦN NÀY"/>
+                            <ComboBoxItem Content="TUẦN TRƯỚC"/>
+                            <ComboBoxItem Content="THÁNG NÀY"/>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
+ 
