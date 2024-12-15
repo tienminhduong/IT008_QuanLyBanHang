@@ -207,7 +207,7 @@
                                                             <TextBlock Grid.Row="2" Text="Loại hàng hóa:" Margin="10"/>
                                                             <TextBlock Grid.Row="2" Grid.Column="1" Margin="10" Text="{Binding Category.CategoryName}"/>
                                                             <TextBlock Grid.Row="2" Grid.Column="2" Text="Giá bán:" Margin="50,10,10,10"/>
-                                                            <TextBlock Grid.Row="2" Grid.Column="3" Margin="10" Text="{Binding Price}"/>
+                                                            <TextBlock Grid.Row="2" Grid.Column="3" Margin="10" Text="{Binding Price, StringFormat={}{0:N0}đ}"/>
                                                             <Line Margin="9,0,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
                                                             <Line Margin="-5,0,0,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="Fill" />
                                                             <Line Margin="49,0,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" X1="0" X2="1" Stroke="#FF1E2A39" StrokeThickness="1" Stretch="UniformToFill" />
@@ -250,10 +250,10 @@
                                                                 <DataGridTextColumn Header="Mã lô" Width="100" Binding="{Binding BatchNumber}"/>
                                                                 <DataGridTextColumn Header="SL còn lại" Width="100" Binding="{Binding Stock}"/>
                                                                 <DataGridTextColumn Header="SL nhập" Width="100" Binding="{Binding Quantity}"/>
-                                                                <DataGridTextColumn Header="NSX" Width="150" Binding="{Binding ManufactureDate}"/>
-                                                                <DataGridTextColumn Header="Ngày hết hạn" Width="150" Binding="{Binding ExpirationDate}"/>
-                                                                <DataGridTextColumn Header="Giá nhập" Width="125" Binding="{Binding ImportPrice}"/>
-                                                                <DataGridTextColumn Header="Giá bán" Width="125" Binding="{Binding Price}"/>
+                                                                <DataGridTextColumn Header="NSX" Width="150" Binding="{Binding ManufactureDate, StringFormat={}{0:d}, ConverterCulture=fr-FR}"/>
+                                                                <DataGridTextColumn Header="Ngày hết hạn" Width="150" Binding="{Binding ExpirationDate, StringFormat={}{0:d}, ConverterCulture=fr-FR}"/>
+                                                                <DataGridTextColumn Header="Giá nhập" Width="125" Binding="{Binding ImportPrice, StringFormat={}{0:N0}đ}"/>
+                                                                <DataGridTextColumn Header="Giá bán" Width="125" Binding="{Binding Price, StringFormat={}{0:N0}đ}"/>
                                                             </DataGrid.Columns>
                                                         </DataGrid>
                                                     </Grid>
