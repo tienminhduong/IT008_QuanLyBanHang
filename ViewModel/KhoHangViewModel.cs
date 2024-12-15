@@ -166,6 +166,21 @@ namespace IT008_QuanLyBanHang.ViewModel
         ObservableCollection<Batch>? productBatches;
 
         [ObservableProperty]
+        ObservableCollection<ProductOrder>? productOrders;
+
+        private List<Order> orderList;
+
+        public class ProductOrder()
+        {
+            public int OrderId { get; set; }
+            public DateTime OrderDate { get; set; }
+            public int CustomerId { get; set; }
+            public int ProductQuantity { get; set; }
+            public string Unit { get; set; }
+            public float Price { get; set; }
+        }
+
+        [ObservableProperty]
         private int selectedTabIndex;
 
         [RelayCommand]
@@ -174,8 +189,41 @@ namespace IT008_QuanLyBanHang.ViewModel
             if (product == null)
                 return;
             SelectedProduct = product;
+
+            // Xử lí Batch
             ProductBatches = new ObservableCollection<Batch>(await ProductAPI.GetBatchesOfProduct(SelectedProduct));
             Trace.WriteLine($"Selected Product: {SelectedProduct?.ProductName}, Batches Count: {ProductBatches?.Count}");
+
+            // Xử lí Order
+            orderList = new List<Order>(await ProductAPI.GetOrdersOfProduct(SelectedProduct));
+            if (orderList != null)
+            {
+                ProductOrders = new ObservableCollection<ProductOrder>();
+
+                foreach (Order order in orderList)
+                {
+                    ProductOrder productOrder = new ProductOrder();
+                    productOrder.OrderId = order.Id;
+                    productOrder.OrderDate = order.OrderDate;
+                    productOrder.CustomerId = order.Customer.Id;
+
+                    foreach (var item in order.OrderItems)
+                    {
+                        if (item.Product.Id == SelectedProduct.Id)
+                        {
+                            productOrder.ProductQuantity = item.Quantity;
+                            productOrder.Price = item.Price;
+                            productOrder.Unit = SelectedProduct.Unit;
+                        }
+                    }
+                    ProductOrders.Add(productOrder);
+                } 
+                    
+            }
+
+            ProductOrders = new ObservableCollection<ProductOrder>(ProductOrders?.OrderByDescending(p => p.OrderDate));
+
+            Trace.WriteLine($"Selected Product: {SelectedProduct?.ProductName}, Orders Count: {ProductOrders?.Count}");
         }
 
         partial void OnSelectedTabIndexChanged(int value)
