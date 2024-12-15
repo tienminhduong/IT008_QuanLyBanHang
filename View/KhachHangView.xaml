@@ -53,10 +53,9 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Mã KH" Binding="{Binding Id}" Width="1*"/>
-                    <DataGridTextColumn Header="Tên khách hàng" Binding="{Binding FullName}" Width="2*"/>
+                    <DataGridTextColumn Header="Mã KH" Binding="{Binding Id}" Width="0.25*"/>
+                    <DataGridTextColumn Header="Tên khách hàng" Binding="{Binding FullName}" Width="1*"/>
                     <DataGridTextColumn Header="Số điện thoại" Binding="{Binding Phone}" Width="1*"/>
-                    <DataGridTextColumn Header="Điểm tích lũy" Binding="{Binding Point}" Width="1*"/>
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>

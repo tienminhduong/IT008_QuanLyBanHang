@@ -17,6 +17,7 @@ namespace IT008_QuanLyBanHang.DTOs
         public string? import_price { get; set; }
         public DateTime expiration_date { get; set; }
         public DateTime manufacture_date { get; set; }
+        public DateTime created_at { get; set; }
 
         public BatchDTO(Batch batch)
         {
@@ -28,6 +29,7 @@ namespace IT008_QuanLyBanHang.DTOs
             import_price = batch.ImportPrice.ToString();
             expiration_date = batch.ExpirationDate;
             manufacture_date = batch.ManufactureDate;
+            created_at = batch.CreatedAt;
         }
         public BatchDTO()
         {

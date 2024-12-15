@@ -22,7 +22,7 @@ namespace IT008_QuanLyBanHang.ViewModel.API
             foreach (var dto in dtos)
                 orders.Add(new Order(dto, batches, categories));
 
-            //Print out all orders
+            //Print out all orderList
             foreach (var order in orders)
                 Trace.WriteLine($"Order ID: {order.Id}, {order.Customer?.FullName}, {order.Status}");
 

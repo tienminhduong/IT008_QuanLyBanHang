@@ -38,7 +38,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         {
             try
             {
-                PopulateComboBox();
+                Task.Run(() => PopulateComboBox());
             }
             catch (Exception ex)
             {

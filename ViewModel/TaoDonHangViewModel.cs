@@ -172,7 +172,7 @@ namespace IT008_QuanLyBanHang.ViewModel
             string body = JsonSerializer.Serialize(order);
             Trace.WriteLine(body);
 
-            string response = await RESTService.Instance.PostAsync("orders", body);
+            string response = await RESTService.Instance.PostAsync("orderList", body);
             Trace.WriteLine(response);
             window.Close();
         }

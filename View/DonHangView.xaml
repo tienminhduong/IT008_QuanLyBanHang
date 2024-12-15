@@ -79,7 +79,6 @@
                                                 <DataGridTextColumn Header="Mã hàng" Binding="{Binding Product.Id}"/>
                                                 <DataGridTextColumn Header="Tên hàng" Binding="{Binding Product.ProductName}"/>
                                                 <DataGridTextColumn Header="Số lượng" Binding="{Binding Quantity}"/>
-                                                <DataGridTextColumn Header="Đơn vị" Binding="{Binding Product.Unit}"/>
                                                 <DataGridTextColumn Header="Giá bán" Binding="{Binding Price,
                                                     StringFormat={}{0:N0}đ}"/>
                                             </DataGrid.Columns>

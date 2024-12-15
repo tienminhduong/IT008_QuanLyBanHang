@@ -25,7 +25,6 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         public KhoHangViewModel()
         {
-            LoadDataCommand = new AsyncRelayCommand(LoadData);
             Task.Run(() => LoadData());
 
             this.PropertyChanged += OnViewModelPropertyChanged;
@@ -74,9 +73,6 @@ namespace IT008_QuanLyBanHang.ViewModel
                 Products = new ObservableCollection<Product>(filteredList);
             }
         }
-
-
-        public IAsyncRelayCommand LoadDataCommand { get; }
 
         [RelayCommand]
         private void Expand(BatchProduct batchProduct)

@@ -18,6 +18,7 @@ namespace IT008_QuanLyBanHang.Model
         public float ImportPrice { get; set; }
         public DateTime ExpirationDate { get; set; }
         public DateTime ManufactureDate { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public Batch(BatchDTO dto)
         {
@@ -29,6 +30,7 @@ namespace IT008_QuanLyBanHang.Model
             ImportPrice = float.Parse(dto.import_price ?? "0");
             ExpirationDate = dto.expiration_date;
             ManufactureDate = dto.manufacture_date;
+            CreatedAt = dto.created_at;
         }
 
         public Batch()
