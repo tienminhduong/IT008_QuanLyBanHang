@@ -76,6 +76,36 @@ namespace IT008_QuanLyBanHang.ViewModel.API
             return productBatches;
         }
 
+        static public async Task<List<Order>> GetOrdersOfProduct(Product product)
+        {
+            List<Order> orders = await OrderAPI.GetAllOrders();
+            if (orders == null || !orders.Any())
+                return new();
+
+            List<Order> productOrders = new();
+            foreach (var order in orders)
+            {
+                if (order.OrderItems != null &&
+                    order.OrderItems.Any(item => item.Product?.Id == product.Id))
+                {
+                    productOrders.Add(order);
+                }
+            }
+
+            Trace.WriteLine($"Orders containing product: {product.ProductName} (ID: {product.Id})");
+            foreach (var order in productOrders)
+            {
+                Trace.WriteLine($"Order ID: {order.Id}, Customer: {order.Customer?.FullName}, Date: {order.OrderDate}, Status: {order.Status}");
+                foreach (var item in order.OrderItems)
+                {
+                    Trace.WriteLine($"Product ID: {item.Product.Id}, Quanity: {item.Quantity}, Price: {item.Price}");
+                }    
+            }
+
+            return productOrders;
+        }
+
+
         public static Product? ConvertFromDTO(ProductDTO dto, List<Batch> batches, List<Category> categories)
         {
             try
