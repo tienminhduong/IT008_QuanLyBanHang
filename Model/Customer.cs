@@ -1,4 +1,5 @@
 ﻿using IT008_QuanLyBanHang.DTOs;
+using IT008_QuanLyBanHang.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,6 @@ namespace IT008_QuanLyBanHang.Model
         public string? Phone { get; set; }
         public float Point { get; set; }
         public string? FullName { get; set; }
-
         public List<Order>? Orders { get; set; } = null;
 
         public Customer(CustomerDTO dto)

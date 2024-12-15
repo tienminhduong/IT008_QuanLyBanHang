@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using IT008_QuanLyBanHang.DTOs;
 using IT008_QuanLyBanHang.Interfaces;
 using IT008_QuanLyBanHang.Model;
@@ -26,6 +27,7 @@ namespace IT008_QuanLyBanHang.ViewModel
         List<Customer> customersList = new();
         List<Order> ordersList = new();
 
+        [ObservableProperty] string searchText = "";
         [ObservableProperty] DataGridRowDetailsVisibilityMode showDetails = DataGridRowDetailsVisibilityMode.Collapsed;
 
         public async Task LoadData()
@@ -37,6 +39,15 @@ namespace IT008_QuanLyBanHang.ViewModel
                 customer.UpdateOrderList(ordersList);
 
             Customers = new ObservableCollection<Customer>(customersList);
+        }
+
+        [RelayCommand]
+        void Search()
+        {
+            if (SearchText == "")
+                Customers = new(customersList);
+            else
+                Customers = new(customersList.Where(c => FunctionTool.CheckContains(c.FullName ?? "", SearchText)));
         }
     }
 }
