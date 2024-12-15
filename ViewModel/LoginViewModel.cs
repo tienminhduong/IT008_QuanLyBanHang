@@ -31,7 +31,6 @@ namespace IT008_QuanLyBanHang.ViewModel
 
             IsLogin = false;
             MainWindow mainWindow = new();
-            ((MainWindowViewModel)mainWindow.DataContext).SwitchToViewCommand.Execute("Button_DonHang");
             mainWindow.ShowDialog();
             IsLogin = true;
         }

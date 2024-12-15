@@ -13,6 +13,7 @@
     <!--Converter-->
     <Window.Resources>
         <viewmodel:PriceCalculatorConverter x:Key="PriceCalculatorConverter"/>
+        <viewmodel:StockCalculatorConverter x:Key="StockCalculatorConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -71,7 +72,15 @@
                                     <TextBlock Text="{Binding Batch.ManufactureDate, StringFormat=NSX: {0:d}, ConverterCulture=fr-FR}"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="2">
-                                    <TextBlock Text="{Binding Batch.Stock, StringFormat=SL: {0}}"/>
+                                    <!--<TextBlock Text="{Binding Converter={StaticResource StockConverter}, StringFormat=SL: {0}}"/>-->
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding Converter="{StaticResource StockCalculatorConverter}">
+                                                <Binding Path="Batch.Stock"/>
+                                                <Binding Path="SelectedQuantity"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
                                     <TextBlock Text="{Binding Product.Unit, StringFormat=Đơn vị: {0}}"/>
                                     <TextBlock Text="{Binding Batch.Price, StringFormat=Giá: {0:N0}đ}"/>
                                     <TextBlock Text="{Binding Batch.ExpirationDate, StringFormat=HSD: {0:d}, ConverterCulture=fr-FR}"/>

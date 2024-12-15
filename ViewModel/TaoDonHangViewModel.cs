@@ -209,6 +209,25 @@ namespace IT008_QuanLyBanHang.ViewModel
         }
     }
 
+    // stock display = stock - selected quantity
+    public class StockCalculatorConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values[0] is int stock && values[1] is int selectedQuantity)
+            {
+                return $"SL: {stock - selectedQuantity}";
+            }
+            return "";
+        }
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return [];
+        }
+    }
+
+
+
     public class DonHangDTO
     {
         public int customer_id { get; set; }
