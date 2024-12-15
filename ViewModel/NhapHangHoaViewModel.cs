@@ -113,6 +113,17 @@ namespace IT008_QuanLyBanHang.ViewModel
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+
+        [RelayCommand]
+        private void Cancel()
+        {
+            Quantity = 0;
+            ImportPrice = 0;
+            SellPrice = 0;
+            ManufacturingDate = null;
+            ExpirationDate = null;
+        }
     }
 
     // Message class
@@ -125,4 +136,5 @@ namespace IT008_QuanLyBanHang.ViewModel
             Product = product;
         }
     }
+
 }

@@ -27,9 +27,6 @@ namespace IT008_QuanLyBanHang.ViewModel
         private int? productCategory;
 
         [ObservableProperty]
-        private string? productExpiration;
-
-        [ObservableProperty]
         private ObservableCollection<Category>? categoriesList = new ObservableCollection<Category>();
 
         public TaoHangHoaViewModel()
@@ -86,6 +83,14 @@ namespace IT008_QuanLyBanHang.ViewModel
             {
                 MessageBox.Show($"Lỗi khi thêm sản phẩm: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        [RelayCommand]
+        private void Cancel()
+        {
+            ProductName = "";
+            ProductUnit = "";
+            ProductCategory = null;
         }
 
     }

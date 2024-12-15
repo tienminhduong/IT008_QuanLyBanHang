@@ -121,6 +121,21 @@ namespace IT008_QuanLyBanHang.ViewModel
         }
 
         [RelayCommand]
+        private void UpdateProduct()
+        {
+            if (SelectedProduct == null)
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm để cập nhật", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var capNhatHangHoaView = new IT008_QuanLyBanHang.View.CapNhatHangHoaView();
+            capNhatHangHoaView.Show();
+
+            WeakReferenceMessenger.Default.Send(new ProductSelectedMessage(SelectedProduct));
+        }
+
+        [RelayCommand]
         private void AddBatch()
         {
             if (SelectedProduct == null)
