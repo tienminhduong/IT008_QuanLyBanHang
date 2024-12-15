@@ -25,6 +25,7 @@
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="0.2*"/>
             </Grid.ColumnDefinitions>
             <TextBox materialDesign:HintAssist.Hint="Tìm kiếm theo tên" FontSize="15" Padding="8"
                                     Margin="10 10 10 10" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
@@ -35,13 +36,15 @@
                     <KeyBinding Key="Enter" Command="{Binding SearchCommand}"/>
                 </TextBox.InputBindings>
             </TextBox>
-
+            <Button Grid.Column="1" Content="Xóa khách hàng" Margin="5" Background="Red"
+                    Command="{Binding DeleteCommand}"/>
         </Grid>
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <DataGrid Margin="10 0 10 10"
                       ItemsSource="{Binding Customers}"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
+                      SelectedItem="{Binding SelectedCustomer}"
                       RowDetailsVisibilityMode="{Binding ShowDetails}">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>

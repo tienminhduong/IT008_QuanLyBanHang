@@ -100,6 +100,19 @@ namespace IT008_QuanLyBanHang.ViewModel.API
             return string.Empty;
         }
 
+        public async Task DeleteAsync(string endpoint)
+        {
+            try
+            {
+                var response = await client.DeleteAsync(endpoint);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public async Task<bool> TryLogin(string account, string password)
         {
             string jsonContent = $"{{\"account\":\"{account}\",\"password\":\"{password}\"}}";

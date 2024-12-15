@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace IT008_QuanLyBanHang.ViewModel
@@ -29,6 +30,7 @@ namespace IT008_QuanLyBanHang.ViewModel
 
         [ObservableProperty] string searchText = "";
         [ObservableProperty] DataGridRowDetailsVisibilityMode showDetails = DataGridRowDetailsVisibilityMode.Collapsed;
+        [ObservableProperty] Customer? selectedCustomer = null;
 
         public async Task LoadData()
         {
@@ -48,6 +50,23 @@ namespace IT008_QuanLyBanHang.ViewModel
                 Customers = new(customersList);
             else
                 Customers = new(customersList.Where(c => FunctionTool.CheckContains(c.FullName ?? "", SearchText)));
+        }
+
+        [RelayCommand]
+        async Task Delete()
+        {
+            if (SelectedCustomer != null)
+            {
+                try
+                {
+                    await RESTService.Instance.DeleteAsync($"customers/{SelectedCustomer.Id}");
+                    await LoadData();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Không thể xóa khách đã mua hàng", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }
