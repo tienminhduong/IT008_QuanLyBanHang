@@ -215,6 +215,7 @@ namespace IT008_QuanLyBanHang.ViewModel
                                 int id;
                                 int.TryParse(workSheet.Cells[i, j++].Value?.ToString(), out id);
                                 string name = workSheet.Cells[i, j++].Value?.ToString() ?? "";
+                                string image_url = workSheet.Cells[i, j++].Value?.ToString() ?? "";
                                 string unit = workSheet.Cells[i, j++].Value?.ToString() ?? "";
                                 int category_id = 0;
                                 int.TryParse(workSheet.Cells[i, j++].Value?.ToString(), out category_id);
@@ -223,6 +224,7 @@ namespace IT008_QuanLyBanHang.ViewModel
                                 {
                                     id = id,
                                     product_name = name,
+                                    image_url = image_url,
                                     unit = unit,
                                     category_id = category_id
                                 };
