@@ -89,6 +89,7 @@
                         <TabControl Grid.Column="0" SelectedIndex="{Binding SelectedTabIndex}">
                             <TabItem Header="Tất cả" Foreground="#FF1E2A39"/>
                             <TabItem Header="Đang trưng bày" Foreground="#FF1E2A39"/>
+                            <TabItem Header="Lưu trữ" Foreground="#FF1E2A39"/>
                         </TabControl>
 
                     </Grid>

@@ -233,7 +233,12 @@ namespace IT008_QuanLyBanHang.ViewModel
                     break;
                 case 1: // "Đang trưng bày" tab
                     Products = new ObservableCollection<Product>(
-                        originalDataList.Where(p => p.Status == "active")
+                        originalDataList.Where(p => (p.Status == "active" && p.Stock > 0))
+                    );
+                    break;
+                case 2:
+                    Products = new ObservableCollection<Product>(
+                        originalDataList.Where(p => p.Status == "active" && p.Stock <= 0)
                     );
                     break;
                 default:
