@@ -30,6 +30,8 @@ namespace IT008_QuanLyBanHang.ViewModel
         {
             productList = await ProductAPI.GetAllProductsWithBatches();
             Products = new(productList);
+            // Remove all products with stock = 0
+            Products = new(Products.Where(p => p.Batch.Stock > 0));
 
             customerList = await CustomerAPI.GetAllCustomers();
         }
